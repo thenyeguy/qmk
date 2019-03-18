@@ -6,6 +6,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 
 
 def abs_path(*paths):
@@ -13,32 +14,47 @@ def abs_path(*paths):
     return os.path.join(dirname, *paths)
 
 
-def call(cmd, cwd):
-    """ Calls the provided shell command. """
-    proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE)
-    for line in proc.stdout:
-        print(line.rstrip().decode("utf-8"))
+class QmkBuilder(object):
+    def __init__(self, keyboard):
+        self.qmk_root = abs_path("qmk_firmware")
+        self.local_config_dir = abs_path(keyboard)
+        self.qmk_config_dir = os.path.join(self.qmk_root, "keyboards",
+                                           keyboard, "keymaps", "mnye")
+
+    def __enter__(self):
+        if os.path.exists(self.qmk_config_dir):
+            shutil.rmtree(self.qmk_config_dir)
+        shutil.copytree(self.local_config_dir, self.qmk_config_dir)
+        return self
+
+    def execute(self, script):
+        cmd = os.path.join(self.local_config_dir, script)
+        proc = subprocess.Popen(cmd, cwd=self.qmk_root, stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        for line in proc.stdout:
+            print(line.rstrip().decode("utf-8"))
+
+    def __exit__(self, *_):
+        shutil.rmtree(self.qmk_config_dir)
 
 
 def build(keyboard, push=False):
-    print("Building {}...".format(keyboard))
+    with QmkBuilder(keyboard) as builder:
+        print("Building {}...".format(keyboard))
+        builder.execute("build.sh")
 
-    config_dir = abs_path(keyboard)
-    if push:
-        build_script = os.path.join(config_dir, "push.sh")
-    else:
-        build_script = os.path.join(config_dir, "build.sh")
 
-    qmk_root = abs_path("qmk_firmware")
-    qmk_dir = os.path.join(qmk_root, "keyboards",
-                           keyboard, "keymaps", "mnye")
+def push(keyboard):
+    with QmkBuilder(keyboard) as builder:
+        print("Put your {} into bootlader mode".format(keyboard), end="")
+        for _ in range(0, 5):
+            print(".", end="")
+            sys.stdout.flush()
+            time.sleep(1)
+        print()
 
-    if os.path.exists(qmk_dir):
-        shutil.rmtree(qmk_dir)
-    shutil.copytree(config_dir, qmk_dir)
-    call(build_script, qmk_root)
-    shutil.rmtree(qmk_dir)
+        print("Updating {}...".format(keyboard))
+        builder.execute("push.sh")
 
 
 def main(argv):
@@ -53,7 +69,14 @@ def main(argv):
         print("Invalid keyboard: {}".format(keyboard))
         return 1
 
-    build(keyboard, args.push)
+    try:
+        if args.push:
+            push(keyboard)
+        else:
+            build(keyboard)
+    except KeyboardInterrupt:
+        print()
+        print("Aborting.")
 
 
 if __name__ == "__main__":
