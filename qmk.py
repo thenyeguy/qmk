@@ -56,9 +56,8 @@ def push(keyboard):
 
 def main(argv):
     parser = argparse.ArgumentParser(description="Build util for QMK")
-    parser.add_argument("keyboard", nargs=1, help="the keyboard config")
-    parser.add_argument("--push", action="store_true",
-                        help="push the config to the keyboard")
+    parser.add_argument("command", nargs=1, choices=["build", "push"])
+    parser.add_argument("keyboard", nargs=1)
     args = parser.parse_args()
 
     keyboard = args.keyboard[0].strip("/")
@@ -67,10 +66,11 @@ def main(argv):
         return 1
 
     try:
-        if args.push:
-            push(keyboard)
-        else:
+        command = args.command[0]
+        if command == "build":
             build(keyboard)
+        elif command == "push":
+            push(keyboard)
     except KeyboardInterrupt:
         print()
         print("Aborting.")
