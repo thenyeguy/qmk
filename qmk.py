@@ -54,9 +54,16 @@ def push(keyboard):
         builder.execute("push.sh")
 
 
+def show(keyboard):
+    with open(abs_path(keyboard, "keymap.c")) as f:
+        for line in f:
+            if line.startswith("/*") or line.startswith(" *"):
+                print(line[3:].strip())
+
+
 def main(argv):
     parser = argparse.ArgumentParser(description="Build util for QMK")
-    parser.add_argument("command", nargs=1, choices=["build", "push"])
+    parser.add_argument("command", nargs=1, choices=["build", "push", "show"])
     parser.add_argument("keyboard", nargs=1)
     args = parser.parse_args()
 
@@ -71,6 +78,8 @@ def main(argv):
             build(keyboard)
         elif command == "push":
             push(keyboard)
+        elif command == "show":
+            show(keyboard)
     except KeyboardInterrupt:
         print()
         print("Aborting.")
