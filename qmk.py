@@ -29,10 +29,7 @@ class QmkBuilder(object):
 
     def execute(self, script):
         cmd = os.path.join(self.local_config_dir, script)
-        proc = subprocess.Popen(cmd, cwd=self.qmk_root, stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE)
-        for line in proc.stdout:
-            print(line.rstrip().decode("utf-8"))
+        subprocess.check_call(cmd, cwd=self.qmk_root)
 
     def __exit__(self, *_):
         shutil.rmtree(self.qmk_config_dir)
