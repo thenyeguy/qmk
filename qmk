@@ -44,7 +44,7 @@ def build(keyboard, push=False):
 def push(keyboard):
     with QmkBuilder(keyboard) as builder:
         print("Put your {} into bootlader mode".format(keyboard), end="")
-        for _ in range(0, 5):
+        for _ in range(0, 3):
             print(".", end="")
             sys.stdout.flush()
             time.sleep(1)
