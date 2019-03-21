@@ -58,7 +58,7 @@ def show(keyboard):
     with open(abs_path(keyboard, "keymap.c")) as f:
         for line in f:
             if line.startswith("/*") or line.startswith(" *"):
-                print(line[3:].strip())
+                print(line[3:].rstrip())
 
 
 def main(argv):
