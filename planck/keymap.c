@@ -145,19 +145,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_single_persistent_default_layer(_QWERTY);
       }
       return false;
-      break;
     case COLEMAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_COLEMAK);
       }
       return false;
-      break;
     case GAMING:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_GAMING);
       }
       return false;
-      break;
+    default:
+      return true;
   }
-  return true;
 }
