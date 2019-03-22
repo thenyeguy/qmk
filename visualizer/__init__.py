@@ -44,6 +44,7 @@ _KEYNAMES = {
     "KC_LALT": "Alt",
     "KC_LGUI": "Mod",
     "KC_ENT": "Enter",
+    "KC_SFTENT": "Enter",
 
     "KC_PGDN": "PgDn",
     "KC_PGUp": "PgUp",
