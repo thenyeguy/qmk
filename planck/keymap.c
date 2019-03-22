@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------.
  * |     |  !  |  @  |  #  |  {  |  }  |  \  |  &  |  *  |  +  |  =  |     |
  * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
- * |     |  @  |  ^  |  $  |  (  |  )  |  |  |  _  |  +  |  '  |  "  |     |
+ * |     |  %  |  ^  |  $  |  (  |  )  |  |  |  _  |  +  |  '  |  "  |     |
  * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
  * |     |     |     |  ~  |  [  |  ]  |     |  `  |  <  |  >  |  /  |     |
  * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_grid(
     _______, KC_EXLM, KC_AT,   KC_HASH, KC_LCBR, KC_RCBR, KC_BSLS, KC_AMPR, KC_ASTR, KC_PLUS, KC_EQL,  _______,
-    _______, KC_AT,   KC_CIRC, KC_DLR,  KC_LPRN, KC_RPRN, KC_PIPE, KC_UNDS, KC_MINS, KC_QUOT, KC_DQT,  _______,
+    _______, KC_PERC, KC_CIRC, KC_DLR,  KC_LPRN, KC_RPRN, KC_PIPE, KC_UNDS, KC_MINS, KC_QUOT, KC_DQT,  _______,
     _______, XXXXXXX, XXXXXXX, KC_TILD, KC_LBRC, KC_RBRC, XXXXXXX, KC_GRV,  KC_LT,   KC_GT,   _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, KC_HOME, KC_END
 ),
