@@ -116,19 +116,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*                          Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------.
- * |Reset|AudOn|AudOf|     |     |     |     |     |     |     |     |     |
+ * |Reset| F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F10 | F11 |
  * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
- * |     |     |     |Linux| Mac |     |     |Qwert|Colmk|Game |     |     |
+ * |     |     |     |     |     |     |     |Qwert|Colmk|Game |     |     |
  * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
- * |     |     |     |     |     |     |     |     |     |     |     |     |
+ * |     |     |     |     |     |     |     |Linux| Mac |     |     |     |
  * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
  * |     |     |     |     |     |           |     |     |     |     |     |
  * `-----------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    RESET,   AU_ON,   AU_OFF,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, QWERTY,  COLEMAK, GAMING,  XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QWERTY,  COLEMAK, GAMING,  XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
