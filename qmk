@@ -8,6 +8,8 @@ import subprocess
 import sys
 import time
 
+import visualizer
+
 
 def abs_path(*paths):
     dirname = os.path.abspath(os.path.dirname(__file__))
@@ -55,10 +57,7 @@ def push(keyboard):
 
 
 def show(keyboard):
-    with open(abs_path(keyboard, "keymap.c")) as f:
-        for line in f:
-            if line.startswith("/*") or line.startswith(" *"):
-                print(line[3:].rstrip())
+    visualizer.visualize(abs_path(keyboard))
 
 
 def main(argv):
