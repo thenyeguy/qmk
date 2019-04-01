@@ -5,12 +5,14 @@ enum ergodox_layers {
   _QWERTY,
   _LOWER,
   _RAISE,
+  _ADJUST,
 };
 
 #define CTL_SPC MT(MOD_LCTL, KC_SPC)
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define ADJUST MO(_ADJUST)
 
 #define LOW(key) LT(_LOWER, KC_##key)
 #define RAI(key) LT(_RAISE, KC_##key)
@@ -31,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,
   KC_LSFT, LOW(Z),  RAI(X),  KC_C,    KC_V,    KC_B,    _______,
-  _______, KC_LCTL, KC_LGUI, KC_LALT, LOWER,
+  ADJUST,  KC_LCTL, KC_LGUI, KC_LALT, LOWER,
                                                KC_DEL,  KC_MPLY,
                                                         KC_HOME,
                                       CTL_SPC, KC_BSPC, KC_END,
@@ -67,19 +69,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_RAISE] = LAYOUT_ergodox(
-  _______, _______, _______, _______, _______, _______, _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,
-  _______, _______, _______, _______, BR_BACK, BR_FWD,
-  _______, _______, _______, _______, WKSP_LFT,WKSP_RGT,_______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, _______, _______, _______, _______,
+                                               _______, _______,
+                                                        _______,
+                                      _______, _______, _______,
+
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+           XXXXXXX, KC_4,    KC_5,    KC_6,    KC_DOT,  _______,
+  _______, XXXXXXX, KC_1,    KC_2,    KC_3,    _______, _______,
+                    _______, _______, _______, _______, _______,
+  _______, _______,
+  _______,
+  _______, _______, _______
+),
+
+[_ADJUST] = LAYOUT_ergodox(
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, XXXXXXX, BR_BACK, BR_FWD,  XXXXXXX, XXXXXXX,
+  KC_CAPS, XXXXXXX, WKSP_LFT,WKSP_RGT,XXXXXXX, XXXXXXX, _______,
   _______, _______, _______, _______, _______,
                                                KC_MPRV, KC_MNXT,
                                                         KC_VOLU,
                                       _______, _______, KC_VOLD,
 
-  _______, _______, _______, _______, _______, _______, _______,
-  _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-           _______, KC_4,    KC_5,    KC_6,    _______, _______,
-  _______, _______, KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS,
                     _______, _______, _______, _______, _______,
   _______, _______,
   _______,
@@ -88,12 +110,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// Runs whenever there is a layer state change.
+void led_set_user(uint8_t usb_led) {
+  if (IS_LED_ON(usb_led, USB_LED_CAPS_LOCK)) {
+    ergodox_right_led_3_on();
+  } else {
+    ergodox_right_led_3_off();
+  }
+}
+
 uint32_t layer_state_set_user(uint32_t state) {
   ergodox_board_led_off();
   ergodox_right_led_1_off();
   ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
 
   uint8_t layer = biton32(state);
   switch (layer) {
@@ -103,9 +131,42 @@ uint32_t layer_state_set_user(uint32_t state) {
       case _RAISE:
         ergodox_right_led_2_on();
         break;
+      case _ADJUST:
+        ergodox_right_led_1_on();
+        ergodox_right_led_2_on();
+        break;
       default:
         break;
     }
 
   return state;
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case LOWER:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+      } else {
+        layer_off(_LOWER);
+      }
+      update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      return false;
+    case RAISE:
+      if (record->event.pressed) {
+        layer_on(_RAISE);
+      } else {
+        layer_off(_RAISE);
+      }
+      update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      return false;
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_ADJUST);
+      } else {
+        layer_off(_ADJUST);
+      }
+      return false;
+    }
+  return true;
+}
