@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     KC_TAB,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_LCTL, XXXXXXX, XXXXXXX, KC_LALT, KC_LCTL, KC_SPC,  LOWER,   RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
+    KC_LCTL, LOWER,   XXXXXXX, KC_LALT, KC_LCTL, KC_SPC,  KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
 ),
 
 [_COLEMAK] = LAYOUT_planck_grid(
