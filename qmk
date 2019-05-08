@@ -12,6 +12,12 @@ import visualizer
 
 user = "issmirnov"
 
+# override for non-standard keyboard locations. For example, keebio
+# boards have one extra layer in the source tree.
+keyboard_loc_override = {
+    "levinson": "keebio/levinson"
+}
+
 def abs_path(*paths):
     dirname = os.path.abspath(os.path.dirname(__file__))
     return os.path.join(dirname, *paths)
@@ -22,8 +28,9 @@ class QmkBuilder(object):
         self.qmk_root = abs_path("qmk_firmware")
 
         self.local_config_dir = abs_path(keyboard)
+        keyboard_target = keyboard_loc_override[keyboard] if keyboard in keyboard_loc_override else keyboard
         self.qmk_config_dir = os.path.join(self.qmk_root, "keyboards",
-                                           keyboard, "keymaps", user)
+                                           keyboard_target, "keymaps", user)
 
         self.local_user_dir = abs_path("user")
         self.qmk_user_dir = os.path.join(self.qmk_root, "users", user)
