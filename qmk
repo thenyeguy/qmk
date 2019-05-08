@@ -10,6 +10,7 @@ import time
 
 import visualizer
 
+user = "issmirnov"
 
 def abs_path(*paths):
     dirname = os.path.abspath(os.path.dirname(__file__))
@@ -22,10 +23,10 @@ class QmkBuilder(object):
 
         self.local_config_dir = abs_path(keyboard)
         self.qmk_config_dir = os.path.join(self.qmk_root, "keyboards",
-                                           keyboard, "keymaps", "mnye")
+                                           keyboard, "keymaps", user)
 
         self.local_user_dir = abs_path("user")
-        self.qmk_user_dir = os.path.join(self.qmk_root, "users", "mnye")
+        self.qmk_user_dir = os.path.join(self.qmk_root, "users", user)
 
     def _cleanup(self):
         if os.path.exists(self.qmk_config_dir):
