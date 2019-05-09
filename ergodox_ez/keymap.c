@@ -87,15 +87,15 @@ KC_DOWN,  KC_LALT, KC_LSHIFT
 
   // layer 3
 [_OVERWATCH] = LAYOUT_ergodox(
-KC_ESCAPE,   KC_1,  KC_2,  KC_3,  KC_4,  KC_5,    TO(0),
-KC_TAB,      KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,     KC_NO,
-KC_LCTL,     KC_A,   KC_S,   KC_D,   KC_F,   KC_P,
-KC_LSHIFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_GRAVE, KC_GRAVE,
-KC_LCTL,    KC_F9,  KC_PSCREEN,  KC_H,   KC_R,
+KC_ESCAPE , KC_1  , KC_2       , KC_3 , KC_4 , KC_5     , TO(0)    ,
+KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , KC_NO    ,
+KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     ,
+KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE , KC_GRAVE ,
+KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R ,
 
-   KC_NO,    KC_NO,
-   KC_NO,
-KC_SPACE,   KC_NO,  KC_NO,
+   KC_NO  , KC_NO ,
+   KC_NO  ,
+KC_SPACE  , KC_NO , KC_NO      ,
 
 
 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
