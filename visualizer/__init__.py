@@ -2,6 +2,7 @@ import os
 import re
 
 
+# source: https://graphemica.com/
 _KEYNAMES = {
     "_______": "",
     "XXXXXXX": "",
@@ -38,6 +39,33 @@ _KEYNAMES = {
     "KC_LT": "<",
     "KC_GT": ">",
 
+    "KC_LABK": '<',
+    "KC_RABK": '>',
+    "KC_LBRACKET": '[',
+    "KC_RBRACKET": ']',
+    "KC_SLASH": '/',
+    "KC_QUES": '?',
+    "KC_BSLASH": '\\',
+    "KC_QUOTE": '\'',
+    "KC_UP": '↑',
+    "KC_DOWN": '↓',
+    "KC_LEFT": '←',
+    "KC_RGHT": '→',
+
+    "KC_COLN": ":",
+
+    "KC_LALT": "⎇",
+    "KC_LGUI": "⌘",
+    "KC_COLN": ":",
+    "KC_BSPACE": "⌫",
+    "KC_SPACE": "⎵/",
+
+    "LOCK": "🔒",
+    "OSMSFT": "⇧(1)",
+    "MODSFT": "⌘⇧",
+    "APPS": "⌘ + d",
+    # "KC_LALT": "Alt",
+    # "KC_LGUI": "Mod",
     "KC_LSFT": "Shift",
     "KC_RSFT": "Shift",
     "KC_LCTL": "Ctrl",
