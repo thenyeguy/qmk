@@ -58,7 +58,7 @@ _KEYNAMES = {
     "KC_LGUI": "⌘",
     "KC_COLN": ":",
     "KC_BSPACE": "⌫",
-    "KC_SPACE": "⎵/",
+    "KC_SPACE": "⎵",
 
     "LOCK": "🔒",
     "OSMSFT": "⇧(1)",
