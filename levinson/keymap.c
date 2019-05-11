@@ -225,3 +225,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+// Runs constantly in the background, in a loop every 100ms or so.
+// Best used for LED status output triggered when user isn't actively typing.
+void matrix_scan_user(void) {
+  uint8_t layer = biton32(layer_state);
+  if (layer == 0) {
+
+      // Set up LED indicators for stuck modifier keys.
+      // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118
+      switch (keyboard_report->mods) {
+          case MOD_BIT(KC_LSFT): // LSHIFT
+              // TODO set single LED on inner half (or top right) to yellow or smth
+              rgblight_setrgb_at(50, 50, 50, 0);
+           break;
+
+          case MOD_BIT(KC_LGUI): // LGUI
+              break;
+
+          case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
+              break;
+
+          default: // reset leds
+            break;
+      }
+  }
+}
+
+// only runs when when the layer is changed, good for updating LED's and clearing sticky state
+uint32_t layer_state_set_user(uint32_t state) {
+    uint8_t layer = biton32(state);
+    switch (layer) {
+      case 0:
+        rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
+        break;
+      case 1:
+        clear_mods();
+        rgblight_setrgb(255,0,0);
+        break;
+      case 2:
+        clear_mods();
+        rgblight_setrgb(0,255,0);
+        break;
+      case 3:
+        clear_mods();
+        rgblight_setrgb(0,0,255);
+        break;
+      case 4:
+        break;
+      default:
+        break;
+    }
+    return state;
+};
