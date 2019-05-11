@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 KC_ESC  , KC_Q   , KC_W    , KC_E    , KC_R   , KC_T      , KC_Y   , KC_U     , KC_I   , KC_O    , KC_P          , APPS     ,
 KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F   , KC_G      , KC_H   , KC_J     , KC_K   , KC_L    , TAP_TOG_LAYER , KC_DQT   ,
 OSMSFT  , KC_Z   , KC_X    , KC_C    , KC_V   , KC_B      , KC_N   , KC_M     , KC_DOT , KC_COMM , TG(_NUMP)     , KC_QUOTE ,
-KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , KC_ESC , KC_COLN , KC_PERC       , LOCK
+KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , KC_UP    , KC_DOWN   , KC_LEFT   , KC_RGHT
 
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
@@ -65,7 +65,7 @@ KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , 
 _______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV   , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS   , RESET    ,
 _______ , KC_CIRC , KC_UNDS , KC_LPRN     , KC_RPRN     , KC_DLR   , KC_HASH , KC_EQL  , KC_COLN  , KC_SCLN   , TAP_TOG_LAYER  , KC_DQT   ,
 _______ , KC_LABK , KC_RABK , KC_LBRACKET , KC_RBRACKET , KC_TILD , KC_AMPR , KC_QUES , KC_SLASH , KC_BSLASH , TG(_NUMP) , KC_QUOTE ,
-_______ , _______ , _______ , _______     , _______     , _______  , _______ , _______ , KC_UP    , KC_DOWN   , KC_LEFT   , KC_RGHT
+_______ , _______ , _______ , _______     , _______     , _______  , _______ , _______ ,KC_ESC , KC_COLN , KC_PERC       , LOCK
 
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
