@@ -10,6 +10,13 @@
 - https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight.h
   - list of functions for RGB manipulation
 
+Status:
+ - adding indicators for shift/ctrl on LED 7 causes the slave board to flicker
+ - setting color to green vs gold didn't help
+ - setting modifier to control vs shift didn't help
+ - tweaking config.h RGB rules with regard to slave boards, sleep, and splits didn't help
+ - current ideas: none. get some sleep.
+
 ## Troubleshooting
 
 - When in doubt, flash both sides of the keyboard. For some reason that helps with LEDs and reponsiveness.

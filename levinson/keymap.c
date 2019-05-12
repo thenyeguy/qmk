@@ -173,7 +173,7 @@ void matrix_scan_user(void) {
       // Set up LED indicators for stuck modifier keys.
       // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118
       switch (keyboard_report->mods) {
-        case MOD_BIT(KC_LSFT): // LSHIFT
+        case MOD_BIT(KC_LCTL): // LSHIFT
           //rgblight_setrgb_gold_at(shift_led);
           rgblight_setrgb_green_at(shift_led);
           rgblight_setrgb_at(RGB_CLEAR, gui_led);
@@ -184,7 +184,7 @@ void matrix_scan_user(void) {
           rgblight_setrgb_teal_at(gui_led);
           break;
 
-        case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
+        case MOD_BIT(KC_LCTL) ^ MOD_BIT(KC_LGUI):
           //rgblight_setrgb_gold_at(shift_led);
           rgblight_setrgb_green_at(shift_led);
           rgblight_setrgb_teal_at(gui_led);
