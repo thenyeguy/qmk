@@ -13,7 +13,9 @@
 // #include "config_common.h"
 
 #define USE_SERIAL
-// #define USE_I2C
+
+// DO NOT enable USE_IDC - board will not respond.
+//#define USE_I2C
 
 #ifdef RGBLIGHT_ENABLE
    // Enable animations. +5500 bytes
@@ -22,8 +24,7 @@
 #   define RGBLED_NUM 16     // Number of LEDs
 /* #   undef RGBLIGHT_LED_MAP */
 /* #   define RGBLIGHT_LED_MAP { 0, 1, 2, 3, 4, 5, 6, 7, 15, 8, 13, 12, 11, 10, 9, 14 } */
-/* #   undef RGBLED_SPLIT */
-/* #   define RGBLED_SPLIT { 8, 8 } */
+   // DO NOT USE RGBLED_SPLIT - the slave board will stop responding.
 #   define RGBLIGHT_SLEEP // Turn off RGB when computer sleeps
 #  define RGB_CLEAR 0x00, 0x00, 0x00
 #endif

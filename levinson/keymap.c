@@ -173,9 +173,8 @@ void matrix_scan_user(void) {
       // Set up LED indicators for stuck modifier keys.
       // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118
       switch (keyboard_report->mods) {
-        case MOD_BIT(KC_LCTL): // LSHIFT
-          //rgblight_setrgb_gold_at(shift_led);
-          rgblight_setrgb_green_at(shift_led);
+        case MOD_BIT(KC_LSHIFT): // LSHIFT
+          rgblight_setrgb_gold_at(shift_led);
           rgblight_setrgb_at(RGB_CLEAR, gui_led);
           break;
 
@@ -184,9 +183,8 @@ void matrix_scan_user(void) {
           rgblight_setrgb_teal_at(gui_led);
           break;
 
-        case MOD_BIT(KC_LCTL) ^ MOD_BIT(KC_LGUI):
-          //rgblight_setrgb_gold_at(shift_led);
-          rgblight_setrgb_green_at(shift_led);
+        case MOD_BIT(KC_LSHIFT) ^ MOD_BIT(KC_LGUI):
+          rgblight_setrgb_gold_at(shift_led);
           rgblight_setrgb_teal_at(gui_led);
           break;
 
@@ -205,10 +203,8 @@ uint32_t layer_state_set_user(uint32_t state) {
     uint8_t layer = biton32(state);
     switch (layer) {
       case 0:
-        // rgblight_mode(RGBLIGHT_MODE_KNIGHT);
-        //rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
-        //rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-        //rgblight_setrgb(RGB_CLEAR);
+        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+        rgblight_setrgb(RGB_CLEAR);
         break;
       case 1:
         clear_mods();
