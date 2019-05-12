@@ -235,7 +235,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         // rgblight_mode(RGBLIGHT_MODE_KNIGHT);
         //rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
         rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-        rgblight_setrgb(RGB_WHITE);
+        rgblight_setrgb(0,0,0);
         break;
       case 1:
         clear_mods();

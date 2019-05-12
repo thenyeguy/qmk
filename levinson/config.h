@@ -12,7 +12,7 @@
 
 // #include "config_common.h"
 
-// #define USE_SERIAL
+#define USE_SERIAL
 // #define USE_I2C
 
 #ifdef RGBLIGHT_ENABLE
