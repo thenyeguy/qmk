@@ -1,5 +1,13 @@
 #include QMK_KEYBOARD_H
 
+#include "quantum_keycodes.h"
+//#include "rgblight_list.h"
+//#include "rgblight.h"
+#ifdef AUDIO_ENABLE
+  #include "audio.h"
+  #include "sounds.h"
+#endif
+
 extern keymap_config_t keymap_config;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -87,78 +95,18 @@ _______ , _______ , _______ , _______     , _______     , _______  , _______ , _
     _______ , _______ , _______       , _______       , _______             , _______             , _______ , _______ , _______ , _______ , TO(_OVERWATCH) , _______
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
-};
+[_OVERWATCH] = LAYOUT_ortho_4x12(
+KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , TO(0)            , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX          , RGB_TOG           ,
+KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX                 , XXXXXXX           ,
+KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE , RGB_MODE_PLAIN   , RGB_MODE_BREATHE , RGB_MODE_RAINBOW , RGB_MODE_SWIRL , RGB_MODE_SNAKE   , RGB_MODE_XMAS     ,
+KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R , KC_SPACE , RGB_HUI          , RGB_HUD          , RGB_SAI          , RGB_SAD        , RGB_MODE_RGBTEST , RGB_MODE_GRADIENT
+), // Note: visualizer expects this closing parens to be right at the start of the line.
 
-#ifdef AUDIO_ENABLE
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
-float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
-#endif
+};
 
 /* void persistent_default_layer_set(uint16_t default_layer) { */
 /*   eeconfig_update_default_layer(default_layer); */
 /*   default_layer_set(default_layer); */
-/* } */
-
-/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { */
-/*   switch (keycode) { */
-/*     case QWERTY: */
-/*       if (record->event.pressed) { */
-/*         #ifdef AUDIO_ENABLE */
-/*           PLAY_SONG(tone_qwerty); */
-/*         #endif */
-/*         persistent_default_layer_set(1UL<<_QWERTY); */
-/*       } */
-/*       return false; */
-/*       break; */
-/*     case COLEMAK: */
-/*       if (record->event.pressed) { */
-/*         #ifdef AUDIO_ENABLE */
-/*           PLAY_SONG(tone_colemak); */
-/*         #endif */
-/*         persistent_default_layer_set(1UL<<_COLEMAK); */
-/*       } */
-/*       return false; */
-/*       break; */
-/*     case DVORAK: */
-/*       if (record->event.pressed) { */
-/*         #ifdef AUDIO_ENABLE */
-/*           PLAY_SONG(tone_dvorak); */
-/*         #endif */
-/*         persistent_default_layer_set(1UL<<_DVORAK); */
-/*       } */
-/*       return false; */
-/*       break; */
-/*     case LOWER: */
-/*       if (record->event.pressed) { */
-/*         layer_on(_SYMB); */
-/*         update_tri_layer(_SYMB, _NUMP, _ADJUST); */
-/*       } else { */
-/*         layer_off(_SYMB); */
-/*         update_tri_layer(_SYMB, _NUMP, _ADJUST); */
-/*       } */
-/*       return false; */
-/*       break; */
-/*     case RAISE: */
-/*       if (record->event.pressed) { */
-/*         layer_on(_NUMP); */
-/*         update_tri_layer(_SYMB, _NUMP, _ADJUST); */
-/*       } else { */
-/*         layer_off(_NUMP); */
-/*         update_tri_layer(_SYMB, _NUMP, _ADJUST); */
-/*       } */
-/*       return false; */
-/*       break; */
-/*     case ADJUST: */
-/*       if (record->event.pressed) { */
-/*         layer_on(_ADJUST); */
-/*       } else { */
-/*         layer_off(_ADJUST); */
-/*       } */
-/*       return false; */
-/*       break; */
-/*   } */
-/*   return true; */
 /* } */
 
 // TAP_TOG_LAYER magic
@@ -170,6 +118,19 @@ uint32_t tap_tog_count = 0; // number of presses on TAP_TOG_LAYER button.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
+
+    case LOCK:
+      if (record->event.pressed) {
+        rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL);
+      }
+      return false;
+      break;
+    case RESET:
+      if (record->event.pressed) {
+          PLAY_SONG(song_goodbye);
+      }
+      return false;
+      break;
 
     case TAP_TOG_LAYER:
       tap_tog_count++;
@@ -238,43 +199,54 @@ void matrix_scan_user(void) {
           case MOD_BIT(KC_LSFT): // LSHIFT
               // TODO set single LED on inner half (or top right) to yellow or smth
               // rgblight_setrgb_at(50, 50, 50, 0);
-              rgblight_setrgb_master(90, 100, 3);
-           break;
+              // rgblight_setrgb_master(90, 100, 3);
+              /* rgblight_setrgb_at(0xFF, 0xD9, 0x00, 7); */
+              rgblight_setrgb_gold_at(7);
+              /* rgblight_setrgb_turquoise_at(7); */
+              /* rgblight_setrgb_pink_at(8); */
+              /* rgblight_setrgb_green_at(9); */
+
+              break;
 
           case MOD_BIT(KC_LGUI): // LGUI
-              rgblight_setrgb_slave(50, 60, 70);
+              //rgblight_setrgb_slave(50, 60, 70)
+              rgblight_setrgb_turquoise_at(8);
               break;
 
           case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
               break;
 
           default: // reset leds
+            rgblight_setrgb_white_at(7);
             break;
       }
   }
 }
 
-float my_song[][2] = SONG(QWERTY_SOUND);
 
 // only runs when when the layer is changed, good for updating LED's and clearing sticky state
+// RGB modes: https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight.h
 uint32_t layer_state_set_user(uint32_t state) {
     uint8_t layer = biton32(state);
     switch (layer) {
       case 0:
+        // rgblight_mode(RGBLIGHT_MODE_KNIGHT);
         //rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
-        PLAY_SONG(my_song);
+        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+        rgblight_setrgb(RGB_WHITE);
         break;
       case 1:
         clear_mods();
-        rgblight_setrgb(255,0,0);
+        rgblight_setrgb(RGB_RED);
         break;
       case 2:
         clear_mods();
-        rgblight_setrgb(0,255,0);
+        rgblight_setrgb(RGB_GREEN);
         break;
       case 3:
         clear_mods();
         rgblight_setrgb(0,0,255);
+        PLAY_SONG(song_overwatch);
         break;
       case 4:
         break;
@@ -283,3 +255,19 @@ uint32_t layer_state_set_user(uint32_t state) {
     }
     return state;
 };
+
+void matrix_init_user(void) {
+    #ifdef AUDIO_ENABLE
+        startup_user();
+    #endif
+}
+void startup_user() {
+  _delay_ms(20); // gets rid of tick
+  PLAY_SONG(song_startup);
+}
+
+void shutdown_user() {
+    PLAY_SONG(song_goodbye);
+    _delay_ms(150);
+    stop_all_notes();
+}
