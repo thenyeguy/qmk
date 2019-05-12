@@ -160,6 +160,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+
+uint32_t shift_led = 7; // LED index for shift indicator
+uint32_t gui_led = 15; // LED index for gui indicator
+
 // Runs constantly in the background, in a loop every 100ms or so.
 // Best used for LED status output triggered when user isn't actively typing.
 void matrix_scan_user(void) {
@@ -170,23 +174,25 @@ void matrix_scan_user(void) {
       // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118
       switch (keyboard_report->mods) {
         case MOD_BIT(KC_LSFT): // LSHIFT
-          rgblight_setrgb_gold_at(7);
-          rgblight_setrgb_at(RGB_CLEAR, 15);
+          //rgblight_setrgb_gold_at(shift_led);
+          rgblight_setrgb_green_at(shift_led);
+          rgblight_setrgb_at(RGB_CLEAR, gui_led);
           break;
 
         case MOD_BIT(KC_LGUI): // LGUI
-          rgblight_setrgb_at(RGB_CLEAR, 7);
-          rgblight_setrgb_teal_at(15);
+          rgblight_setrgb_at(RGB_CLEAR, shift_led);
+          rgblight_setrgb_teal_at(gui_led);
           break;
 
         case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
-          rgblight_setrgb_gold_at(7);
-          rgblight_setrgb_teal_at(15);
+          //rgblight_setrgb_gold_at(shift_led);
+          rgblight_setrgb_green_at(shift_led);
+          rgblight_setrgb_teal_at(gui_led);
           break;
 
         default: // reset leds
-          rgblight_setrgb_at(RGB_CLEAR, 7);
-          rgblight_setrgb_at(RGB_CLEAR, 15);
+          rgblight_setrgb_at(RGB_CLEAR, shift_led);
+          rgblight_setrgb_at(RGB_CLEAR, gui_led);
           break;
       }
   }
@@ -201,8 +207,8 @@ uint32_t layer_state_set_user(uint32_t state) {
       case 0:
         // rgblight_mode(RGBLIGHT_MODE_KNIGHT);
         //rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
-        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-        rgblight_setrgb(0,0,0);
+        //rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+        //rgblight_setrgb(RGB_CLEAR);
         break;
       case 1:
         clear_mods();
