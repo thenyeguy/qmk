@@ -34,22 +34,12 @@ enum custom_keycodes {
 #define OSMSFT OSM(MOD_LSFT)
 #define LOCK LGUI(KC_L)
 #define MODSFT LSFT(KC_LGUI)
-#define APPS LGUI(KC_D)
+#define APPS LGUI(KC_SPC)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* Qwerty
- * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Adjust| Ctrl | Alt  | GUI  |Lower |Space |Space |Raise | Left | Down |  Up  |Right |
- * `-----------------------------------------------------------------------------------'
- */
+// Run `./qmk show levinson` from parent dir to see this layer.
 [_QWERTY] = LAYOUT_ortho_4x12(
 KC_ESC  , KC_Q   , KC_W    , KC_E    , KC_R   , KC_T      , KC_Y   , KC_U     , KC_I   , KC_O    , KC_P          , APPS     ,
 KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F   , KC_G      , KC_H   , KC_J     , KC_K   , KC_L    , TAP_TOG_LAYER , KC_DQT   ,
@@ -58,17 +48,7 @@ KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , 
 
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
-/* Lower
- * ,-----------------------------------------------------------------------------------.
- * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |     |    \  |  |   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | |      |      |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
- * `-----------------------------------------------------------------------------------'
- */
+// Run `./qmk show levinson` from parent dir to see this layer.
 [_SYMB] = LAYOUT_ortho_4x12(
 _______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV   , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS   , KC_ESC    ,
 _______ , KC_CIRC , KC_UNDS , KC_LPRN     , KC_RPRN     , KC_DLR   , KC_HASH , KC_EQL  , KC_COLN  , KC_SCLN   , TAP_TOG_LAYER  , KC_DQT   ,
@@ -77,17 +57,7 @@ _______ , _______ , _______ , _______     , _______     , _______  , _______ , _
 
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
-/* Raise
- * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |      |      |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
- * `-----------------------------------------------------------------------------------'
- */
+// Run `./qmk show levinson` from parent dir to see this layer.
 [_NUMP] = LAYOUT_ortho_4x12(
     _______ , KC_NO   , KC_NO         , LGUI(KC_UP)   , KC_MEDIA_PREV_TRACK , KC_MEDIA_NEXT_TRACK , KC_COMM , KC_7    , KC_8    , KC_9    , XXXXXXX        , RESET ,
     _______ , XXXXXXX , LGUI(KC_LEFT) , LGUI(KC_DOWN) , LGUI(KC_RIGHT)      , KC_MEDIA_PLAY_PAUSE , KC_0    , KC_4    , KC_5    , KC_6    , TO(_SYMB)      , _______ ,
@@ -95,6 +65,7 @@ _______ , _______ , _______ , _______     , _______     , _______  , _______ , _
     _______ , _______ , _______       , _______       , _______             , _______             , _______ , _______ , _______ , _______ , TO(_OVERWATCH) , _______
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
+// Run `./qmk show levinson` from parent dir to see this layer.
 [_OVERWATCH] = LAYOUT_ortho_4x12(
 KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , TO(0)            , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX          , RGB_TOG           ,
 KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX                 , XXXXXXX           ,
@@ -198,34 +169,25 @@ void matrix_scan_user(void) {
       // Set up LED indicators for stuck modifier keys.
       // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118
       switch (keyboard_report->mods) {
-          case MOD_BIT(KC_LSFT): // LSHIFT
-              // TODO set single LED on inner half (or top right) to yellow or smth
-              // rgblight_setrgb_at(50, 50, 50, 0);
-              // rgblight_setrgb_master(90, 100, 3);
-              /* rgblight_setrgb_at(0xFF, 0xD9, 0x00, 7); */
-              rgblight_setrgb_gold_at(7);
-            rgblight_setrgb_at(RGB_CLEAR, 15);
-              /* rgblight_setrgb_turquoise_at(7); */
-              /* rgblight_setrgb_pink_at(8); */
-              /* rgblight_setrgb_green_at(9); */
+        case MOD_BIT(KC_LSFT): // LSHIFT
+          rgblight_setrgb_gold_at(7);
+          rgblight_setrgb_at(RGB_CLEAR, 15);
+          break;
 
-              break;
+        case MOD_BIT(KC_LGUI): // LGUI
+          rgblight_setrgb_at(RGB_CLEAR, 7);
+          rgblight_setrgb_teal_at(15);
+          break;
 
-          case MOD_BIT(KC_LGUI): // LGUI
-              //rgblight_setrgb_slave(50, 60, 70)
-              rgblight_setrgb_teal_at(15);
-            rgblight_setrgb_at(RGB_CLEAR, 7);
-              break;
+        case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
+          rgblight_setrgb_gold_at(7);
+          rgblight_setrgb_teal_at(15);
+          break;
 
-          case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
-              rgblight_setrgb_gold_at(7);
-              rgblight_setrgb_teal_at(15);
-              break;
-
-          default: // reset leds
-            rgblight_setrgb_at(RGB_CLEAR, 7);
-            rgblight_setrgb_at(RGB_CLEAR, 15);
-            break;
+        default: // reset leds
+          rgblight_setrgb_at(RGB_CLEAR, 7);
+          rgblight_setrgb_at(RGB_CLEAR, 15);
+          break;
       }
   }
 }
@@ -252,12 +214,10 @@ uint32_t layer_state_set_user(uint32_t state) {
         break;
       case 3:
         clear_mods();
-        rgblight_setrgb(0,0,255);
+        rgblight_setrgb(RGB_BLUE);
         #ifdef AUDIO_ENABLE
           PLAY_SONG(song_overwatch);
         #endif
-        break;
-      case 4:
         break;
       default:
         break;
@@ -266,9 +226,7 @@ uint32_t layer_state_set_user(uint32_t state) {
 };
 
 void matrix_init_user(void) {
-  #ifdef AUDIO_ENABLE
-      startup_user();
-  #endif
+  startup_user();
 }
 void startup_user() {
   #ifdef AUDIO_ENABLE
