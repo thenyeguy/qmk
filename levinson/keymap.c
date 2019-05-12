@@ -70,7 +70,7 @@ KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , 
  * `-----------------------------------------------------------------------------------'
  */
 [_SYMB] = LAYOUT_ortho_4x12(
-_______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV   , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS   , RESET    ,
+_______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV   , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS   , KC_ESC    ,
 _______ , KC_CIRC , KC_UNDS , KC_LPRN     , KC_RPRN     , KC_DLR   , KC_HASH , KC_EQL  , KC_COLN  , KC_SCLN   , TAP_TOG_LAYER  , KC_DQT   ,
 _______ , KC_LABK , KC_RABK , KC_LBRACKET , KC_RBRACKET , KC_TILD , KC_AMPR , KC_QUES , KC_SLASH , KC_BSLASH , TG(_NUMP) , KC_QUOTE ,
 _______ , _______ , _______ , _______     , _______     , _______  , _______ , _______ ,KC_ESC , KC_COLN , KC_PERC       , LOCK
@@ -89,7 +89,7 @@ _______ , _______ , _______ , _______     , _______     , _______  , _______ , _
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMP] = LAYOUT_ortho_4x12(
-    _______ , KC_NO   , KC_NO         , LGUI(KC_UP)   , KC_MEDIA_PREV_TRACK , KC_MEDIA_NEXT_TRACK , KC_COMM , KC_7    , KC_8    , KC_9    , XXXXXXX        , _______ ,
+    _______ , KC_NO   , KC_NO         , LGUI(KC_UP)   , KC_MEDIA_PREV_TRACK , KC_MEDIA_NEXT_TRACK , KC_COMM , KC_7    , KC_8    , KC_9    , XXXXXXX        , RESET ,
     _______ , XXXXXXX , LGUI(KC_LEFT) , LGUI(KC_DOWN) , LGUI(KC_RIGHT)      , KC_MEDIA_PLAY_PAUSE , KC_0    , KC_4    , KC_5    , KC_6    , TO(_SYMB)      , _______ ,
     _______ , XXXXXXX , XXXXXXX       , XXXXXXX       , KC_AUDIO_VOL_DOWN   , KC_AUDIO_VOL_UP     , KC_DOT  , KC_1    , KC_2    , KC_3    , TO(_QWERTY)    , _______ ,
     _______ , _______ , _______       , _______       , _______             , _______             , _______ , _______ , _______ , _______ , TO(_OVERWATCH) , _______
@@ -123,15 +123,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL);
       }
-      return false;
+      return true; // Let QMK send the enter press/release events
       break;
-    case KC_RESET:
+    case RESET:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
           PLAY_SONG(song_goodbye);
         #endif
       }
-      return false;
+      return true; // Let QMK send the enter press/release events
       break;
 
     case TAP_TOG_LAYER:
@@ -204,6 +204,7 @@ void matrix_scan_user(void) {
               // rgblight_setrgb_master(90, 100, 3);
               /* rgblight_setrgb_at(0xFF, 0xD9, 0x00, 7); */
               rgblight_setrgb_gold_at(7);
+            rgblight_setrgb_at(RGB_CLEAR, 15);
               /* rgblight_setrgb_turquoise_at(7); */
               /* rgblight_setrgb_pink_at(8); */
               /* rgblight_setrgb_green_at(9); */
@@ -213,6 +214,7 @@ void matrix_scan_user(void) {
           case MOD_BIT(KC_LGUI): // LGUI
               //rgblight_setrgb_slave(50, 60, 70)
               rgblight_setrgb_teal_at(15);
+            rgblight_setrgb_at(RGB_CLEAR, 7);
               break;
 
           case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
@@ -264,15 +266,22 @@ uint32_t layer_state_set_user(uint32_t state) {
 };
 
 void matrix_init_user(void) {
-    #ifdef AUDIO_ENABLE
-        startup_user();
-    #endif
+  #ifdef AUDIO_ENABLE
+      startup_user();
+  #endif
 }
 void startup_user() {
   #ifdef AUDIO_ENABLE
-  _delay_ms(20); // gets rid of tick
-  PLAY_SONG(song_startup);
+    _delay_ms(20); // gets rid of tick
+    PLAY_SONG(song_startup);
   #endif
+  #ifdef RGBLIGHT_ENABLE
+    // Clear lights from bootloader colors
+    rgblight_enable(); // NOTE: WE NEED this line here, otherwise the commands are ignored.
+    rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+    rgblight_setrgb(RGB_CLEAR);
+  #endif
+
 }
 
 void shutdown_user() {
