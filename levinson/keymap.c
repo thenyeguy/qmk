@@ -125,7 +125,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case RESET:
+    case KC_RESET:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
           PLAY_SONG(song_goodbye);
@@ -212,14 +212,17 @@ void matrix_scan_user(void) {
 
           case MOD_BIT(KC_LGUI): // LGUI
               //rgblight_setrgb_slave(50, 60, 70)
-              rgblight_setrgb_turquoise_at(8);
+              rgblight_setrgb_teal_at(15);
               break;
 
           case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
+              rgblight_setrgb_gold_at(7);
+              rgblight_setrgb_teal_at(15);
               break;
 
           default: // reset leds
-            rgblight_setrgb_white_at(7);
+            rgblight_setrgb_at(RGB_CLEAR, 7);
+            rgblight_setrgb_at(RGB_CLEAR, 15);
             break;
       }
   }

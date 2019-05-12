@@ -1,7 +1,7 @@
 #pragma once
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 150
+#define TAPPING_TERM 100
 
 #define PERMISSIVE_HOLD
 #define RETRO_TAPPING
@@ -20,11 +20,12 @@
 #   define RGBLIGHT_ANIMATIONS
 #   undef RGBLED_NUM
 #   define RGBLED_NUM 16     // Number of LEDs
-#   undef RGBLIGHT_LED_MAP
-#   define RGBLIGHT_LED_MAP { 0, 1, 2, 3, 4, 5, 6, 7, 15, 8, 13, 12, 11, 10, 9, 14 }
-#   undef RGBLED_SPLIT
-#   define RGBLED_SPLIT { 8, 8 }
-#define RGBLIGHT_SLEEP // Turn off RGB when computer sleeps
+/* #   undef RGBLIGHT_LED_MAP */
+/* #   define RGBLIGHT_LED_MAP { 0, 1, 2, 3, 4, 5, 6, 7, 15, 8, 13, 12, 11, 10, 9, 14 } */
+/* #   undef RGBLED_SPLIT */
+/* #   define RGBLED_SPLIT { 8, 8 } */
+//#   define RGBLIGHT_SLEEP // Turn off RGB when computer sleeps
+#  define RGB_CLEAR 0x00, 0x00, 0x00
 #endif
 
 #ifdef AUDIO_ENABLE
