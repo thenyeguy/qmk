@@ -127,7 +127,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case RESET:
       if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
           PLAY_SONG(song_goodbye);
+        #endif
       }
       return false;
       break;
@@ -246,7 +248,9 @@ uint32_t layer_state_set_user(uint32_t state) {
       case 3:
         clear_mods();
         rgblight_setrgb(0,0,255);
-        PLAY_SONG(song_overwatch);
+        #ifdef AUDIO_ENABLE
+          PLAY_SONG(song_overwatch);
+        #endif
         break;
       case 4:
         break;
@@ -262,12 +266,16 @@ void matrix_init_user(void) {
     #endif
 }
 void startup_user() {
+  #ifdef AUDIO_ENABLE
   _delay_ms(20); // gets rid of tick
   PLAY_SONG(song_startup);
+  #endif
 }
 
 void shutdown_user() {
-    PLAY_SONG(song_goodbye);
+  #ifdef AUDIO_ENABLE
+  PLAY_SONG(song_goodbye);
     _delay_ms(150);
     stop_all_notes();
+  #endif
 }

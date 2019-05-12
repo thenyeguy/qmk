@@ -7,7 +7,7 @@ RGBLIGHT_ENABLE = yes
 BACKLIGHT_ENABLE = no
 
 # Control piezo speaker on C6
-AUDIO_ENABLE = yes # 4000 bytes
+AUDIO_ENABLE = no # 4000 bytes
 
 # Disable unused features to save on space
 # https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
