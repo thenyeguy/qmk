@@ -11,5 +11,5 @@ BACKLIGHT_ENABLE = no
 # https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 MOUSEKEY_ENABLE = no # 2000 bytes
 CONSOLE_ENABLE = no
-AUDIO_ENABLE = no # 4000 bytes
+AUDIO_ENABLE = yes # 4000 bytes
 BOOTMAGIC_ENABLE = no

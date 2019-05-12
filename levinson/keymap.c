@@ -237,10 +237,12 @@ void matrix_scan_user(void) {
       switch (keyboard_report->mods) {
           case MOD_BIT(KC_LSFT): // LSHIFT
               // TODO set single LED on inner half (or top right) to yellow or smth
-              rgblight_setrgb_at(50, 50, 50, 0);
+              // rgblight_setrgb_at(50, 50, 50, 0);
+              rgblight_setrgb_master(90, 100, 3);
            break;
 
           case MOD_BIT(KC_LGUI): // LGUI
+              rgblight_setrgb_slave(50, 60, 70);
               break;
 
           case MOD_BIT(KC_LSFT) ^ MOD_BIT(KC_LGUI):
@@ -252,12 +254,15 @@ void matrix_scan_user(void) {
   }
 }
 
+float my_song[][2] = SONG(QWERTY_SOUND);
+
 // only runs when when the layer is changed, good for updating LED's and clearing sticky state
 uint32_t layer_state_set_user(uint32_t state) {
     uint8_t layer = biton32(state);
     switch (layer) {
       case 0:
-        rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
+        //rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
+        PLAY_SONG(my_song);
         break;
       case 1:
         clear_mods();

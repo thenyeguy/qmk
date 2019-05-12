@@ -15,10 +15,13 @@
 
 #ifdef RGBLIGHT_ENABLE
 #   undef RGBLED_NUM
-#   define RGBLED_NUM 8     // Number of LEDs
-#   undef RGBLED_SPLIT
-#   define RGBLED_SPLIT { 4, 4 }
+#   define RGBLED_NUM 16     // Number of LEDs
+/* #   undef RGBLED_SPLIT */
+/* #   define RGBLED_SPLIT { 6, 6 } */
 #endif
+
+#define QMK_SPEAKER C6
+#define C6_AUDIO
 
 // Save 200 bytes on unused keycodes
 #undef LOCKING_SUPPORT_ENABLE
