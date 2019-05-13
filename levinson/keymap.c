@@ -1,41 +1,19 @@
 #include QMK_KEYBOARD_H
 
+#include "issmirnov.h"
 #include "quantum_keycodes.h"
-//#include "rgblight_list.h"
-//#include "rgblight.h"
+
 #ifdef AUDIO_ENABLE
   #include "audio.h"
   #include "sounds.h"
 #endif
 
+
+#ifdef RGBLIGHT_ENABLE
+  #include "rgb.h"
+#endif
+
 extern keymap_config_t keymap_config;
-
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers
-enum {
-  _QWERTY = 0,
-  _SYMB,
-  _NUMP,
-  _OVERWATCH,
-  _NAVI
-};
-
-enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE,
-  TAP_TOG_LAYER,
-};
-
-
-#define LOWER MO(_SYMB)
-#define RAISE MO(_NUMP)
-
-#define CTL_SPC MT(MOD_LCTL, KC_SPC)
-#define OSMSFT OSM(MOD_LSFT)
-#define LOCK LGUI(KC_L)
-#define MODSFT LSFT(KC_LGUI)
-#define APPS LGUI(KC_SPC)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -170,62 +148,58 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 
-uint32_t shift_led = 7; // LED index for shift indicator
-uint32_t gui_led = 15; // LED index for gui indicator
 
-// Runs constantly in the background, in a loop every 100ms or so.
-// Best used for LED status output triggered when user isn't actively typing.
-void matrix_scan_user(void) {
-  uint8_t layer = biton32(layer_state);
-  if (layer == 0) {
+/* // Runs constantly in the background, in a loop every 100ms or so. */
+/* // Best used for LED status output triggered when user isn't actively typing. */
+/* void matrix_scan_user(void) { */
+/*   uint8_t layer = biton32(layer_state); */
+/*   if (layer == 0) { */
 
-      // Set up LED indicators for stuck modifier keys.
-      // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118
-      switch (keyboard_report->mods) {
-        case MOD_BIT(KC_LSHIFT): // LSHIFT
-          rgblight_setrgb_gold_at(shift_led);
-          rgblight_setrgb_at(RGB_CLEAR, gui_led);
-          break;
+/*       // Set up LED indicators for stuck modifier keys. */
+/*       // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118 */
+/*       switch (keyboard_report->mods) { */
+/*         case MOD_BIT(KC_LSHIFT): // LSHIFT */
+/*           rgblight_setrgb_gold_at(shift_led); */
+/*           rgblight_setrgb_at(RGB_CLEAR, gui_led); */
+/*           break; */
 
-        case MOD_BIT(KC_LGUI): // LGUI
-          rgblight_setrgb_at(RGB_CLEAR, shift_led);
-          rgblight_setrgb_teal_at(gui_led);
-          break;
+/*         case MOD_BIT(KC_LGUI): // LGUI */
+/*           rgblight_setrgb_at(RGB_CLEAR, shift_led); */
+/*           rgblight_setrgb_teal_at(gui_led); */
+/*           break; */
 
-        case MOD_BIT(KC_LSHIFT) ^ MOD_BIT(KC_LGUI):
-          rgblight_setrgb_gold_at(shift_led);
-          rgblight_setrgb_teal_at(gui_led);
-          break;
+/*         case MOD_BIT(KC_LSHIFT) ^ MOD_BIT(KC_LGUI): */
+/*           rgblight_setrgb_gold_at(shift_led); */
+/*           rgblight_setrgb_teal_at(gui_led); */
+/*           break; */
 
-        default: // reset leds
-          rgblight_setrgb_at(RGB_CLEAR, shift_led);
-          rgblight_setrgb_at(RGB_CLEAR, gui_led);
-          break;
-      }
-  }
-}
+/*         default: // reset leds */
+/*           rgblight_setrgb_at(RGB_CLEAR, shift_led); */
+/*           rgblight_setrgb_at(RGB_CLEAR, gui_led); */
+/*           break; */
+/*       } */
+/*   } */
+/* } */
 
 
 // only runs when when the layer is changed, good for updating LED's and clearing sticky state
 // RGB modes: https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight.h
 uint32_t layer_state_set_user(uint32_t state) {
-    uint8_t layer = biton32(state);
+#ifdef RGBLIGHT_ENABLE
+  layer_state_set_rgb(state);
+#endif
+  uint8_t layer = biton32(state);
     switch (layer) {
       case 0:
-        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-        rgblight_setrgb(RGB_CLEAR);
         break;
       case 1:
         clear_mods();
-        rgblight_setrgb(RGB_RED);
         break;
       case 2:
         clear_mods();
-        rgblight_setrgb(RGB_GREEN);
         break;
       case 3:
         clear_mods();
-        rgblight_setrgb(RGB_BLUE);
         #ifdef AUDIO_ENABLE
           PLAY_SONG(song_overwatch);
         #endif
@@ -236,7 +210,7 @@ uint32_t layer_state_set_user(uint32_t state) {
     return state;
 };
 
-void matrix_init_user(void) {
+void keyboard_post_init_user(void) {
   startup_user();
 }
 void startup_user() {
@@ -246,18 +220,13 @@ void startup_user() {
   #endif
   #ifdef RGBLIGHT_ENABLE
     // Clear lights from bootloader colors
-    rgblight_enable(); // NOTE: WE NEED this line here, otherwise the commands are ignored.
-    rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-    rgblight_setrgb(RGB_CLEAR);
+    /* rgblight_enable(); // NOTE: WE NEED this line here, otherwise the commands are ignored. */
+    keyboard_post_init_rgb();
+
+    /* rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT); */
+    /* rgblight_setrgb(RGB_CLEAR); */
   #endif
 
-}
-
-
-void keyboard_post_init_user(void){
-#ifdef RGBLIGHT_ENABLE
-    keyboard_post_init_rgb();
-#endif
 }
 
 void shutdown_user() {
@@ -266,13 +235,4 @@ void shutdown_user() {
     _delay_ms(150);
     stop_all_notes();
   #endif
-}
-
-// on layer change, no matter where the change was initiated
-// Then runs keymap's layer change check
-uint32_t layer_state_set_user(uint32_t state) {
-#ifdef RGBLIGHT_ENABLE
-    state = layer_state_set_rgb(state);
-#endif // RGBLIGHT_ENABLE
-    return state;
 }

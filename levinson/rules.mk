@@ -14,3 +14,11 @@ AUDIO_ENABLE = yes # +4000 bytes
 MOUSEKEY_ENABLE = no # 2000 bytes
 CONSOLE_ENABLE = no
 BOOTMAGIC_ENABLE = no
+
+# Include custom files
+SRC += issmirnov.c
+
+ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
+  # Include my fancy rgb functions source here
+  SRC	 += rgb.c
+endif
