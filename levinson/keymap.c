@@ -20,20 +20,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_QWERTY] = LAYOUT_ortho_4x12(
-KC_ESC  , KC_Q   , KC_W    , KC_E    , KC_R   , KC_T      , KC_Y   , KC_U     , KC_I   , KC_O    , KC_P          , APPS     ,
-KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F   , KC_G      , KC_H   , KC_J     , KC_K   , KC_L    , TAP_TOG_LAYER , MO(_NAVI)   ,
-OSMSFT  , KC_Z   , KC_X    , KC_C    , KC_V   , KC_B      , KC_N   , KC_M     , KC_DOT , KC_COMM , TG(_NUMP)     , KC_QUOTE ,
-KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , KC_UP    , KC_DOWN   , KC_LEFT   , KC_RGHT
-
+KC_ESC  , KC_Q   , KC_W    , KC_E    , KC_R      , KC_T   , KC_Y     , KC_U   , KC_I   , KC_O    , KC_P          , APPS      ,
+KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F      , KC_G   , KC_H     , KC_J   , KC_K   , KC_L    , TAP_TOG_LAYER , MO(_NAVI) ,
+OSMSFT  , KC_Z   , KC_X    , KC_C    , KC_V      , KC_B   , KC_N     , KC_M   , KC_DOT , KC_COMM , TG(_NUMP)     , KC_QUOTE  ,
+KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , KC_UP  , KC_DOWN , KC_LEFT       , KC_RGHT
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_SYMB] = LAYOUT_ortho_4x12(
-_______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV   , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS   , KC_ESC    ,
-_______ , KC_CIRC , KC_UNDS , KC_LPRN     , KC_RPRN     , KC_DLR   , KC_HASH , KC_EQL  , KC_COLN  , KC_SCLN   , TAP_TOG_LAYER  , KC_DQT   ,
-_______ , KC_LABK , KC_RABK , KC_LBRACKET , KC_RBRACKET , KC_TILD , KC_AMPR , KC_QUES , KC_SLASH , KC_BSLASH , TG(_NUMP) , KC_QUOTE ,
-_______ , _______ , _______ , _______     , _______     , _______  , _______ , _______ ,KC_ESC , KC_COLN , KC_PERC       , LOCK
-
+_______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV  , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS       , KC_ESC   ,
+_______ , KC_CIRC , KC_UNDS , KC_LPRN     , KC_RPRN     , KC_DLR  , KC_HASH , KC_EQL  , KC_COLN  , KC_SCLN   , TAP_TOG_LAYER , KC_DQT   ,
+_______ , KC_LABK , KC_RABK , KC_LBRACKET , KC_RBRACKET , KC_TILD , KC_AMPR , KC_QUES , KC_SLASH , KC_BSLASH , TG(_NUMP)     , KC_QUOTE ,
+_______ , _______ , _______ , _______     , _______     , _______ , _______ , _______ , KC_ESC   , KC_COLN   , KC_PERC       , LOCK
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
@@ -46,18 +44,18 @@ _______ , _______ , _______ , _______     , _______     , _______  , _______ , _
 
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_OVERWATCH] = LAYOUT_ortho_4x12(
-KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , TO(0)            , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX          , RGB_TOG           ,
-KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX                 , XXXXXXX           ,
+KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , TO(0)            , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX          , CLEAR_EEPROM      ,
+KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX          , RGB_TOG           ,
 KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE , RGB_MODE_PLAIN   , RGB_MODE_BREATHE , RGB_MODE_RAINBOW , RGB_MODE_SWIRL , RGB_MODE_SNAKE   , RGB_MODE_XMAS     ,
 KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R , KC_SPACE , RGB_HUI          , RGB_HUD          , RGB_SAI          , RGB_SAD        , RGB_MODE_RGBTEST , RGB_MODE_GRADIENT
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_NAVI] = LAYOUT_ortho_4x12(
-XXXXXXX , XXXXXXX , XXXXXXX , KC_UP   , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX        , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX , XXXXXXX , KC_LEFT , KC_DOWN , KC_RGHT , XXXXXXX , XXXXXXX , KC_LCTL        , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX        , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , APPS , KC_LGUI, MODSFT , XXXXXXX , XXXXXXX , XXXXXXX, XXXXXXX
+XXXXXXX , XXXXXXX , XXXXXXX , KC_UP   , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX , XXXXXXX , KC_LEFT , KC_DOWN , KC_RGHT , XXXXXXX , XXXXXXX , KC_LCTL , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , APPS    , KC_LGUI , MODSFT  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 };
@@ -92,6 +90,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true; // Let QMK send the enter press/release events
       break;
 
+    case CLEAR_EEPROM:
+      eeconfig_init();
+      #ifdef AUDIO_ENABLE
+        PLAY_SONG(song_goodbye); // TODO write custom song if firmware has space
+      #endif
+
+      return false; // QMK doesn't know about this keycode
+      break;
     case TAP_TOG_LAYER:
       tap_tog_count++;
       // press
@@ -201,7 +207,7 @@ uint32_t layer_state_set_user(uint32_t state) {
       case 3:
         clear_mods();
         #ifdef AUDIO_ENABLE
-          PLAY_SONG(song_overwatch);
+          // PLAY_SONG(song_overwatch);
         #endif
         break;
       default:

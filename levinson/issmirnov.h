@@ -18,6 +18,7 @@ enum {
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE,
   TAP_TOG_LAYER,
+  CLEAR_EEPROM,
 };
 
 
