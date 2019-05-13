@@ -16,3 +16,18 @@ Supported Keyboards:
   - `build` - compiles layout into hex file
   - `push` - flashes firmware to keyboard
   - `show` - displays layout in visualizer
+
+## TODO
+
+- Refactor configs to be more modular, gated by DEFS
+- Create unified user config - it's copied in with the QMK script
+- Use drashna's tricks to share layouts across ergodox and levinson
+- fix 'update.sh' script to pull qmk repo properly, send patch upstream
+
+### levinson
+
+- wrap up LED indicators + sound stuff
+
+### ergodox
+
+- copy over NAVI layer from levinson
