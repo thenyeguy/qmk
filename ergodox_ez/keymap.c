@@ -45,11 +45,11 @@ KC_ESCAPE , KC_F1         , KC_F2         , KC_F3       , KC_F4            , KC_
 XXXXXXX   , KC_MINUS      , KC_AT         , KC_LCBR     , KC_RCBR          , KC_GRV , KC_ASTR  ,
 KC_TAB    , KC_CIRC       , KC_UNDS       , KC_LPRN     , KC_RPRN          , KC_DLR   ,
 KC_LSHIFT , KC_LABK       , KC_RABK       , KC_LBRACKET , KC_RBRACKET      , KC_TILD  , KC_SLASH ,
-KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , LGUI(LSFT(KC_Z)) ,
+KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , LCTL(KC_LEFT) ,
 
                                               XXXXXXX,        XXXXXXX,
                                                             XXXXXXX,
-                                    LGUI(LSFT(KC_X)), KC_BSPACE,    KC_DEL,
+                                    LCTL(KC_RIGHT), KC_BSPACE,    KC_DEL,
 
 KC_F7     , KC_F8    , KC_F9   , KC_F10    , KC_F11    , KC_F12  , XXXXXXX  ,
 KC_PLUS   , KC_ASTR  , KC_EXLM , KC_PIPE   , KC_PERC   , KC_PLUS , XXXXXXX  ,
