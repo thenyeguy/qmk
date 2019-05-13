@@ -20,3 +20,4 @@ Status:
 ## Troubleshooting
 
 - When in doubt, flash both sides of the keyboard. For some reason that helps with LEDs and reponsiveness.
+    - `cd qmk_firmware && make keebio/levinson/rev2:issmirnov:dfu-split-right`

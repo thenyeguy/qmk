@@ -191,7 +191,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     default:
       tap_tog_count = 0; // reset counter.
       tap_tog_layer_other_key_pressed = true; // always set this to true, TAP_TOG_LAYER handlers will handle interpreting this
-      uprintln("okp: true");
       break;
   }
   return true;

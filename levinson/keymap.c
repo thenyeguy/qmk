@@ -154,7 +154,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 
-
+// Runs constantly in the background, in a loop every 100ms or so.
+// Best used for LED status output triggered when user isn't actively typing.
+void matrix_scan_user(void) {
+  #ifdef RGBLIGHT_ENABLE
+    matrix_scan_rgb();
+  #endif // RGBLIGHT_ENABLE
+  uint8_t layer = biton32(layer_state);
+  if (layer == 0) {
+  }
+}
 /* // Runs constantly in the background, in a loop every 100ms or so. */
 /* // Best used for LED status output triggered when user isn't actively typing. */
 /* void matrix_scan_user(void) { */
