@@ -244,10 +244,26 @@ void startup_user() {
 
 }
 
+
+void keyboard_post_init_user(void){
+#ifdef RGBLIGHT_ENABLE
+    keyboard_post_init_rgb();
+#endif
+}
+
 void shutdown_user() {
   #ifdef AUDIO_ENABLE
   PLAY_SONG(song_goodbye);
     _delay_ms(150);
     stop_all_notes();
   #endif
+}
+
+// on layer change, no matter where the change was initiated
+// Then runs keymap's layer change check
+uint32_t layer_state_set_user(uint32_t state) {
+#ifdef RGBLIGHT_ENABLE
+    state = layer_state_set_rgb(state);
+#endif // RGBLIGHT_ENABLE
+    return state;
 }
