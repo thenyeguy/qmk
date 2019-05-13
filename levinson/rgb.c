@@ -9,6 +9,7 @@ uint32_t layer_state_set_rgb(uint32_t state) {
         case _QWERTY:
             rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             rgblight_sethsv_noeeprom(RGB_CLEAR);
+    rgblight_setrgb_gold_at(shift_led);
             break;
         case _SYMB:
             rgblight_sethsv_noeeprom_red();
@@ -30,4 +31,5 @@ void keyboard_post_init_rgb(void) {
     rgblight_enable();
     rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
     rgblight_setrgb(RGB_CLEAR);
+    rgblight_setrgb_gold_at(shift_led);
 }
