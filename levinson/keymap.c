@@ -19,6 +19,7 @@ enum {
   _SYMB,
   _NUMP,
   _OVERWATCH,
+  _NAVI
 };
 
 enum custom_keycodes {
@@ -42,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_QWERTY] = LAYOUT_ortho_4x12(
 KC_ESC  , KC_Q   , KC_W    , KC_E    , KC_R   , KC_T      , KC_Y   , KC_U     , KC_I   , KC_O    , KC_P          , APPS     ,
-KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F   , KC_G      , KC_H   , KC_J     , KC_K   , KC_L    , TAP_TOG_LAYER , KC_DQT   ,
+KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F   , KC_G      , KC_H   , KC_J     , KC_K   , KC_L    , TAP_TOG_LAYER , MO(_NAVI)   ,
 OSMSFT  , KC_Z   , KC_X    , KC_C    , KC_V   , KC_B      , KC_N   , KC_M     , KC_DOT , KC_COMM , TG(_NUMP)     , KC_QUOTE ,
 KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , KC_UP    , KC_DOWN   , KC_LEFT   , KC_RGHT
 
@@ -71,6 +72,14 @@ KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , TO(0)            , XXX
 KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX                 , XXXXXXX           ,
 KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE , RGB_MODE_PLAIN   , RGB_MODE_BREATHE , RGB_MODE_RAINBOW , RGB_MODE_SWIRL , RGB_MODE_SNAKE   , RGB_MODE_XMAS     ,
 KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R , KC_SPACE , RGB_HUI          , RGB_HUD          , RGB_SAI          , RGB_SAD        , RGB_MODE_RGBTEST , RGB_MODE_GRADIENT
+), // Note: visualizer expects this closing parens to be right at the start of the line.
+
+// Run `./qmk show levinson` from parent dir to see this layer.
+[_NAVI] = LAYOUT_ortho_4x12(
+XXXXXXX , XXXXXXX , XXXXXXX , KC_UP   , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX        , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX , XXXXXXX , KC_LEFT , KC_DOWN , KC_RGHT , XXXXXXX , XXXXXXX , KC_LCTL        , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX        , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , APPS , KC_LGUI, MODSFT , XXXXXXX , XXXXXXX , XXXXXXX, XXXXXXX
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 };
