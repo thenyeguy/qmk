@@ -1,24 +1,12 @@
 #include "ergodox_ez.h"
-#include "debug.h"
-#include "action_layer.h"
-#include "version.h"
-#include "quantum.h"
 
-/* Layers */
-enum  {
-  _BASE = 0,
-  _SYMB,
-  _NUMP,
-  _OVERWATCH,
-};
+// Custom user includes
+#include "issmirnov.h"
+#include "tap_tog.h"
 
-enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE,
-  TAP_TOG_LAYER,
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_BASE] = LAYOUT_ergodox(
+[_QWERTY] = LAYOUT_ergodox(
 KC_ESCAPE,      KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EXLM,
 KC_SLASH,       KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_ASTR,
 KC_TAB,         KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
@@ -111,80 +99,12 @@ _______, _______, _______
 ),
 };
 
-const uint16_t PROGMEM fn_actions[] = {
-  [1] = ACTION_LAYER_TAP_TOGGLE(1)
-};
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-      switch(id) {
-        case 0:
-        if (record->event.pressed) {
-          SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-        }
-        break;
-      }
-    return MACRO_NONE;
-};
-
-
-
-
-// TAP_TOG_LAYER magic
-bool tap_tog_layer_other_key_pressed = false; // set to true if any key pressed while TAP_TOG_LAYER held down
-bool tap_tog_layer_toggled_on = false; // will become true if no keys are pressed while TTL held down
-uint32_t tap_tog_count = 0; // number of presses on TAP_TOG_LAYER button.
 
 // called by QMK during key processing before the actual key event is handled. Useful for macros.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
   switch (keycode) {
-
     case TAP_TOG_LAYER:
-      tap_tog_count++;
-      // press
-      if (record->event.pressed) {
-
-        // TTL has already been pressed and we are toggled into that layer
-        // so now we need to leave
-        if(tap_tog_layer_toggled_on) {
-          layer_clear();
-          tap_tog_layer_toggled_on = false;
-        }
-
-        // this means we're in our default layer
-        // so switch the layer immediately
-        // whether we'll switch back when it's released depends on if a button gets pressed while this is held down
-        else {
-          // switch layer
-          layer_on(_SYMB);
-          tap_tog_layer_other_key_pressed = false; // if this becomes true before it gets released, it will act as a held modifier
-        }
-      }
-
-      // release
-      else {
-        // if it was used as a held modifier (like traditional shift)
-        if(tap_tog_layer_other_key_pressed) {
-          // switch layer back
-          layer_clear();
-        }
-        // if it was used as a toggle button
-        else {
-          // next time, it will turn layer off
-          tap_tog_layer_toggled_on = true;
-          uprintln("set tog to true");
-
-          // If it's been tapped twice, reset the toggle flag.
-          // Otherwise, we get stuck oscillating between this code block and the
-          // pressed && TTL_toggled_on block.
-          if (tap_tog_count >= 4 ) {
-            tap_tog_count = 0;
-            tap_tog_layer_toggled_on = false;
-          }
-        }
-
-      }
+      process_tap_tog(_SYMB,record);
       return false;
       break;
 

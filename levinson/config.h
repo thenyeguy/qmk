@@ -1,21 +1,5 @@
 #pragma once
 
-// how long before a tap becomes a hold
-#undef TAPPING_TERM
-#define TAPPING_TERM 100
-
-// makes tap and hold keys work better for fast typers who don't want
-// tapping term set above 500
-#define PERMISSIVE_HOLD
-
-// tap anyway, even after TAPPING_TERM, if there was no other key
-// interruption between press and release
-#define RETRO_TAPPING
-
-// how many taps before triggering the toggle
-#undef ONESHOT_TAP_TOGGLE
-#define ONESHOT_TAP_TOGGLE 2
-
 // Use serial comms for split keyboard
 // DO NOT enable USE_IDC - board will not respond.
 #define USE_SERIAL
@@ -49,6 +33,7 @@
    #define QMK_SPEAKER C6
    #define C6_AUDIO
    #define NO_MUSIC_MODE // Save 2000 bytes
+
 #endif
 
 // Save 200 bytes on unused keycodes

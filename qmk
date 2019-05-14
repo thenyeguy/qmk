@@ -52,8 +52,7 @@ class QmkBuilder(object):
         subprocess.check_call(cmd, cwd=self.qmk_root)
 
     def __exit__(self, *_):
-        pass
-        #self._cleanup()
+        self._cleanup()
 
 
 def build(keyboard, push=False):

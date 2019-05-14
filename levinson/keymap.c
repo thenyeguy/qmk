@@ -3,6 +3,8 @@
 #include "issmirnov.h"
 #include "quantum_keycodes.h"
 
+#include "tap_tog.h"
+
 #ifdef AUDIO_ENABLE
   #include "audio.h"
   #include "sounds.h"
@@ -65,11 +67,6 @@ XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , APPS    , KC_LGUI , MODSFT  , 
 /*   default_layer_set(default_layer); */
 /* } */
 
-// TAP_TOG_LAYER magic
-bool tap_tog_layer_other_key_pressed = false; // set to true if any key pressed while TAP_TOG_LAYER held down
-bool tap_tog_layer_toggled_on = false; // will become true if no keys are pressed while TTL held down
-uint32_t tap_tog_count = 0; // number of presses on TAP_TOG_LAYER button.
-
 // called by QMK during key processing before the actual key event is handled. Useful for macros.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -99,49 +96,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false; // QMK doesn't know about this keycode
       break;
     case TAP_TOG_LAYER:
-      tap_tog_count++;
-      // press
-      if (record->event.pressed) {
-
-        // TTL has already been pressed and we are toggled into that layer
-        // so now we need to leave
-        if(tap_tog_layer_toggled_on) {
-          layer_clear();
-          tap_tog_layer_toggled_on = false;
-        }
-
-        // this means we're in our default layer
-        // so switch the layer immediately
-        // whether we'll switch back when it's released depends on if a button gets pressed while this is held down
-        else {
-          // switch layer
-          layer_on(_SYMB);
-          tap_tog_layer_other_key_pressed = false; // if this becomes true before it gets released, it will act as a held modifier
-        }
-      }
-
-      // release
-      else {
-        // if it was used as a held modifier (like traditional shift)
-        if(tap_tog_layer_other_key_pressed) {
-          // switch layer back
-          layer_clear();
-        }
-        // if it was used as a toggle button
-        else {
-          // next time, it will turn layer off
-          tap_tog_layer_toggled_on = true;
-
-          // If it's been tapped twice, reset the toggle flag.
-          // Otherwise, we get stuck oscillating between this code block and the
-          // pressed && TTL_toggled_on block.
-          if (tap_tog_count >= 4 ) {
-            tap_tog_count = 0;
-            tap_tog_layer_toggled_on = false;
-          }
-        }
-
-      }
+      process_tap_tog(_SYMB,record);
       return false;
       break;
 
@@ -164,38 +119,6 @@ void matrix_scan_user(void) {
   if (layer == 0) {
   }
 }
-/* // Runs constantly in the background, in a loop every 100ms or so. */
-/* // Best used for LED status output triggered when user isn't actively typing. */
-/* void matrix_scan_user(void) { */
-/*   uint8_t layer = biton32(layer_state); */
-/*   if (layer == 0) { */
-
-/*       // Set up LED indicators for stuck modifier keys. */
-/*       // https://github.com/qmk/qmk_firmware/blob/master/tmk_core/common/report.h#L118 */
-/*       switch (keyboard_report->mods) { */
-/*         case MOD_BIT(KC_LSHIFT): // LSHIFT */
-/*           rgblight_setrgb_gold_at(shift_led); */
-/*           rgblight_setrgb_at(RGB_CLEAR, gui_led); */
-/*           break; */
-
-/*         case MOD_BIT(KC_LGUI): // LGUI */
-/*           rgblight_setrgb_at(RGB_CLEAR, shift_led); */
-/*           rgblight_setrgb_teal_at(gui_led); */
-/*           break; */
-
-/*         case MOD_BIT(KC_LSHIFT) ^ MOD_BIT(KC_LGUI): */
-/*           rgblight_setrgb_gold_at(shift_led); */
-/*           rgblight_setrgb_teal_at(gui_led); */
-/*           break; */
-
-/*         default: // reset leds */
-/*           rgblight_setrgb_at(RGB_CLEAR, shift_led); */
-/*           rgblight_setrgb_at(RGB_CLEAR, gui_led); */
-/*           break; */
-/*       } */
-/*   } */
-/* } */
-
 
 // only runs when when the layer is changed, good for updating LED's and clearing sticky state
 // RGB modes: https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight.h
