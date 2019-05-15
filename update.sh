@@ -1,3 +1,3 @@
 #!/bin/bash
 git submodule sync --recursive
-git submodule update --init --recursive --progress
+git submodule update --init --recursive --progress --remote
