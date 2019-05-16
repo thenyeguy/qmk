@@ -56,7 +56,7 @@ _KEYNAMES = {
 
     "KC_LALT": "⎇",
     "KC_LGUI": "⌘",
-    "KC_COLN": ":",
+    "KC_SCOLON": ";",
     "KC_BSPACE": "⌫",
     "KC_SPACE": "⎵",
 
@@ -133,7 +133,20 @@ class _Layer(object):
         return code.replace("KC_", "").title().replace("_", "")
 
 
-def _load_layers(keymap_lines):
+# parses list of row_lines for "#define _____XXX___ KC_1, KC_2, KC_3" style statements
+def _load_rows(row_lines):
+    row_re = re.compile(r"^#define\s*(\w*)\s*(.*)$")
+
+    rows = {}
+    for line in row_lines:
+        if line.startswith('#define ________'):
+            match = row_re.match(line)
+            rows[match.group(1)] = [e.strip() for e in match.group(2).split(",")]
+    return rows
+
+# keymap_lines is the raw c source file
+# rows is a dict of macro to keycode list.
+def _load_layers(keymap_lines, rows):
     start_re = re.compile(r"^\[_(\w+)\] =")
     end_re = re.compile(r"^\),")
 
@@ -148,17 +161,28 @@ def _load_layers(keymap_lines):
                 layer_name = None
                 codes = None
             else:
-                codes += filter(None, (code.strip()
-                                       for code in line.split(",")))
+                for code in filter(None,(code.strip() for code in line.split(",") )):
+                    c = code if code not in rows else rows[code] # performa macro expansion from lookup table
+                    if type(c) is list:
+                        codes.extend(c)
+                    else:
+                        codes.append(c)
+
+
         elif start:
             layer_name = start.group(1)
             codes = []
     return layers
 
 
-def visualize(keyboard_dir):
+def visualize(user_dir, keyboard_dir):
+    rows_path = os.path.join(user_dir, "rows.h")
+    rows = {}
+    if os.path.isfile(rows_path):
+        with open(os.path.join(user_dir, "rows.h")) as f:
+            rows = _load_rows(f)
     with open(os.path.join(keyboard_dir, "keymap.c")) as f:
-        layers = _load_layers(f)
+        layers = _load_layers(f,rows)
     with open(os.path.join(keyboard_dir, "template.txt")) as f:
         template = _Template(f.read())
     for layer in layers:
