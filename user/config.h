@@ -15,3 +15,7 @@
 // how many taps before triggering the toggle
 #undef ONESHOT_TAP_TOGGLE
 #define ONESHOT_TAP_TOGGLE 2
+
+// Enable combos for vim
+#define COMBO_COUNT 4 // Specify the number of combos used. BE SURE TO INCREMENT AS NEEDED
+#define COMBO_TERM 50
