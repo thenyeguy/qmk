@@ -4,25 +4,24 @@
 #include "issmirnov.h"
 #include "tap_tog.h"
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_QWERTY] = LAYOUT_ergodox(
+[_QWERTY] = LAYOUT_ergodox_wrapper(
 KC_ESCAPE,      KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EXLM,
-KC_SLASH,       KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_ASTR,
-KC_TAB,         KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
-OSM(MOD_LSFT),  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_SLASH,
+KC_SLASH,       _________________QWERTY_L1_________________,   KC_ASTR,
+KC_TAB,         _________________QWERTY_L2_________________,
+OSM(MOD_LSFT),  _________________QWERTY_L3_________________,   KC_SLASH,
 KC_LCTL, LSFT(KC_LGUI), LSFT(KC_LALT),  KC_LALT,   KC_LGUI,
                                         XXXXXXX,  XXXXXXX,
                                                 XXXXXXX,
                         KC_SPACE,   KC_BSPACE,  KC_DEL,
 
 KC_EQL    , KC_6    , KC_7    , KC_8    , KC_9          , KC_0    , KC_ESCAPE      ,
-KC_PLUS   , KC_Y    , KC_U    , KC_I    , KC_O          , KC_P    , LGUI(KC_SPACE) ,
-            KC_H      , KC_J    , KC_K    , KC_L    , TAP_TOG_LAYER , KC_DQUO ,
-KC_MINS   , KC_N    , KC_M    , KC_DOT  , KC_COMMA      , TG(2)   , KC_QUOTE       ,
+KC_PLUS   , _________________QWERTY_R1_________________  , LGUI(KC_SPACE) ,
+            _________________QWERTY_R2_________________  , KC_DQT ,
+KC_MINS   , _________________QWERTY_R3_________________  , KC_QUOTE       ,
 KC_ESCAPE , KC_COLN , KC_PERC , XXXXXXX , LGUI(KC_L)    ,
 
-KC_LEFT,  KC_RIGHT,
+KC_LEFT,  KC_RGHT,
 KC_UP,
 KC_DOWN,  KC_TAB, KC_ENTER
 ),
@@ -30,7 +29,7 @@ KC_DOWN,  KC_TAB, KC_ENTER
   // layer 1
 [_SYMB] = LAYOUT_ergodox(
 KC_ESCAPE , KC_F1         , KC_F2         , KC_F3       , KC_F4            , KC_F5    , KC_F6    ,
-XXXXXXX   , KC_MINUS      , KC_AT         , KC_LCBR     , KC_RCBR          , KC_GRV , KC_ASTR  ,
+XXXXXXX   , KC_MINS      , KC_AT         , KC_LCBR     , KC_RCBR          , KC_GRV , KC_ASTR  ,
 KC_TAB    , KC_CIRC       , KC_UNDS       , KC_LPRN     , KC_RPRN          , KC_DLR   ,
 KC_LSHIFT , KC_LABK       , KC_RABK       , KC_LBRACKET , KC_RBRACKET      , KC_TILD  , KC_SLASH ,
 KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , LCTL(KC_LEFT) ,
@@ -41,11 +40,11 @@ KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , LCTL(KC_LEFT) ,
 
 KC_F7     , KC_F8    , KC_F9   , KC_F10    , KC_F11    , KC_F12  , XXXXXXX  ,
 KC_PLUS   , KC_ASTR  , KC_EXLM , KC_PIPE   , KC_PERC   , KC_PLUS , XXXXXXX  ,
-            KC_HASH  , KC_EQUAL , KC_COLN , KC_SCOLON , _______   , KC_DQUO ,
-KC_MINUS  , KC_AMPR  , KC_QUES , KC_SLASH  , KC_BSLASH , TG(2)   , KC_QUOTE ,
+            KC_HASH  , KC_EQL , KC_COLN , KC_SCOLON , _______   , KC_DQUO ,
+KC_MINS  , KC_AMPR  , KC_QUES , KC_SLASH  , KC_BSLASH , TG(2)   , KC_QUOTE ,
 KC_ESCAPE , KC_COLN  , KC_PERC , XXXXXXX   , XXXXXXX   ,
 
-KC_LEFT,  KC_RIGHT,
+KC_LEFT,  KC_RGHT,
 KC_UP,
 KC_DOWN,  KC_TAB, KC_ENTER
 ),
@@ -62,15 +61,15 @@ TO(0)   , XXXXXXX , XXXXXXX       , XXXXXXX       , XXXXXXX             ,
                                                                                       XXXXXXX  ,
                                                                           KC_SPACE , KC_BSPACE , KC_DEL ,
 
-KC_EQUAL , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , RESET   ,
-KC_PLUS  , KC_COMMA , KC_7    , KC_8    , KC_9    , XXXXXXX ,
+KC_EQL , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , RESET   ,
+KC_PLUS  , KC_COMM , KC_7    , KC_8    , KC_9    , XXXXXXX ,
 XXXXXXX  , KC_0     , KC_4    , KC_5    , KC_6    , TO(1)   , XXXXXXX ,
-KC_MINUS , KC_DOT   , KC_1    , KC_2    , KC_3    , TO(0)   , XXXXXXX ,
+KC_MINS , KC_DOT   , KC_1    , KC_2    , KC_3    , TO(0)   , XXXXXXX ,
                       KC_0    , XXXXXXX , XXXXXXX , TO(3)   , XXXXXXX ,
 
-KC_LEFT,  KC_RIGHT,
+KC_LEFT,  KC_RGHT,
 KC_UP,
-KC_DOWN,  KC_LALT, KC_LSHIFT
+KC_DOWN,  KC_LALT, KC_LSFT
 ),
 
   // layer 3
@@ -78,7 +77,7 @@ KC_DOWN,  KC_LALT, KC_LSHIFT
 KC_ESCAPE , KC_1  , KC_2       , KC_3 , KC_4 , KC_5     , TO(0)    ,
 KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , XXXXXXX    ,
 KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     ,
-KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE , KC_GRAVE ,
+KC_LSFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRV , XXXXXXX ,
 KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R ,
 
 XXXXXXX  , XXXXXXX ,
