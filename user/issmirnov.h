@@ -20,6 +20,8 @@ enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE,
   TAP_TOG_LAYER,
   CLEAR_EEPROM,
+  WKSP_LEFT, // Smart key that only activates when we are momentarily in a layer
+  WKSP_RIGHT, // Smart key that only activates when we are momentarily in a layer
 };
 
 

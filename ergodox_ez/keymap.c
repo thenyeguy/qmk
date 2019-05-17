@@ -32,11 +32,11 @@ KC_ESCAPE , KC_F1         , KC_F2         , KC_F3       , KC_F4            , KC_
 XXXXXXX   , KC_MINS      , KC_AT         , KC_LCBR     , KC_RCBR          , KC_GRV , KC_ASTR  ,
 KC_TAB    , KC_CIRC       , KC_UNDS       , KC_LPRN     , KC_RPRN          , KC_DLR   ,
 KC_LSHIFT , KC_LABK       , KC_RABK       , KC_LBRACKET , KC_RBRACKET      , KC_TILD  , KC_SLASH ,
-KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , LCTL(KC_LEFT) ,
+KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , WKSP_LEFT  ,
 
                                               XXXXXXX,        XXXXXXX,
                                                             XXXXXXX,
-                                    LCTL(KC_RIGHT), KC_BSPACE,    KC_DEL,
+                                    WKSP_RIGHT, KC_BSPACE,    KC_DEL,
 
 KC_F7     , KC_F8    , KC_F9   , KC_F10    , KC_F11    , KC_F12  , XXXXXXX  ,
 KC_PLUS   , KC_ASTR  , KC_EXLM , KC_PIPE   , KC_PERC   , KC_PLUS , XXXXXXX  ,
@@ -107,6 +107,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
+    case WKSP_LEFT:
+      // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
+      if (record->event.pressed && !tap_tog_layer_toggled_on) {
+        register_code(KC_LGUI);
+        register_code(KC_LSHIFT);
+        register_code(KC_Z);
+        unregister_code(KC_Z);
+        unregister_code(KC_LSHIFT);
+        unregister_code(KC_LGUI);
+      }
+      break;
+    case WKSP_RIGHT:
+      // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
+      if (record->event.pressed && !tap_tog_layer_toggled_on) {
+        register_code(KC_LGUI);
+        register_code(KC_LSHIFT);
+        register_code(KC_X);
+        unregister_code(KC_X);
+        unregister_code(KC_LSHIFT);
+        unregister_code(KC_LGUI);
+      }
+      break;
     default:
       tap_tog_count = 0; // reset counter.
       tap_tog_layer_other_key_pressed = true; // always set this to true, TAP_TOG_LAYER handlers will handle interpreting this
