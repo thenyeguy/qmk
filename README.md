@@ -20,9 +20,7 @@ Supported Keyboards:
 ## TODO
 
 - Refactor configs to be more modular, gated by DEFS
-- Create unified user config - it's copied in with the QMK script
-- Use drashna's tricks to share layouts across ergodox and levinson
-- fix 'update.sh' script to pull qmk repo properly, send patch upstream
+- swap out DQT on SYMB to be MO(_NAVI)
 
 ### levinson
 

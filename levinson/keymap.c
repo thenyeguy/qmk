@@ -21,42 +21,42 @@ extern keymap_config_t keymap_config;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Run `./qmk show levinson` from parent dir to see this layer.
-[_QWERTY] = LAYOUT_ortho_4x12(
-KC_ESC  , KC_Q   , KC_W    , KC_E    , KC_R      , KC_T   , KC_Y     , KC_U   , KC_I   , KC_O    , KC_P          , APPS      ,
-KC_TAB  , KC_A   , KC_S    , KC_D    , KC_F      , KC_G   , KC_H     , KC_J   , KC_K   , KC_L    , TAP_TOG_LAYER , MO(_NAVI) ,
-OSMSFT  , KC_Z   , KC_X    , KC_C    , KC_V      , KC_B   , KC_N     , KC_M   , KC_DOT , KC_COMM , TG(_NUMP)     , KC_QUOTE  ,
+[_QWERTY] = LAYOUT_ortho_4x12_wrapper(
+KC_ESC  , _________________QWERTY_L1_________________, _________________QWERTY_R1_________________ , APPS      ,
+KC_TAB  , _________________QWERTY_L2_________________, _________________QWERTY_R2_________________ , MO(_NAVI) ,
+OSMSFT  , _________________QWERTY_L3_________________, _________________QWERTY_R3_________________ , KC_QUOTE  ,
 KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , KC_UP  , KC_DOWN , KC_LEFT       , KC_RGHT
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
-[_SYMB] = LAYOUT_ortho_4x12(
-_______ , KC_MINS , KC_AT   , KC_LCBR     , KC_RCBR     , KC_GRV  , KC_ASTR , KC_EXLM , KC_PIPE  , KC_PERC   , KC_PLUS       , KC_ESC   ,
-_______ , KC_CIRC , KC_UNDS , KC_LPRN     , KC_RPRN     , KC_DLR  , KC_HASH , KC_EQL  , KC_COLN  , KC_SCLN   , TAP_TOG_LAYER , KC_DQT   ,
-_______ , KC_LABK , KC_RABK , KC_LBRACKET , KC_RBRACKET , KC_TILD , KC_AMPR , KC_QUES , KC_SLASH , KC_BSLASH , TG(_NUMP)     , KC_QUOTE ,
-_______ , _______ , _______ , _______     , _______     , _______ , _______ , _______ , KC_ESC   , KC_COLN   , KC_PERC       , LOCK
+[_SYMB] = LAYOUT_ortho_4x12_wrapper(
+_______ , _________________SYMB_L1___________________, _________________SYMB_R1___________________ , KC_ESC   ,
+_______ , _________________SYMB_L2___________________, _________________SYMB_R2___________________ , KC_DQT   ,
+_______ , _________________SYMB_L3___________________, _________________SYMB_R3___________________ , KC_QUOTE ,
+_______ , ___________________BLANK___________________, _______ , _______ , KC_ESC   , KC_COLN   , KC_PERC       , LOCK
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
-[_NUMP] = LAYOUT_ortho_4x12(
-    _______ , KC_NO   , KC_NO         , LGUI(KC_UP)   , KC_MEDIA_PREV_TRACK , KC_MEDIA_NEXT_TRACK , KC_COMM , KC_7    , KC_8    , KC_9    , XXXXXXX        , RESET ,
-    _______ , XXXXXXX , LGUI(KC_LEFT) , LGUI(KC_DOWN) , LGUI(KC_RIGHT)      , KC_MEDIA_PLAY_PAUSE , KC_0    , KC_4    , KC_5    , KC_6    , TO(_SYMB)      , _______ ,
-    _______ , XXXXXXX , XXXXXXX       , XXXXXXX       , KC_AUDIO_VOL_DOWN   , KC_AUDIO_VOL_UP     , KC_DOT  , KC_1    , KC_2    , KC_3    , TO(_QWERTY)    , _______ ,
-    _______ , _______ , _______       , _______       , _______             , _______             , _______ , _______ , _______ , _______ , TO(_OVERWATCH) , _______
+[_NUMP] = LAYOUT_ortho_4x12_wrapper(
+_______ , _________________NUMP_L1___________________ , _________________NUMP_R1___________________ , RESET   ,
+_______ , _________________NUMP_L2___________________ , _________________NUMP_R2___________________ , _______ ,
+_______ , _________________NUMP_L3___________________ , _________________NUMP_R3___________________ , _______ ,
+_______ , ___________________BLANK___________________ , _______ , _______ , _______ , _______ , TO(_OVERWATCH) , _______
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
-[_OVERWATCH] = LAYOUT_ortho_4x12(
-KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T     , TO(0)            , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX          , CLEAR_EEPROM      ,
-KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P     , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX          , RGB_TOG           ,
-KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE , RGB_MODE_PLAIN   , RGB_MODE_BREATHE , RGB_MODE_RAINBOW , RGB_MODE_SWIRL , RGB_MODE_SNAKE   , RGB_MODE_XMAS     ,
-KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R , KC_SPACE , RGB_HUI          , RGB_HUD          , RGB_SAI          , RGB_SAD        , RGB_MODE_RGBTEST , RGB_MODE_GRADIENT
+[_OVERWATCH] = LAYOUT_ortho_4x12_wrapper(
+______________OVERWATCH_L1_________________ , TO(0)            , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX          , CLEAR_EEPROM      ,
+______________OVERWATCH_L2_________________ , RGB_MODE_FORWARD , RGB_MODE_REVERSE , RGB_VAI          , RGB_VAD        , XXXXXXX          , RGB_TOG           ,
+______________OVERWATCH_L3_________________ , RGB_MODE_PLAIN   , RGB_MODE_BREATHE , RGB_MODE_RAINBOW , RGB_MODE_SWIRL , RGB_MODE_SNAKE   , RGB_MODE_XMAS     ,
+______________OVERWATCH_L4_________________ , KC_SPACE, RGB_HUI          , RGB_HUD          , RGB_SAI          , RGB_SAD        , RGB_MODE_RGBTEST , RGB_MODE_GRADIENT
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
-[_NAVI] = LAYOUT_ortho_4x12(
-XXXXXXX , XXXXXXX , XXXXXXX , KC_UP   , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX , XXXXXXX , KC_LEFT , KC_DOWN , KC_RGHT , XXXXXXX , XXXXXXX , KC_LCTL , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+[_NAVI] = LAYOUT_ortho_4x12_wrapper(
+XXXXXXX , _________________NAVI_L1___________________ , _________________NAVI_R1___________________ , XXXXXXX ,
+XXXXXXX , _________________NAVI_L2___________________ , _________________NAVI_R2___________________ , XXXXXXX ,
+XXXXXXX , _________________NAVI_L3___________________ , _________________NAVI_R3___________________ , XXXXXXX ,
 XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , APPS    , KC_LGUI , MODSFT  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
