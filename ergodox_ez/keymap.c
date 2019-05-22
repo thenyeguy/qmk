@@ -141,8 +141,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_Z);
         unregister_code(KC_LSHIFT);
         unregister_code(KC_LGUI);
+        tap_tog_layer_other_key_pressed = true; // Add flag so layer resets
       }
-      tap_tog_layer_other_key_pressed = true; // Add flag so laye resets
       break;
     case WKSP_RIGHT:
       // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
@@ -153,8 +153,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_X);
         unregister_code(KC_LSHIFT);
         unregister_code(KC_LGUI);
+        tap_tog_layer_other_key_pressed = true; // Add flag so layer resets
       }
-      tap_tog_layer_other_key_pressed = true; // Add flag so laye resets
       break;
     default:
       tap_tog_count = 0; // reset counter.
