@@ -19,13 +19,12 @@ Supported Keyboards:
 
 ## TODO
 
-- Refactor configs to be more modular, gated by DEFS
-- swap out DQT on SYMB to be MO(_NAVI)
+- 
 
 ### levinson
 
-- wrap up LED indicators + sound stuff
+- 
 
 ### ergodox
 
-- copy over NAVI layer from levinson
+- 
