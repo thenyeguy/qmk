@@ -102,23 +102,22 @@ KC_ESCAPE, KC_1    , KC_2 , KC_3 , KC_4 , KC_5 , KC_6 ,
 XXXXXXX, _________________NAVI_L1___________________ , XXXXXXX ,
 XXXXXXX, _________________NAVI_L2___________________ ,
 XXXXXXX, _________________NAVI_L3___________________ , XXXXXXX ,
-___________________XXXXX___________________,
-
+XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, WKSP_LEFT,
 
 XXXXXXX  , XXXXXXX ,
 XXXXXXX  ,
-KC_SPACE , XXXXXXX , XXXXXXX ,
+WKSP_RIGHT , XXXXXXX , XXXXXXX ,
 
 
 _______, _______, _______, _______, _______, _______, _______,
 _______, _________________NAVI_R1___________________, _______,
          _________________NAVI_R2___________________, _______,
 _______, _________________NAVI_R3___________________, _______,
-_______, _______, _______, _______, _______,
+MODSFT, _______, _______, _______, _______,
 
 _______, _______,
 _______,
-_______, _______, _______
+_______, _______, KC_LGUI
 
 ),
 };
@@ -126,6 +125,7 @@ _______, _______, _______
 
 // called by QMK during key processing before the actual key event is handled. Useful for macros.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  uint8_t layer = biton32(layer_state);
   switch (keycode) {
     case TAP_TOG_LAYER:
       process_tap_tog(_SYMB,record);
@@ -134,7 +134,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case WKSP_LEFT:
       // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
-      if (record->event.pressed && !tap_tog_layer_toggled_on) {
+      if (record->event.pressed && (!tap_tog_layer_toggled_on || layer == _NAVI)) {
         register_code(KC_LGUI);
         register_code(KC_LSHIFT);
         register_code(KC_Z);
@@ -146,7 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case WKSP_RIGHT:
       // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
-      if (record->event.pressed && !tap_tog_layer_toggled_on) {
+      if (record->event.pressed && (!tap_tog_layer_toggled_on || layer == _NAVI)) {
         register_code(KC_LGUI);
         register_code(KC_LSHIFT);
         register_code(KC_X);

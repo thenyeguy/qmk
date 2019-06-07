@@ -43,7 +43,8 @@
 #define ______________OVERWATCH_L1_________________       KC_TAB    , KC_Q  , KC_W       , KC_E , KC_R , KC_T
 #define ______________OVERWATCH_L2_________________       KC_LCTL   , KC_A  , KC_S       , KC_D , KC_F , KC_P
 #define ______________OVERWATCH_L3_________________       KC_LSHIFT , KC_Z  , KC_X       , KC_C , KC_V , KC_GRAVE
-#define ______________OVERWATCH_L4_________________       KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R // Ergodox only has 5 keys on bottom row:
+// Ergodox only has 5 keys on bottom row:
+#define ______________OVERWATCH_L4_________________       KC_LCTL   , KC_F9 , KC_PSCREEN , KC_H , KC_R
 
 
 
