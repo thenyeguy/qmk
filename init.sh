@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "updating .git/config with hook folder"
+git config core.hooksPath hooks
+
 echo "setting up qmk git submodule"
 git submodule init
 git submodule update

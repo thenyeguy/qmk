@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd $(git rev-parse --show-toplevel)
+./qmk show ergodox_ez > ergodox_ez/asci-keymap.txt
+./qmk show levinson > levinson/asci-keymap.txt
