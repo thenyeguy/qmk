@@ -3,6 +3,7 @@
 enum combo_events {
   JK_ESC,
   DF_CLN,
+  SD_SLASH,
   XC_COPY,
   XV_PASTE
 };
@@ -10,6 +11,7 @@ enum combo_events {
 
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_V, COMBO_END};
 
@@ -18,6 +20,7 @@ const uint16_t PROGMEM paste_combo[] = {KC_X, KC_V, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
   COMBO(jk_combo, KC_ESC),
   COMBO(df_combo, KC_COLON),
+  COMBO(sd_combo, KC_SLASH),
   [XC_COPY] = COMBO_ACTION(copy_combo),
   [XV_PASTE] = COMBO_ACTION(paste_combo),
 };

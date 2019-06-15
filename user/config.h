@@ -17,5 +17,5 @@
 #define ONESHOT_TAP_TOGGLE 2
 
 // Enable combos for vim
-#define COMBO_COUNT 4 // Specify the number of combos used. BE SURE TO INCREMENT AS NEEDED
+#define COMBO_COUNT 5 // Specify the number of combos used. BE SURE TO INCREMENT AS NEEDED
 #define COMBO_TERM 50
