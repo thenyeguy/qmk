@@ -6,6 +6,7 @@
 //#define USE_I2C
 
 #ifdef RGBLIGHT_ENABLE
+
    // Enable animations. +5500 bytes
    #define RGBLIGHT_ANIMATIONS
 
@@ -25,10 +26,21 @@
    // MOD indicators
    #define SHFT_LED1 7
    #define GUI_LED1 8
+
 #endif
 
 #ifdef AUDIO_ENABLE
    #define QMK_SPEAKER C6
    #define C6_AUDIO
    #define NO_MUSIC_MODE // Save 2000 bytes
+
 #endif
+
+// Save 200 bytes on unused keycodes
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+
+// Enable HID_listen commands.
+#define NO_DEBUG
+#undef NO_PRINT
+#define USER_PRINT
