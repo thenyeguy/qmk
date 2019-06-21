@@ -1,6 +1,8 @@
 
 SRC += tap_tog.c
-SRC += issmirnov.c
+
+# disable combos for overwatch
+# SRC += combo.c
 
 # https://www.reddit.com/r/olkb/comments/bmpgjm/programming_help/
 # Should shave 2000 bytes
