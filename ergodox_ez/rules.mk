@@ -2,6 +2,3 @@
 ifndef QUANTUM_DIR
     include ../../../../Makefile
 endif
-
-# enable hid_listen support (400kb)
-CONSOLE_ENABLE = yes
