@@ -127,24 +127,26 @@ uint32_t layer_state_set_user(uint32_t state) {
   layer_state_set_rgb(state);
 #endif
   uint8_t layer = biton32(state);
-    switch (layer) {
-      case 0:
-        break;
-      case 1:
-        clear_mods();
-        break;
-      case 2:
-        clear_mods();
-        break;
-      case 3:
-        clear_mods();
-        #ifdef AUDIO_ENABLE
-          // PLAY_SONG(song_overwatch);
-        #endif
-        break;
-      default:
-        break;
-    }
+  combo_enable(); // by default, enable combos.
+  switch (layer) {
+    case 0:
+      break;
+    case 1:
+      clear_mods();
+      break;
+    case 2:
+      clear_mods();
+      break;
+    case _OVERWATCH:
+      clear_mods();
+      combo_disable(); // We don't want combos in overwatch
+#ifdef AUDIO_ENABLE
+      // PLAY_SONG(song_overwatch);
+#endif
+      break;
+    default:
+      break;
+  }
     return state;
 };
 

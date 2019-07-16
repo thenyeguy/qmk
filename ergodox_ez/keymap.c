@@ -220,19 +220,21 @@ uint32_t layer_state_set_user(uint32_t state) {
     ergodox_right_led_2_off();
     ergodox_right_led_3_off();
 
+    combo_enable(); // by default, enable combos.
     switch (layer) {
       case 0:
         break;
       case 1:
-      clear_mods();
+        clear_mods();
         ergodox_right_led_1_on();
         break;
       case 2:
-      clear_mods();
+        clear_mods();
         ergodox_right_led_2_on();
         break;
-      case 3:
-      clear_mods();
+      case _OVERWATCH:
+        clear_mods();
+        combo_disable(); // We don't want combos in overwatch
         ergodox_right_led_3_on();
         break;
       case 4:
