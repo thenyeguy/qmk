@@ -51,11 +51,11 @@ KC_DOWN,  KC_TAB, KC_ENTER
 
   // layer 2
 [_NUMP] = LAYOUT_ergodox_wrapper(
-XXXXXXX ,  ___________________XXXXX___________________      , XXXXXXX  ,
+XXXXXXX ,  ___________________XXXXX___________________, XXXXXXX  ,
 XXXXXXX , _________________NUMP_L1___________________ , KC_ASTR  ,
-KC_TAB  , _________________NUMP_L2___________________  ,
+KC_TAB  , _________________NUMP_L2___________________ ,
 XXXXXXX , _________________NUMP_L3___________________ , KC_SLASH ,
-TO(0)   , XXXXXXX , XXXXXXX       , XXXXXXX       , XXXXXXX             ,
+TO(0)   , XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
 
                                             XXXXXXX  ,  XXXXXXX  ,
                                                         XXXXXXX  ,
@@ -135,24 +135,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case WKSP_LEFT:
       // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
       if (record->event.pressed && (!tap_tog_layer_toggled_on || layer == _NAVI)) {
-        register_code(KC_LGUI);
-        register_code(KC_LSHIFT);
-        register_code(KC_Z);
-        unregister_code(KC_Z);
-        unregister_code(KC_LSHIFT);
-        unregister_code(KC_LGUI);
+        tap_code16(LGUI(LSFT(KC_Z)));
         tap_tog_layer_other_key_pressed = true; // Add flag so layer resets
       }
       break;
     case WKSP_RIGHT:
       // Only if TAP_TOG_LAYER is being held right now do we want to do actions.
       if (record->event.pressed && (!tap_tog_layer_toggled_on || layer == _NAVI)) {
-        register_code(KC_LGUI);
-        register_code(KC_LSHIFT);
-        register_code(KC_X);
-        unregister_code(KC_X);
-        unregister_code(KC_LSHIFT);
-        unregister_code(KC_LGUI);
+        tap_code16(LGUI(LSFT(KC_X)));
         tap_tog_layer_other_key_pressed = true; // Add flag so layer resets
       }
       break;

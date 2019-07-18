@@ -30,19 +30,13 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
   switch(combo_index) {
     case XC_COPY:
       if (pressed) {
-        register_code(KC_LCTL);
-        register_code(KC_C);
-        unregister_code(KC_C);
-        unregister_code(KC_LCTL);
+        tap_code16(LCTL(KC_C));
       }
       break;
 
     case XV_PASTE:
       if (pressed) {
-        register_code(KC_LCTL);
-        register_code(KC_V);
-        unregister_code(KC_V);
-        unregister_code(KC_LCTL);
+        tap_code16(LCTL(KC_V));
       }
       break;
   }
