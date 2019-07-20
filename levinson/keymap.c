@@ -62,29 +62,22 @@ XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , APPS    , KC_LGUI , MODSFT  , 
 
 };
 
-/* void persistent_default_layer_set(uint16_t default_layer) { */
-/*   eeconfig_update_default_layer(default_layer); */
-/*   default_layer_set(default_layer); */
-/* } */
-
 // called by QMK during key processing before the actual key event is handled. Useful for macros.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
   switch (keycode) {
-
     case LOCK:
       if (record->event.pressed) {
         rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL);
       }
-      return true; // Let QMK send the enter press/release events
+      return true; // Let QMK send the press/release events
       break;
-    case RESET:
+    case RESET: // TODO: This doesn't actually enter bootloader mode, fix this.
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
           PLAY_SONG(song_goodbye);
         #endif
       }
-      return true; // Let QMK send the enter press/release events
+      return true; // Let QMK send the press/release events
       break;
 
     case CLEAR_EEPROM:
@@ -92,14 +85,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #ifdef AUDIO_ENABLE
         PLAY_SONG(song_goodbye); // TODO write custom song if firmware has space
       #endif
-
       return false; // QMK doesn't know about this keycode
       break;
     case TAP_TOG_LAYER:
       process_tap_tog(_SYMB,record);
       return false;
       break;
-
     default:
       tap_tog_count = 0; // reset counter.
       tap_tog_layer_other_key_pressed = true; // always set this to true, TAP_TOG_LAYER handlers will handle interpreting this
@@ -115,17 +106,14 @@ void matrix_scan_user(void) {
   #ifdef RGBLIGHT_ENABLE
     matrix_scan_rgb();
   #endif // RGBLIGHT_ENABLE
-  uint8_t layer = biton32(layer_state);
-  if (layer == 0) {
-  }
 }
 
 // only runs when when the layer is changed, good for updating LED's and clearing sticky state
 // RGB modes: https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight.h
 uint32_t layer_state_set_user(uint32_t state) {
-#ifdef RGBLIGHT_ENABLE
-  layer_state_set_rgb(state);
-#endif
+  #ifdef RGBLIGHT_ENABLE
+    layer_state_set_rgb(state);
+  #endif
   uint8_t layer = biton32(state);
   combo_enable(); // by default, enable combos.
   switch (layer) {
@@ -140,33 +128,30 @@ uint32_t layer_state_set_user(uint32_t state) {
     case _OVERWATCH:
       clear_mods();
       combo_disable(); // We don't want combos in overwatch
-#ifdef AUDIO_ENABLE
-      // PLAY_SONG(song_overwatch);
-#endif
+      #ifdef AUDIO_ENABLE
+        // PLAY_SONG(song_overwatch);
+      #endif
       break;
     default:
       break;
   }
-    return state;
+  return state;
 };
 
+// Runs on boot.
 void keyboard_post_init_user(void) {
   startup_user();
 }
+
+// Plays a welcome song and clears RGB state.
 void startup_user() {
   #ifdef AUDIO_ENABLE
     _delay_ms(20); // gets rid of tick
     PLAY_SONG(song_startup);
   #endif
   #ifdef RGBLIGHT_ENABLE
-    // Clear lights from bootloader colors
-    /* rgblight_enable(); // NOTE: WE NEED this line here, otherwise the commands are ignored. */
     keyboard_post_init_rgb();
-
-    /* rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT); */
-    /* rgblight_setrgb(RGB_CLEAR); */
   #endif
-
 }
 
 void shutdown_user() {
@@ -175,12 +160,4 @@ void shutdown_user() {
     _delay_ms(150);
     stop_all_notes();
   #endif
-}
-
-void suspend_power_down_user(void) {
-    /* rgb_matrix_set_suspend_state(true); */
-}
-
-void suspend_wakeup_init_user(void) {
-    /* rgb_matrix_set_suspend_state(false); */
 }
