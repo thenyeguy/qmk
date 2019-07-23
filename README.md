@@ -16,15 +16,4 @@ Supported Keyboards:
   - `build` - compiles layout into hex file
   - `push` - flashes firmware to keyboard
   - `show` - displays layout in visualizer
-
-## TODO
-
-- 
-
-### levinson
-
-- 
-
-### ergodox
-
-- 
+- `cd qmk_firmware && make clean` - clear stale builds, solves odd bugs
