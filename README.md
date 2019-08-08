@@ -17,3 +17,7 @@ Supported Keyboards:
   - `push` - flashes firmware to keyboard
   - `show` - displays layout in visualizer
 - `cd qmk_firmware && make clean` - clear stale builds, solves odd bugs
+
+## Caveats
+
+- `OSM` key has to be tapped withing the `TAPPING_TERM` timeout, otherwise it will be ignored. The current timeout is `50ms`, since otherwise the `TAP_TOG` key becomes useless.
