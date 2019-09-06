@@ -1,5 +1,7 @@
 # Ivan's QMK Keyboard Layouts
 
+[![Build Status](https://travis-ci.org/issmirnov/qmk-keebs.svg?branch=master)](https://travis-ci.org/issmirnov/qmk-keebs)
+
 Forked from https://github.com/thenyeguy/qmk - thank you to @thenyeguy for the structure and template setup.
 
 Supported Keyboards:
