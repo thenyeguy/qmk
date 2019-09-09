@@ -111,6 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 void led_set_user(uint8_t usb_led) {
+  ergodox_right_led_1_set(LED_BRIGHTNESS_LO);
+  ergodox_right_led_2_set(LED_BRIGHTNESS_LO);
+  ergodox_right_led_3_set(LED_BRIGHTNESS_LO);
+
   if (IS_LED_ON(usb_led, USB_LED_CAPS_LOCK)) {
     ergodox_right_led_3_on();
   } else {
