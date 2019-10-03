@@ -138,13 +138,9 @@ uint32_t layer_state_set_user(uint32_t state) {
   return state;
 };
 
-// Runs on boot.
-void keyboard_post_init_user(void) {
-  startup_user();
-}
-
+// Runs boot tasks for keyboard.
 // Plays a welcome song and clears RGB state.
-void startup_user() {
+void matrix_init_user(void) {
   #ifdef AUDIO_ENABLE
     _delay_ms(20); // gets rid of tick
     PLAY_SONG(song_startup);
