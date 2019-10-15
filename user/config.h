@@ -45,3 +45,8 @@
 #define NO_DEBUG
 #undef NO_PRINT
 #define USER_PRINT
+
+// Note: Defining the following does not have any impact on space:
+// - NO_ACTION_MACRO
+// - NO_ACTION_FUNCTION
+// - DISABLE_LEADER
