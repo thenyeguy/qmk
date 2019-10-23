@@ -71,8 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT_ergodox(
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,
-  _______, KC_LT,   KC_GT,   KC_LBRC, KC_RBRC, XXXXXXX,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______, XXXXXXX, KC_EQL,  KC_MINS, KC_PLUS, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, KC_ASTR, KC_SLSH, XXXXXXX, _______,
   _______, _______, _______, _______, _______,
                                                _______, _______,
                                                         _______,
@@ -80,8 +80,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-           XXXXXXX, KC_4,    KC_5,    KC_6,    KC_DOT,  _______,
-  _______, XXXXXXX, KC_1,    KC_2,    KC_3,    _______, _______,
+           XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, _______,
+  _______, XXXXXXX, KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
                     _______, KC_PGDN, KC_PGUP, KC_HOME, KC_END,
   _______, _______,
   _______,
