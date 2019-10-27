@@ -23,3 +23,9 @@ Supported Keyboards:
 ## Caveats
 
 - `OSM` key has to be tapped withing the `TAPPING_TERM` timeout, otherwise it will be ignored. The current timeout is `50ms`, since otherwise the `TAP_TOG` key becomes useless.
+
+## Common Errors
+
+- `lib/lufa/LUFA/makefile: No such file or directory`
+   - fix with `cd qmk_firmware && make git-submodule`
+   - if that doesn't work, `cd qmk_firmware/lib/lufa && git reset --hard head && cd ../../ && make-gitsubmodule`
