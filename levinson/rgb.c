@@ -4,36 +4,31 @@
 #include <print.h>
 
 // Wired up in layer_state_set_user in keymap.c
-uint32_t layer_state_set_rgb(uint32_t state) {
-  static uint8_t old_layer = 255;
-  uint8_t new_layer = biton32(state);
-  if (old_layer != new_layer) {
-    switch (new_layer) {
-      case _QWERTY:
-        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
-        rgblight_sethsv_noeeprom(RGB_CLEAR);
-        break;
-      case _SYMB:
-        rgblight_sethsv_noeeprom_red();
-        break;
-      case _NUMP:
-        rgblight_sethsv_noeeprom_green();
-        break;
-      case _OVERWATCH:
-        rgblight_sethsv_noeeprom_blue();
-        // TODO set up animated rainbow swirl with overwatch colors.
-        // rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
-        // rgblight_effect_breathing(&animation_status);
-        // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 3);
-        break;
-      case _NAVI:
-        rgblight_sethsv_noeeprom(HSV_AZURE);
-        break;
-      default: //  for any other layers, or the default layer
-        break;
+layer_state_t layer_state_set_rgb(layer_state_t state) {
+  switch (get_highest_layer(state)) {
+    case _QWERTY:
+      rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+      rgblight_sethsv_noeeprom(RGB_CLEAR);
+      break;
+    case _SYMB:
+      rgblight_sethsv_noeeprom_red();
+      break;
+    case _NUMP:
+      rgblight_sethsv_noeeprom_green();
+      break;
+    case _OVERWATCH:
+      rgblight_sethsv_noeeprom_blue();
+      // TODO set up animated rainbow swirl with overwatch colors.
+      // rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
+      // rgblight_effect_breathing(&animation_status);
+      // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 3);
+      break;
+    case _NAVI:
+      rgblight_sethsv_noeeprom(HSV_AZURE);
+      break;
+    default: //  for any other layers, or the default layer
+      break;
     }
-    old_layer = new_layer;
-  }
   return state;
 }
 
