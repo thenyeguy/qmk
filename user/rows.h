@@ -52,4 +52,4 @@
 
 #define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
 #define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL , XXXXXXX , XXXXXXX , XXXXXXX
-#define _________________NAVI_R3___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
+#define _________________NAVI_R3___________________        KC_LALT , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
