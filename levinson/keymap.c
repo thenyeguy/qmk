@@ -59,7 +59,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case LOCK:
       if (record->event.pressed) {
+#ifdef RGBLIGHT_ENABLE
         rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL);
+#endif
       }
       return true; // Let QMK send the press/release events
       break;
