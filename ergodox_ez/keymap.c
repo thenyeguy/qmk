@@ -19,7 +19,7 @@ KC_EQL    , KC_6    , KC_7    , KC_8    , KC_9          , KC_0    , KC_ESCAPE   
 KC_PLUS   , _________________QWERTY_R1_________________  , LGUI(KC_SPACE) ,
             _________________QWERTY_R2_________________  , MO(_NAVI) ,
 KC_MINS   , _________________QWERTY_R3_________________  , KC_QUOTE       ,
-KC_ESCAPE , KC_COLN , KC_PERC , XXXXXXX , LGUI(KC_L)    ,
+KC_ESCAPE , KC_COLN , KC_PERC , KC_PSCR , LGUI(KC_L)    ,
 
 KC_LEFT,  KC_RGHT,
 KC_UP,
