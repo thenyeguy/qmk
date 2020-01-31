@@ -1,0 +1,6 @@
+{
+    "name": "ergodox",
+    "path": "ergodox_ez",
+    "target": "ergodox_ez",
+    "flash_tool": "teensy"
+}
