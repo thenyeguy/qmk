@@ -1,4 +1,5 @@
 import os
+import sys
 import re
 
 
@@ -60,40 +61,22 @@ _KEYNAMES = {
 
 
 class _Template(object):
-    class Art(object):
-        def __init__(self, value):
-            self.value = value
 
-        def render(self, _layer):
-            return self.value
-
-    class Key(object):
-        def __init__(self, idx, width):
-            self.idx = idx
-            self.width = width
-
-        def render(self, layer):
-            name = layer.key_name(self.idx)
-            return "{:^{width}.{width}}".format(name, width=self.width)
-
-    def __init__(self, raw_template):
-        self.cells = []
-        self.width = max(len(line) for line in raw_template.split("\n"))
-
-        for cell in raw_template.split("|"):
-            try:
-                idx = int(cell)
-                width = len(cell)
-                self.cells.append(self.Key(idx, width))
-            except ValueError:
-                self.cells.append(self.Art(cell))
+    def __init__(self, template):
+        self.width = max(len(line) for line in template.split("\n"))
+        self.template = template
 
     def render(self, layer):
-        return "{:^{}}\n".format(layer.name.title(), self.width) + "|".join(
-            cell.render(layer) for cell in self.cells)
+        rendered = self.template
+        for i, key in enumerate(layer.key_names()):
+            match = re.search(" +{} +".format(i), rendered).group()
+            label = "{:^{width}.{width}}".format(key, width=len(match))
+            rendered = rendered.replace(match, label)
+        return "{:^{}}\n".format(layer.name.title(), self.width) + rendered
 
 
 class _Layer(object):
+
     def __init__(self, name, codes):
         self.name = name
         self.codes = codes
@@ -103,6 +86,13 @@ class _Layer(object):
         if code in _KEYNAMES:
             return _KEYNAMES[code]
         return code.replace("KC_", "").title().replace("_", "")
+
+    def key_names(self):
+        for code in self.codes:
+            if code in _KEYNAMES:
+                yield _KEYNAMES[code]
+            else:
+                yield code.replace("KC_", "").title().replace("_", "")
 
 
 def _load_layers(keymap_lines):
