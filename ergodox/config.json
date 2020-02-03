@@ -2,5 +2,6 @@
     "name": "ergodox",
     "path": "ergodox_ez",
     "target": "ergodox_ez",
-    "flash_tool": "teensy"
+    "flash_tool": "teensy",
+    "wait_for_bootloader": false
 }
