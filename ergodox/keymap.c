@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "version.h"
 
 enum ergodox_layers {
   _QWERTY,
@@ -13,9 +12,6 @@ enum ergodox_layers {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define ADJUST MO(_ADJUST)
-
-#define LOW(key) LT(_LOWER, KC_##key)
-#define RAI(key) LT(_RAISE, KC_##key)
 
 #define LOCK_SCR LCA(KC_L)
 #define TERMINAL LCA(KC_T)
