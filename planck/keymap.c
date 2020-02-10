@@ -5,15 +5,9 @@ extern keymap_config_t keymap_config;
 
 enum planck_layers {
   _QWERTY,
-  _GAMING,
   _LOWER,
   _RAISE,
   _ADJUST
-};
-
-enum planck_keycodes {
-  QWERTY = SAFE_RANGE,
-  GAMING,
 };
 
 #define LOWER MO(_LOWER)
@@ -27,13 +21,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,
     KC_LCTL, KC_LGUI, _______, KC_LALT, LOWER,   CTL_SPC, KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
-),
-
-[_GAMING] = LAYOUT_planck_grid(
-    KC_ESC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_TAB,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_LCTL, LOWER,   XXXXXXX, KC_LALT, KC_LCTL, KC_SPC,  KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
 ),
 
 [_LOWER] = LAYOUT_planck_grid(
@@ -54,28 +41,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_SWAP, AG_NORM, QWERTY,  GAMING
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_SWAP, AG_NORM 
 ),
 
 };
 
 uint32_t layer_state_set_user(uint32_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-    case GAMING:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_GAMING);
-      }
-      return false;
-    default:
-      return true;
-  }
 }
