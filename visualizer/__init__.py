@@ -41,14 +41,25 @@ _KEYNAMES = {
 
     "KC_LSFT": "Shift",
     "KC_RSFT": "Shift",
-    "KC_LCTL": "Ctrl",
+    "KC_LCTL": "Ctl",
+    "KC_RCTL": "Ctl",
     "KC_LALT": "Alt",
+    "KC_RALT": "Alt",
     "KC_LGUI": "Mod",
+    "KC_RGUI": "Mod",
+
+    "KC_SPC": "Space",
     "KC_ENT": "Enter",
+    "KC_BSPC": "BckSp",
     "KC_SFTENT": "Enter",
 
+    "KC_UP": "↑",
+    "KC_DOWN": "↓",
+    "KC_LEFT": "←",
+    "KC_RGHT": "→",
+
     "KC_PGDN": "PgDn",
-    "KC_PGUp": "PgUp",
+    "KC_PGUP": "PgUp",
     "KC_MPLY": "Play",
     "KC_MPRV": "Prev",
     "KC_MNXT": "Next",
