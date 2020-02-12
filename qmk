@@ -81,7 +81,7 @@ def push(keyboard):
 
 
 def show(keyboard):
-    visualizer.visualize(abs_path(keyboard))
+    visualizer.visualize(abs_path("user"), abs_path(keyboard))
 
 
 def main(argv):
