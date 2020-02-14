@@ -41,8 +41,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ADJUST] = EXPAND(LAYOUT_planck_grid,
     __ADJUST_ROW1_LEFT__, __ADJUST_ROW1_RIGHT__,
-    __XXXXX_HALF__,       __XXXXX_HALF__,
-    __XXXXX_HALF__,       __XXXXX_HALF__,
+    __ADJUST_ROW2_LEFT__, __ADJUST_ROW2_RIGHT__,
+    __XXXXX_HALF__,       __ADJUST_ROW3_RIGHT__,
     __XXXXX_HALF__,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_SWAP, AG_NORM 
 ),
 
