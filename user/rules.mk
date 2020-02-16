@@ -14,13 +14,8 @@ CONSOLE_ENABLE = yes # +400 bytes (hid_listen support)
 COMBO_ENABLE = yes
 
 # This allows the keyboard to tell the host OS that up to 248 keys are held down at once
-<<<<<<< HEAD
 # NKRO_ENABLE = yes # note: also needs FORCE_NKRO in config.h
-||||||| 379adb7
-NKRO_ENABLE = yes # note: also needs FORCE_NKRO in config.h
-=======
 NKRO_ENABLE = no # note: also needs FORCE_NKRO in config.h
->>>>>>> fd93b9776ce4fd5eb513bb98a663b0442ff155f1
 
 # Disable unused features to save on space
 # https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
