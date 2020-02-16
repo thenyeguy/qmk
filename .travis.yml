@@ -1,0 +1,34 @@
+os: linux
+dist: bionic
+sudo: required
+group: edge
+language: c
+
+before_script:
+  - avr-gcc --version
+  - sudo ln -s /usr/bin/gcc-8 /usr/local/bin/gcc
+  - gcc -v
+
+script:
+  - ./init.sh
+  - ./qmk build ergodox_ez
+  - ./qmk show ergodox_ez
+  - ./qmk build levinson
+  - ./qmk show levinson
+
+addons:
+  apt:
+    packages:
+    - gcc-8
+    - unzip
+    - wget
+    - python3
+    - zip
+    - gcc-avr
+    - binutils-avr
+    - avr-libc
+    - dfu-programmer
+    - dfu-util
+    - gcc-arm-none-eabi
+    - binutils-arm-none-eabi
+    - libnewlib-arm-none-eabi

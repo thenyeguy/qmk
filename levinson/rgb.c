@@ -3,8 +3,9 @@
 // TODO gate this debugging header
 #include <print.h>
 
-uint32_t layer_state_set_rgb(uint32_t state) {
-  switch (biton32(state)) {
+// Wired up in layer_state_set_user in keymap.c
+layer_state_t layer_state_set_rgb(layer_state_t state) {
+  switch (get_highest_layer(state)) {
     case _QWERTY:
       rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv_noeeprom(RGB_CLEAR);
@@ -27,9 +28,10 @@ uint32_t layer_state_set_rgb(uint32_t state) {
       break;
     default: //  for any other layers, or the default layer
       break;
-  }
+    }
   return state;
 }
+
 
 void keyboard_post_init_rgb(void) {
   rgblight_enable();

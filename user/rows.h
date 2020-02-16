@@ -2,8 +2,6 @@
 
 #include QMK_KEYBOARD_H
 
-#include "quantum_keycodes.h"
-
 // This wrapper is required in order to expand the row macro inside the keymap configs.
 #define LAYOUT_ergodox_wrapper(...)          LAYOUT_ergodox(__VA_ARGS__)
 #define LAYOUT_ortho_4x12_wrapper(...)          LAYOUT_ortho_4x12(__VA_ARGS__)
@@ -31,8 +29,8 @@
 #define _________________SYMB_R3___________________        KC_AMPR , KC_QUES , KC_SLASH    , KC_BSLASH   , TG(_NUMP)
 
 
-#define _________________NUMP_L1___________________        KC_NO   , KC_NO         , LGUI(KC_UP)   , KC_MEDIA_PREV_TRACK , KC_MEDIA_NEXT_TRACK
-#define _________________NUMP_L2___________________        XXXXXXX , LGUI(KC_LEFT) , LGUI(KC_DOWN) , LGUI(KC_RIGHT)      , KC_MEDIA_PLAY_PAUSE
+#define _________________NUMP_L1___________________        KC_NO   , KC_NO         , LGUI(KC_UP)   , XXXXXXX             , XXXXXXX
+#define _________________NUMP_L2___________________        XXXXXXX , LGUI(KC_LEFT) , LGUI(KC_DOWN) , LGUI(KC_RIGHT)      , XXXXXXX
 #define _________________NUMP_L3___________________        XXXXXXX , XXXXXXX       , XXXXXXX       , KC_AUDIO_VOL_DOWN   , KC_AUDIO_VOL_UP
 
 #define _________________NUMP_R1___________________        KC_COMM , KC_7          , KC_8          , KC_9                , XXXXXXX
@@ -54,4 +52,4 @@
 
 #define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
 #define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL , XXXXXXX , XXXXXXX , XXXXXXX
-#define _________________NAVI_R3___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
+#define _________________NAVI_R3___________________        KC_LALT , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
