@@ -39,8 +39,8 @@ KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , WKSP_LEFT  ,
                                     WKSP_RIGHT, KC_BSPACE,    KC_DEL,
 
 KC_F7     , KC_F8    , KC_F9   , KC_F10    , KC_F11    , KC_F12  , XXXXXXX  ,
-KC_PLUS   , _________________SYMB_R1___________________ , MO(_NAVI)  ,
-           _________________SYMB_R2___________________  , KC_DQUO ,
+KC_PLUS   , _________________SYMB_R1___________________ , XXXXXXX  ,
+           _________________SYMB_R2___________________  , MO(_NAVI) ,
 KC_MINS  , _________________SYMB_R3___________________ , KC_QUOTE ,
 KC_ESCAPE , KC_COLN  , KC_PERC , XXXXXXX   , XXXXXXX   ,
 
