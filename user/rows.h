@@ -30,7 +30,7 @@
 
 
 #define _________________NUMP_L1___________________        XXXXXXX , XXXXXXX  , LSFT(KC_TAB) , XXXXXXX           , XXXXXXX
-#define _________________NUMP_L2___________________        XXXXXXX , KC_SLASH , KC_COMM     , KC_DOT         , XXXXXXX
+#define _________________NUMP_L2___________________        KC_COLN  , KC_SLASH , KC_COMM     , KC_DOT         , XXXXXXX
 #define _________________NUMP_L3___________________        XXXXXXX , XXXXXXX  , KC_ENTER     , KC_AUDIO_VOL_DOWN , KC_AUDIO_VOL_UP
 
 #define _________________NUMP_R1___________________        KC_COMM , KC_7          , KC_8          , KC_9                , XXXXXXX
