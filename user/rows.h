@@ -29,9 +29,9 @@
 #define _________________SYMB_R3___________________        KC_AMPR , KC_QUES , KC_SLASH    , KC_BSLASH   , TG(_NUMP)
 
 
-#define _________________NUMP_L1___________________        KC_NO   , KC_NO         , LGUI(KC_UP)   , XXXXXXX             , XXXXXXX
-#define _________________NUMP_L2___________________        XXXXXXX , LGUI(KC_LEFT) , LGUI(KC_DOWN) , LGUI(KC_RIGHT)      , XXXXXXX
-#define _________________NUMP_L3___________________        XXXXXXX , XXXXXXX       , XXXXXXX       , KC_AUDIO_VOL_DOWN   , KC_AUDIO_VOL_UP
+#define _________________NUMP_L1___________________        XXXXXXX , XXXXXXX  , LSFT(KC_TAB) , XXXXXXX           , XXXXXXX
+#define _________________NUMP_L2___________________        XXXXXXX , KC_SLASH , KC_COMMA     , KC_PERIOD         , XXXXXXX
+#define _________________NUMP_L3___________________        XXXXXXX , XXXXXXX  , KC_ENTER     , KC_AUDIO_VOL_DOWN , KC_AUDIO_VOL_UP
 
 #define _________________NUMP_R1___________________        KC_COMM , KC_7          , KC_8          , KC_9                , XXXXXXX
 #define _________________NUMP_R2___________________        KC_0    , KC_4          , KC_5          , KC_6                , TO(_SYMB)
