@@ -7,7 +7,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_ergodox_wrapper(
 KC_ESCAPE,      KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EXLM,
-LCTL(KC_SPACE), _________________QWERTY_L1_________________,   KC_ASTR,
+LCTL(KC_S), _________________QWERTY_L1_________________,   KC_ASTR,
 KC_TAB,         _________________QWERTY_L2_________________,
 OSM(MOD_LSFT),  _________________QWERTY_L3_________________,   KC_SLASH,
 KC_LCTL, LSFT(KC_LGUI), LSFT(KC_LALT),  KC_LALT,   KC_LGUI,
@@ -19,7 +19,7 @@ KC_EQL    , KC_6    , KC_7    , KC_8    , KC_9          , KC_0    , KC_ESCAPE   
 KC_PLUS   , _________________QWERTY_R1_________________  , LGUI(KC_SPACE) ,
             _________________QWERTY_R2_________________  , MO(_NAVI) ,
 KC_MINS   , _________________QWERTY_R3_________________  , KC_QUOTE       ,
-KC_ESCAPE , KC_COLN , KC_PERC , KC_PSCR , LGUI(KC_L)    ,
+KC_ESCAPE , LCTL(KC_S) , LCTL(LSFT(KC_R)) , KC_PSCR , LGUI(KC_L)    ,
 
 KC_LEFT,  KC_RGHT,
 KC_UP,
