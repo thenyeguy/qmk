@@ -9,6 +9,11 @@
    // Enable animations. +5500 bytes
    #define RGBLIGHT_ANIMATIONS
 
+   // remove unused animations
+   #undef RGBLIGHT_MODE_RGB_TEST
+   #undef RGBLIGHT_MODE_ALTERNATING
+   #undef RGBLIGHT_MODE_KNIGHT
+   #undef RGBLIGHT_MODE_RAINBOW_MOOD
    // Map my custom number of LED's
    #undef RGBLED_NUM
    #define RGBLED_NUM 16
