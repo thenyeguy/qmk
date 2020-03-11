@@ -10,9 +10,17 @@ enum planck_layers {
   _ADJUST
 };
 
+#define MOD_SPC MT(MOD_RGUI, KC_SPC)
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define CTL_SPC MT(MOD_LCTL, KC_SPC)
+#define ADJUST MO(_ADJUST)
+
+#define BR_BACK LGUI(KC_LBRC)
+#define BR_FWD LGUI(KC_RBRC)
+
+#define WKSP_LFT LALT(KC_LEFT)
+#define WKSP_RGT LALT(KC_RIGHT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -21,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __QWERTY_ROW2_LEFT__, __QWERTY_ROW2_RIGHT__,
     __QWERTY_ROW3_LEFT__, __QWERTY_ROW3_RIGHT__,
 
-    KC_LCTL, KC_LGUI, _______, KC_LALT, LOWER,   CTL_SPC,
+    ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, LOWER,   MOD_SPC,
     KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
 ),
 
@@ -42,12 +50,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = EXPAND(LAYOUT_planck_grid,
     __ADJUST_ROW1_LEFT__, __ADJUST_ROW1_RIGHT__,
     __ADJUST_ROW2_LEFT__, __ADJUST_ROW2_RIGHT__,
-    __XXXXX_HALF__,       __ADJUST_ROW3_RIGHT__,
+    __ADJUST_ROW3_LEFT__, __ADJUST_ROW3_RIGHT__,
     __XXXXX_HALF__,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_SWAP, AG_NORM 
 ),
 
 };
 
-uint32_t layer_state_set_user(uint32_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case LOWER:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+      } else {
+        layer_off(_LOWER);
+      }
+      update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      return false;
+    case RAISE:
+      if (record->event.pressed) {
+        layer_on(_RAISE);
+      } else {
+        layer_off(_RAISE);
+      }
+      update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      return false;
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_ADJUST);
+      } else {
+        layer_off(_ADJUST);
+      }
+      return false;
+    }
+  return true;
 }
