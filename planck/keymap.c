@@ -5,9 +5,15 @@ extern keymap_config_t keymap_config;
 
 enum planck_layers {
   _QWERTY,
+  _COLEMAK,
   _LOWER,
   _RAISE,
   _ADJUST
+};
+
+enum planck_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
 };
 
 #define MOD_SPC MT(MOD_RGUI, KC_SPC)
@@ -33,6 +39,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
 ),
 
+[_COLEMAK] = EXPAND(LAYOUT_planck_grid,
+    __COLEMAK_ROW1_LEFT__, __COLEMAK_ROW1_RIGHT__,
+    __COLEMAK_ROW2_LEFT__, __COLEMAK_ROW2_RIGHT__,
+    __COLEMAK_ROW3_LEFT__, __COLEMAK_ROW3_RIGHT__,
+
+    ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, LOWER,   MOD_SPC,
+    KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
+),
+
 [_LOWER] = EXPAND(LAYOUT_planck_grid,
     __LOWER_ROW1_LEFT__, __LOWER_ROW1_RIGHT__,
     __LOWER_ROW2_LEFT__, __LOWER_ROW2_RIGHT__,
@@ -51,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __ADJUST_ROW1_LEFT__, __ADJUST_ROW1_RIGHT__,
     __ADJUST_ROW2_LEFT__, __ADJUST_ROW2_RIGHT__,
     __ADJUST_ROW3_LEFT__, __ADJUST_ROW3_RIGHT__,
-    __XXXXX_HALF__,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_SWAP, AG_NORM 
+    __XXXXX_HALF__,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, COLEMAK, QWERTY 
 ),
 
 };
@@ -81,6 +96,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_ADJUST);
       }
       return false;
-    }
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+    case COLEMAK:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_COLEMAK);
+      }
+      return false;
+  }
   return true;
 }

@@ -20,6 +20,16 @@
 #define __QWERTY_ROW3_RIGHT__  KC_N,    KC_M,  KC_COMM, KC_DOT, KC_SLSH, KC_SFTENT
 
 
+// --------------------
+// Colemak (DHm) layer:
+#define __COLEMAK_ROW1_LEFT__   KC_TAB,  KC_Q,  KC_W,    KC_F,   KC_P,    KC_B
+#define __COLEMAK_ROW1_RIGHT__  KC_J,    KC_L,  KC_U,    KC_Y,   KC_SCLN, KC_BSPC
+#define __COLEMAK_ROW2_LEFT__   KC_ESC,  KC_A,  KC_R,    KC_S,   KC_T,    KC_G
+#define __COLEMAK_ROW2_RIGHT__  KC_M,    KC_N,  KC_E,    KC_I,   KC_O,    KC_QUOT
+#define __COLEMAK_ROW3_LEFT__   KC_LSFT, KC_Z,  KC_X,    KC_C,   KC_D,    KC_V
+#define __COLEMAK_ROW3_RIGHT__  KC_K,    KC_H,  KC_COMM, KC_DOT, KC_SLSH, KC_SFTENT
+
+
 // ------------
 // Lower layer:
 #define __LOWER_ROW1_LEFT__  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  XXXXXXX
