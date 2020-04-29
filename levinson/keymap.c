@@ -22,7 +22,7 @@ KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , 
 
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_SYMB] = LAYOUT_ortho_4x12_wrapper(
-_______ , _________________SYMB_L1___________________, _________________SYMB_R1___________________ , KC_ESC    ,
+_______ , _________________SYMB_L1___________________, _________________SYMB_R1___________________ , LCTL(LSFT(LGUI(KC_D))),
 _______ , _________________SYMB_L2___________________, _________________SYMB_R2___________________ , MO(_NAVI) ,
 _______ , _________________SYMB_L3___________________, _________________SYMB_R3___________________ , KC_QUOTE  ,
 _______ , ___________________BLANK___________________, _______ , _______ , KC_ESC   , KC_COLN   , KC_PERC      , LOCK
