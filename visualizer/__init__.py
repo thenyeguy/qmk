@@ -11,6 +11,7 @@ _KEYNAMES = {
     "KC_DOT": ".",
     "KC_SLSH": "/",
     "KC_SCLN": ";",
+    "KC_COLN": ":",
     "KC_TILD": "~",
     "KC_GRV": "`",
     "KC_BSLS": "\\",

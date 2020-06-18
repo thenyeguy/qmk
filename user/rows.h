@@ -13,23 +13,23 @@
 // --------------------
 // Colemak (DHm) layer:
 #define __COLEMAK_ROW1_LEFT__   KC_TAB,  KC_Q,  KC_W,    KC_F,   KC_P,    KC_B
-#define __COLEMAK_ROW1_RIGHT__  KC_J,    KC_L,  KC_U,    KC_Y,   KC_SCLN, KC_BSPC
+#define __COLEMAK_ROW1_RIGHT__  KC_J,    KC_L,  KC_U,    KC_Y,   KC_QUOT, KC_BSPC
 #define __COLEMAK_ROW2_LEFT__   KC_ESC,  KC_A,  KC_R,    KC_S,   KC_T,    KC_G
-#define __COLEMAK_ROW2_RIGHT__  KC_M,    KC_N,  KC_E,    KC_I,   KC_O,    KC_QUOT
+#define __COLEMAK_ROW2_RIGHT__  KC_M,    KC_N,  KC_E,    KC_I,   KC_O,    KC_ENT
 #define __COLEMAK_ROW3_LEFT__   KC_LSFT, KC_Z,  KC_X,    KC_C,   KC_D,    KC_V
-#define __COLEMAK_ROW3_RIGHT__  KC_K,    KC_H,  KC_COMM, KC_DOT, KC_SLSH, KC_SFTENT
+#define __COLEMAK_ROW3_RIGHT__  KC_K,    KC_H,  KC_COMM, KC_DOT, KC_SLSH, KC_RSFT
 
 
 // ------------
 // Lower layer:
-#define __LOWER_ROW1_LEFT__  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  XXXXXXX
-#define __LOWER_ROW1_RIGHT__ XXXXXXX, KC_AMPR, KC_ASTR, KC_LCBR, KC_RCBR, _______
+#define __LOWER_ROW1_LEFT__  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
+#define __LOWER_ROW1_RIGHT__ KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_DQT,  _______
 
-#define __LOWER_ROW2_LEFT__  _______, KC_GRV , KC_TILD, KC_PLUS, KC_EQL,  KC_PERC
-#define __LOWER_ROW2_RIGHT__ KC_CIRC, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN, KC_DQT
+#define __LOWER_ROW2_LEFT__  _______, KC_GRV , KC_TILD, KC_PLUS, KC_EQL,  KC_LPRN
+#define __LOWER_ROW2_RIGHT__ KC_RPRN, KC_UNDS, KC_MINS, KC_COLN, KC_SCLN, _______
 
-#define __LOWER_ROW3_LEFT__  _______, XXXXXXX, KC_LBRC, KC_RBRC, KC_BSLS, XXXXXXX
-#define __LOWER_ROW3_RIGHT__ XXXXXXX, KC_PIPE, KC_LT,   KC_GT,   XXXXXXX, _______
+#define __LOWER_ROW3_LEFT__  _______, XXXXXXX, KC_LT,   KC_LBRC, KC_LCBR, XXXXXXX
+#define __LOWER_ROW3_RIGHT__ XXXXXXX, KC_RCBR, KC_RBRC, KC_GT,   KC_BSLS, _______
 
 
 // ------------
