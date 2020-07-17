@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 
 enum ergodox_layers {
-  _QWERTY,
+  _COLEMAK,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -24,20 +24,20 @@ enum ergodox_layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[_QWERTY] = EXPAND(LAYOUT_ergodox,
+[_COLEMAK] = EXPAND(LAYOUT_ergodox,
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_F5,
-  __QWERTY_ROW1_LEFT__,                                 _______,
-  __QWERTY_ROW2_LEFT__,
-  __QWERTY_ROW3_LEFT__,                                 _______,
+  __COLEMAK_ROW1_LEFT__,                                _______,
+  __COLEMAK_ROW2_LEFT__,
+  __COLEMAK_ROW3_LEFT__,                                _______,
   ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, LOWER,
                                                KC_DEL,  KC_MPLY,
                                                         KC_HOME,
                                       CTL_SPC, KC_LALT, KC_END,
 
   RESET,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-  _______, __QWERTY_ROW1_RIGHT__,
-           __QWERTY_ROW2_RIGHT__,
-  _______, __QWERTY_ROW3_RIGHT__,
+  _______, __COLEMAK_ROW1_RIGHT__,
+           __COLEMAK_ROW2_RIGHT__,
+  _______, __COLEMAK_ROW3_RIGHT__,
                     RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT,
   LOCK_SCR,TERMINAL,
   KC_PGUP,

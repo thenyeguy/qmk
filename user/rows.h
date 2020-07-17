@@ -10,16 +10,6 @@
 #define __XXXXX_HALF__ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 
-// -------------
-// Qwerty layer:
-#define __QWERTY_ROW1_LEFT__   KC_TAB,  KC_Q,  KC_W,    KC_E,   KC_R,    KC_T
-#define __QWERTY_ROW1_RIGHT__  KC_Y,    KC_U,  KC_I,    KC_O,   KC_P,    KC_BSPC
-#define __QWERTY_ROW2_LEFT__   KC_ESC,  KC_A,  KC_S,    KC_D,   KC_F,    KC_G
-#define __QWERTY_ROW2_RIGHT__  KC_H,    KC_J,  KC_K,    KC_L,   KC_SCLN, KC_QUOT
-#define __QWERTY_ROW3_LEFT__   KC_LSFT, KC_Z,  KC_X,    KC_C,   KC_V,    KC_B
-#define __QWERTY_ROW3_RIGHT__  KC_N,    KC_M,  KC_COMM, KC_DOT, KC_SLSH, KC_SFTENT
-
-
 // --------------------
 // Colemak (DHm) layer:
 #define __COLEMAK_ROW1_LEFT__   KC_TAB,  KC_Q,  KC_W,    KC_F,   KC_P,    KC_B
