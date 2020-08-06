@@ -25,11 +25,11 @@
 #define __LOWER_ROW1_LEFT__  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define __LOWER_ROW1_RIGHT__ KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_DQT,  _______
 
-#define __LOWER_ROW2_LEFT__  _______, KC_GRV , KC_TILD, KC_PLUS, KC_EQL,  KC_LPRN
-#define __LOWER_ROW2_RIGHT__ KC_RPRN, KC_UNDS, KC_MINS, KC_COLN, KC_SCLN, _______
+#define __LOWER_ROW2_LEFT__  _______, KC_GRV , KC_TILD, KC_PLUS, KC_EQL,  KC_LCBR
+#define __LOWER_ROW2_RIGHT__ KC_RCBR, KC_UNDS, KC_MINS, KC_COLN, KC_SCLN, _______
 
-#define __LOWER_ROW3_LEFT__  _______, XXXXXXX, KC_LT,   KC_LBRC, KC_LCBR, XXXXXXX
-#define __LOWER_ROW3_RIGHT__ XXXXXXX, KC_RCBR, KC_RBRC, KC_GT,   KC_BSLS, _______
+#define __LOWER_ROW3_LEFT__  _______, XXXXXXX, KC_LT,   KC_LBRC, KC_LPRN, XXXXXXX
+#define __LOWER_ROW3_RIGHT__ XXXXXXX, KC_RPRN, KC_RBRC, KC_GT,   KC_BSLS, _______
 
 
 // ------------
