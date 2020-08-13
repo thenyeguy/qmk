@@ -32,11 +32,11 @@ KC_ESCAPE , KC_F1         , KC_F2         , KC_F3       , KC_F4            , KC_
 XXXXXXX   , _________________SYMB_L1___________________ ,KC_ASTR  ,
 KC_TAB    ,  _________________SYMB_L2___________________,
 KC_LSHIFT ,  _________________SYMB_L3___________________, KC_SLASH ,
-KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , WKSP_LEFT  ,
+KC_LCTL   , LSFT(KC_LGUI) , LSFT(KC_LALT) , KC_LALT     , KC_LGUI  ,
 
                                               XXXXXXX,        XXXXXXX,
                                                             XXXXXXX,
-                                    WKSP_RIGHT, KC_BSPACE,    KC_DEL,
+                                    KC_SPACE, KC_BSPACE,    KC_DEL,
 
 KC_F7     , KC_F8    , KC_F9   , KC_F10    , KC_F11    , KC_F12  , LCTL(LSFT(LGUI(KC_D)))  ,
 KC_PLUS   , _________________SYMB_R1___________________ , XXXXXXX  ,
