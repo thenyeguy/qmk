@@ -1,3 +1,5 @@
+import re
+
 _KEY_NAMES = {
     "_______": "",
     "XXXXXXX": "",
@@ -44,7 +46,8 @@ _KEY_NAMES = {
     "KC_LGUI": "Mod",
     "KC_RGUI": "Mod",
 
-    "KC_SPC": "Space",
+    "KC_SPC": "⎵",
+    "KC_SPACE": "⎵",
     "KC_ENT": "Enter",
     "KC_BSPC": "BckSp",
     "KC_SFTENT": "Enter",
@@ -64,11 +67,53 @@ _KEY_NAMES = {
 
     "AG_NORM": "Linux",
     "AG_SWAP": "Mac",
+
+
+    "KC_SCOLON": ";",
+    "KC_MINUS": "-",
+    "KC_LBRACKET": "[",
+    "KC_RBRACKET": "]",
+    "KC_AUDIO_VOL_DOWN": "Vol-",
+    "KC_AUDIO_VOL_UP": "Vol+",
+    "KC_MEDIA_PLAY_PAUSE": "Play",
+    "KC_MEDIA_NEXT_TRACK": "Next",
+    "KC_ESCAPE": "Esc",
+    "KC_BSLASH": "\\",
+    "KC_EQUAL": "=",
+    "KC_QUOTE": "'",
+    "KC_COMMA": ",",
+    "KC_SLASH": "/",
+    "KC_KP_DOT": ".",
+
+    # "KC_LEAD": "Lead",
+    "E_NUMBERS": "E|LT3",
+    "R_MOUSE": "R|LT4",
+    # "LT(MOUSE,KC_R)": "R LT mouse",
+    "TG(BEAKL)": "TG Beakl",
+    "TG(WORKMAN)": "TG Workman",
+    "KC_NONUS_BSLASH": "`",
+    "KC_AUDIO_MUTE": "Mute",
+    "LCTL(KC_B)": "Ctrl + B",
+    "ALT_TAB": "⎇ + Tab",
 }
 
 
 def get_key_name(code):
     if code in _KEY_NAMES:
         return _KEY_NAMES[code]
-    else:
-        return code.replace("KC_", "").title().replace("_", "")
+    if re.match(r"[LR]SFT_T\(", code):
+        res = re.search(r"\((.+)\)", code)
+        return get_key_name(res.group(1)) + " | ⇧"
+    if re.match(r"[LR]CTL_T\(", code):
+        res = re.search(r"\((.+)\)", code)
+        return get_key_name(res.group(1)) + " | ⌃"
+    if re.match(r"[LR]ALT_T\(", code):
+        res = re.search(r"\((.+)\)", code)
+        return get_key_name(res.group(1)) + " | ⌥"
+    if re.match(r"[LR]GUI_T\(", code):
+        res = re.search(r"\((.+)\)", code)
+        return get_key_name(res.group(1)) + " | ⌘"
+    return replace(code)
+
+def replace(code):
+    return code.replace("KC_", "").title().replace("_", "")
