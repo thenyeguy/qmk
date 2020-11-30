@@ -38,10 +38,10 @@
 #define __RAISE_ROW1_RIGHT__ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
 
 #define __RAISE_ROW2_LEFT__  _______, KC_DOT,  KC_MINS, KC_PLUS, KC_EQL,  XXXXXXX
-#define __RAISE_ROW2_RIGHT__ XXXXXXX, KC_4,    KC_5,    KC_6,    KC_0,    _______
+#define __RAISE_ROW2_RIGHT__ XXXXXXX, KC_1,    KC_2,    KC_3,    KC_0,    _______
 
 #define __RAISE_ROW3_LEFT__  _______, KC_COMM, KC_SLSH, KC_ASTR, XXXXXXX, XXXXXXX
-#define __RAISE_ROW3_RIGHT__ XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX,  _______
+#define __RAISE_ROW3_RIGHT__ XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX,  _______
 
 
 // -------------
