@@ -50,6 +50,6 @@
 #define _________________NAVI_L2___________________        XXXXXXX , KC_LEFT , KC_DOWN , KC_RGHT , XXXXXXX
 #define _________________NAVI_L3___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
 
-#define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
-#define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL , XXXXXXX , XXXXXXX , XXXXXXX
+#define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX , LSFT(LCTL(KC_A)) , LSFT(LCTL(KC_O)) , XXXXXXX
+#define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL , LSFT(KC_F10) , XXXXXXX , XXXXXXX
 #define _________________NAVI_R3___________________        KC_LALT , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
