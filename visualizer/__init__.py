@@ -13,7 +13,7 @@ class _Template(object):
     def render(self, layer):
         rendered = self.template
         for i, key in enumerate(layer.key_names()):
-            match = re.search(" +{} +".format(i), rendered).group()
+            match = re.search(" *(?<!\d){}(?!\d) *".format(i), rendered).group()
             label = "{:^{width}.{width}}".format(key, width=len(match))
             rendered = rendered.replace(match, label)
         return "{:^{}}\n".format(layer.name.title(), self.width) + rendered
