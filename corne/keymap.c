@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-enum corne_layers {
+enum layers {
   _COLEMAK,
   _LOWER,
   _RAISE,
