@@ -2,5 +2,5 @@
 
 #include "rows.h"
 
-// Improve mod tap keys for fast typing.
-#define PERMISSIVE_HOLD
+// Configure Mod-Tap for home row mods.
+#define IGNORE_MOD_TAP_INTERRUPT
