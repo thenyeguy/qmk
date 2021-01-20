@@ -75,13 +75,32 @@ _KEY_NAMES = {
     "AG_SWAP": "Mac",
 }
 
+_MOD_NAMES = {
+    # Hold modifiers:
+    "LGUI_T": "◇",
+    "RGUI_T": "◇",
+    "LCTL_T": "⌃",
+    "RCTL_T": "⌃",
+    "LALT_T": "⎇",
+    "RALT_T": "⎇",
+    "LSFT_T": "⇑",
+    "RSFT_T": "⇑",
+}
+
 
 def default_name(code):
     return code.replace("KC_", "").title().replace("_", "")
 
 
 def get_key_name(code):
+    mod = ""
     match = re.match(r"(\w+)\((\w+)\)", code)
     if match:
         code = match.group(2)
-    return _KEY_NAMES.get(code, default_name(code))
+        mod = match.group(1)
+
+    name = _KEY_NAMES.get(code, default_name(code))
+    mod = _MOD_NAMES.get(mod, "")
+    if mod:
+        name += "╱" + mod
+    return name
