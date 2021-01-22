@@ -71,8 +71,7 @@ _KEY_NAMES = {
     "KC_VOLD": "Vol-",
     "KC_VOLU": "Vol+",
 
-    "AG_NORM": "Linux",
-    "AG_SWAP": "Mac",
+    "MAGIC_TOGGLE_CTL_GUI": "𝝙OS",
 }
 
 _MOD_NAMES = {

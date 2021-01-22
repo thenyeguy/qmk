@@ -11,8 +11,6 @@ enum keycodes {
     ADJUST = SAFE_RANGE,
 };
 
-#define CTL_SPC MT(MOD_LCTL, KC_SPC)
-
 #define LOCK_SCR LCA(KC_L)
 #define TERMINAL LCA(KC_T)
 
@@ -26,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, MO(_LOWER),
                                                KC_DEL,  KC_MPLY,
                                                         KC_HOME,
-                                      CTL_SPC, KC_LALT, KC_END,
+                               LCTL_T(KC_SPC), KC_LALT, KC_END,
 
   RESET,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
   _______, __COLEMAK_ROW1_RIGHT__,
