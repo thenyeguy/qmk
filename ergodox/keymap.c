@@ -16,12 +16,6 @@ enum layers {
 #define LOCK_SCR LCA(KC_L)
 #define TERMINAL LCA(KC_T)
 
-#define BR_BACK LALT(KC_LEFT)
-#define BR_FWD LALT(KC_RIGHT)
-
-#define WKSP_LFT LGUI(KC_LEFT)
-#define WKSP_RGT LGUI(KC_RIGHT)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = EXPAND(LAYOUT_ergodox,

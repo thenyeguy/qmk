@@ -14,12 +14,6 @@ enum layers {
 #define RAISE MO(_RAISE)
 #define ADJUST MO(_ADJUST)
 
-#define BR_BACK LGUI(KC_LBRC)
-#define BR_FWD LGUI(KC_RBRC)
-
-#define WKSP_LFT LALT(KC_LEFT)
-#define WKSP_RGT LALT(KC_RIGHT)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = EXPAND(LAYOUT_planck_grid,
