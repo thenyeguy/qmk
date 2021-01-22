@@ -7,12 +7,12 @@ enum layers {
   _ADJUST
 };
 
+enum keycodes {
+    ADJUST = SAFE_RANGE,
+};
+
 #define MOD_SPC MT(MOD_RGUI, KC_SPC)
 #define SWAP_MOD MAGIC_TOGGLE_CTL_GUI
-
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
-#define ADJUST MO(_ADJUST)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -21,8 +21,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __COLEMAK_ROW2_LEFT__, __COLEMAK_ROW2_RIGHT__,
     __COLEMAK_ROW3_LEFT__, __COLEMAK_ROW3_RIGHT__,
 
-    ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, LOWER,   MOD_SPC,
-    KC_SPC,  RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT
+    ADJUST, KC_LGUI,    KC_LCTL, KC_LALT, MO(_LOWER), MOD_SPC,
+    KC_SPC, MO(_RAISE), KC_DOWN, KC_UP,   KC_LEFT,    KC_RGHT
 ),
 
 [_LOWER] = EXPAND(LAYOUT_planck_grid,
@@ -48,30 +48,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case LOWER:
+    case ADJUST:
       if (record->event.pressed) {
         layer_on(_LOWER);
-      } else {
-        layer_off(_LOWER);
-      }
-      update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      return false;
-    case RAISE:
-      if (record->event.pressed) {
         layer_on(_RAISE);
       } else {
+        layer_off(_LOWER);
         layer_off(_RAISE);
       }
       update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      return false;
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_ADJUST);
-      } else {
-        layer_off(_ADJUST);
-      }
       return false;
   }
   return true;

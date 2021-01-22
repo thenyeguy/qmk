@@ -7,11 +7,11 @@ enum layers {
   _ADJUST,
 };
 
-#define CTL_SPC MT(MOD_LCTL, KC_SPC)
+enum keycodes {
+    ADJUST = SAFE_RANGE,
+};
 
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
-#define ADJUST MO(_ADJUST)
+#define CTL_SPC MT(MOD_LCTL, KC_SPC)
 
 #define LOCK_SCR LCA(KC_L)
 #define TERMINAL LCA(KC_T)
@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   __COLEMAK_ROW1_LEFT__,                                _______,
   __COLEMAK_ROW2_LEFT__,
   __COLEMAK_ROW3_LEFT__,                                _______,
-  ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, LOWER,
+  ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, MO(_LOWER),
                                                KC_DEL,  KC_MPLY,
                                                         KC_HOME,
                                       CTL_SPC, KC_LALT, KC_END,
@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, __COLEMAK_ROW1_RIGHT__,
            __COLEMAK_ROW2_RIGHT__,
   _______, __COLEMAK_ROW3_RIGHT__,
-                    RAISE,   KC_DOWN, KC_UP,   KC_LEFT, KC_RGHT,
+                  MO(_RAISE),KC_DOWN,KC_UP,   KC_LEFT, KC_RGHT,
   LOCK_SCR,TERMINAL,
   KC_PGUP,
   KC_PGDN, KC_ENT,  KC_SPC
@@ -135,31 +135,22 @@ uint32_t layer_state_set_user(uint32_t state) {
   return state;
 };
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case LOWER:
+    case ADJUST:
       if (record->event.pressed) {
         layer_on(_LOWER);
-      } else {
-        layer_off(_LOWER);
-      }
-      update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      return false;
-    case RAISE:
-      if (record->event.pressed) {
         layer_on(_RAISE);
       } else {
+        layer_off(_LOWER);
         layer_off(_RAISE);
       }
       update_tri_layer(_LOWER, _RAISE, _ADJUST);
       return false;
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_ADJUST);
-      } else {
-        layer_off(_ADJUST);
-      }
-      return false;
-    }
+  }
   return true;
 }
