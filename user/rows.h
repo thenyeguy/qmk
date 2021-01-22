@@ -12,12 +12,14 @@
 
 // --------------------
 // Colemak (DHm) layer:
-#define __COLEMAK_ROW1_LEFT__   KC_TAB,  KC_Q,  KC_W,    KC_F,   KC_P,    KC_B
-#define __COLEMAK_ROW1_RIGHT__  KC_J,    KC_L,  KC_U,    KC_Y,   KC_QUOT, KC_BSPC
-#define __COLEMAK_ROW2_LEFT__   KC_ESC,  KC_A,  KC_R,    KC_S,   KC_T,    KC_G
-#define __COLEMAK_ROW2_RIGHT__  KC_M,    KC_N,  KC_E,    KC_I,   KC_O,    KC_ENT
-#define __COLEMAK_ROW3_LEFT__   KC_LSFT, KC_Z,  KC_X,    KC_C,   KC_D,    KC_V
-#define __COLEMAK_ROW3_RIGHT__  KC_K,    KC_H,  KC_COMM, KC_DOT, KC_SLSH, KC_RSFT
+#define __COLEMAK_ROW1_LEFT__  KC_TAB,  KC_Q,  KC_W,    KC_F,   KC_P,    KC_B
+#define __COLEMAK_ROW1_RIGHT__ KC_J,    KC_L,  KC_U,    KC_Y,   KC_QUOT, KC_BSPC
+
+#define __COLEMAK_ROW2_LEFT__  KC_ESC,  KC_A,  KC_R,    KC_S,   KC_T,    KC_G
+#define __COLEMAK_ROW2_RIGHT__ KC_M,    KC_N,  KC_E,    KC_I,   KC_O,    KC_ENT
+
+#define __COLEMAK_ROW3_LEFT__  KC_LSFT, KC_Z,  KC_X,    KC_C,   KC_D,    KC_V
+#define __COLEMAK_ROW3_RIGHT__ KC_K,    KC_H,  KC_COMM, KC_DOT, KC_SLSH, KC_RSFT
 
 
 // ------------
@@ -41,16 +43,16 @@
 #define __RAISE_ROW2_RIGHT__ XXXXXXX, KC_1,    KC_2,    KC_3,    KC_0,    _______
 
 #define __RAISE_ROW3_LEFT__  _______, KC_COMM, KC_SLSH, KC_ASTR, XXXXXXX, XXXXXXX
-#define __RAISE_ROW3_RIGHT__ XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX,  _______
+#define __RAISE_ROW3_RIGHT__ XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, _______
 
 
 // -------------
 // Adjust layer:
-#define __ADJUST_ROW1_LEFT__  RESET, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5
-#define __ADJUST_ROW1_RIGHT__ KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_DEL
+#define __ADJUST_ROW1_LEFT__  RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+#define __ADJUST_ROW1_RIGHT__ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL
 
-#define __ADJUST_ROW2_LEFT__ _______, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, KC_VOLU
-#define __ADJUST_ROW3_LEFT__ _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY, KC_VOLD
+#define __ADJUST_ROW2_LEFT__  _______, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, KC_VOLU
+#define __ADJUST_ROW3_LEFT__  _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY, KC_VOLD
 
 #define __ADJUST_ROW2_RIGHT__ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______
 #define __ADJUST_ROW3_RIGHT__ KC_END,  KC_PGDN, KC_PGUP, KC_HOME, XXXXXXX, KC_CAPS
