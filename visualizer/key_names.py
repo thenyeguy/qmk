@@ -1,3 +1,6 @@
+import re
+
+
 _KEY_NAMES = {
     "_______": "",
     "XXXXXXX": "",
@@ -67,8 +70,12 @@ _KEY_NAMES = {
 }
 
 
+def default_name(code):
+    return code.replace("KC_", "").title().replace("_", "")
+
+
 def get_key_name(code):
-    if code in _KEY_NAMES:
-        return _KEY_NAMES[code]
-    else:
-        return code.replace("KC_", "").title().replace("_", "")
+    match = re.match(r"(\w+)\((\w+)\)", code)
+    if match:
+        code = match.group(2)
+    return _KEY_NAMES.get(code, default_name(code))
