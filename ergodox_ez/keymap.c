@@ -123,16 +123,29 @@ _______, _______, KC_LGUI
 
 // layer 5
 // Note: Grab the latest from https://configure.ergodox-ez.com/ergodox-ez/layouts/7QxWj/latest/0 and paste in the sources here.
-[_FORTNITE] = LAYOUT_ergodox_pretty(
-KC_ESCAPE,      KC_2,           KC_1,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                 WEBUSB_PAIR,    TO(0), KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RESET,
-    KC_EQUAL,       KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_F4,                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_TRANSPARENT,
-    KC_TAB,         KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_TRANSPARENT, KC_Y,           KC_MS_BTN1,     KC_H,           KC_R,           KC_MS_BTN2,
-    KC_LSHIFT,      KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_GRAVE,                                       KC_TRANSPARENT, KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_P,           KC_TRANSPARENT,
-    KC_LCTRL,       KC_U,           KC_F4,          KC_M,           KC_R,                                                                                                           KC_F1,          KC_F2,          KC_TRANSPARENT, KC_J,           KC_F3,
-                                                                                                    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                                                    KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                    KC_SPACE,       KC_ENTER,       KC_U,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
-),
+[_FORTNITE] = LAYOUT_ergodox_wrapper(
+KC_ESCAPE,      KC_2,           KC_1,           KC_3,           KC_4,           KC_5,           XXXXXXX,
+KC_EQUAL,       KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_F4,
+KC_TAB,         KC_A,           KC_S,           KC_D,           KC_F,           KC_G,
+KC_LSHIFT,      KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_GRAVE,
+KC_LCTRL,       KC_U,           KC_F4,          KC_M,           KC_R,
+
+XXXXXXX  , XXXXXXX ,
+XXXXXXX,
+KC_SPACE,       KC_ENTER,       KC_U,
+
+WEBUSB_PAIR,    TO(0),      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    RESET,
+XXXXXXX,        XXXXXXX,    KC_Z,       KC_X,       KC_C,           KC_V,           XXXXXXX,
+XXXXXXX,        KC_Y,       KC_MS_BTN1, KC_H,       KC_R,           KC_MS_BTN2,
+XXXXXXX,        XXXXXXX,    KC_1,       KC_2,       KC_3,           KC_P,           XXXXXXX,
+KC_F1,          KC_F2,      XXXXXXX,    KC_J,       KC_F3,
+
+XXXXXXX  , XXXXXXX ,
+XXXXXXX  ,
+XXXXXXX  , XXXXXXX ,XXXXXXX
+
+), // must be on newline for qmk vizualiser to render it.
+
 };
 
 
