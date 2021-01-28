@@ -65,7 +65,7 @@ KC_EQL  , ___________________XXXXX___________________ , RESET   ,
 KC_PLUS , _________________NUMP_R1___________________ , XXXXXXX ,
           _________________NUMP_R2___________________ , XXXXXXX                                     ,
 KC_MINS , _________________NUMP_R3___________________ , XXXXXXX ,
-                KC_0    , XXXXXXX , XXXXXXX , TO(3)   , XXXXXXX ,
+                KC_0    , XXXXXXX , TO(_FORTNITE), TO(_OVERWATCH)   , XXXXXXX ,
 
 KC_LEFT,  KC_RGHT,
 KC_UP,
@@ -119,6 +119,19 @@ _______, _______,
 _______,
 _______, _______, KC_LGUI
 
+),
+
+// layer 5
+// Note: Grab the latest from https://configure.ergodox-ez.com/ergodox-ez/layouts/7QxWj/latest/0 and paste in the sources here.
+[_FORTNITE] = LAYOUT_ergodox_pretty(
+KC_ESCAPE,      KC_2,           KC_1,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                 WEBUSB_PAIR,    TO(0), KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RESET,
+    KC_EQUAL,       KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_F4,                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_TRANSPARENT,
+    KC_TAB,         KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_TRANSPARENT, KC_Y,           KC_MS_BTN1,     KC_H,           KC_R,           KC_MS_BTN2,
+    KC_LSHIFT,      KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_GRAVE,                                       KC_TRANSPARENT, KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_P,           KC_TRANSPARENT,
+    KC_LCTRL,       KC_U,           KC_F4,          KC_M,           KC_R,                                                                                                           KC_F1,          KC_F2,          KC_TRANSPARENT, KC_J,           KC_F3,
+                                                                                                    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+                                                                                                                    KC_TRANSPARENT, KC_TRANSPARENT,
+                                                                                    KC_SPACE,       KC_ENTER,       KC_U,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
 ),
 };
 
@@ -226,11 +239,11 @@ uint32_t layer_state_set_user(uint32_t state) {
       combo_disable(); // We don't want combos in overwatch
       ergodox_right_led_3_on();
       break;
-    case 4:
+    case _NAVI:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();
       break;
-    case 5:
+    case _FORTNITE:
       ergodox_right_led_1_on();
       ergodox_right_led_3_on();
       break;
