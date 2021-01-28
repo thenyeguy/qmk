@@ -71,7 +71,7 @@ def push(keyboard):
         time.sleep(1)
     print()
 
-    with QmkBuilder(keyboard) as builder:
+    with QmkBuilder(keyboard, keep=False) as builder:
         print("Updating {}...".format(keyboard))
         builder.execute("push.sh")
 
