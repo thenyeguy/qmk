@@ -51,7 +51,7 @@ KC_DOWN,  KC_TAB, KC_ENTER
 
   // layer 2
 [_NUMP] = LAYOUT_ergodox_wrapper(
-XXXXXXX ,  ___________________XXXXX___________________, XXXXXXX  ,
+WEBUSB_PAIR,  ___________________XXXXX___________________, XXXXXXX  ,
 XXXXXXX , _________________NUMP_L1___________________ , KC_ASTR  ,
 KC_TAB  , _________________NUMP_L2___________________ ,
 XXXXXXX , _________________NUMP_L3___________________ , KC_SLASH ,
