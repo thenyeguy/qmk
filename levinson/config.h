@@ -1,5 +1,9 @@
 #pragma once
 
+// Flip board to flash right side
+// #define EE_HANDS
+// #define MASTER_RIGHT
+
 // Use serial comms for split keyboard
 // DO NOT enable USE_IDC - board will not respond.
 #define USE_SERIAL

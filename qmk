@@ -36,6 +36,7 @@ class QmkBuilder(object):
         self.qmk_user_dir = os.path.join(self.qmk_root, "users", user)
 
     def _cleanup(self):
+        # pass
         if os.path.exists(self.qmk_config_dir):
             shutil.rmtree(self.qmk_config_dir)
         if os.path.exists(self.qmk_user_dir):
@@ -52,8 +53,8 @@ class QmkBuilder(object):
         subprocess.check_call(cmd, cwd=self.qmk_root)
 
     def __exit__(self, *_):
-        self._cleanup()
-
+        # self._cleanup()
+        pass
 
 def build(keyboard, push=False):
     with QmkBuilder(keyboard) as builder:
