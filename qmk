@@ -24,9 +24,10 @@ def abs_path(*paths):
 
 
 class QmkBuilder(object):
-    def __init__(self, keyboard):
+    def __init__(self, keyboard, keep):
         self.qmk_root = abs_path("qmk_firmware")
 
+        self.keep_files = keep
         self.local_config_dir = abs_path(keyboard)
         keyboard_target = keyboard_loc_override[keyboard] if keyboard in keyboard_loc_override else keyboard
         self.qmk_config_dir = os.path.join(self.qmk_root, "keyboards",
@@ -36,7 +37,8 @@ class QmkBuilder(object):
         self.qmk_user_dir = os.path.join(self.qmk_root, "users", user)
 
     def _cleanup(self):
-        # pass
+        if self.keep_files:
+            return
         if os.path.exists(self.qmk_config_dir):
             shutil.rmtree(self.qmk_config_dir)
         if os.path.exists(self.qmk_user_dir):
@@ -53,11 +55,10 @@ class QmkBuilder(object):
         subprocess.check_call(cmd, cwd=self.qmk_root)
 
     def __exit__(self, *_):
-        # self._cleanup()
-        pass
+        self._cleanup()
 
-def build(keyboard, push=False):
-    with QmkBuilder(keyboard) as builder:
+def build(keyboard, keep, push=False):
+    with QmkBuilder(keyboard, keep) as builder:
         print("Building {}...".format(keyboard))
         builder.execute("build.sh")
 
@@ -70,7 +71,7 @@ def push(keyboard):
         time.sleep(1)
     print()
 
-    with QmkBuilder(keyboard) as builder:
+    with QmkBuilder(keyboard, keep=False) as builder:
         print("Updating {}...".format(keyboard))
         builder.execute("push.sh")
 
@@ -83,6 +84,8 @@ def main(argv):
     parser = argparse.ArgumentParser(description="Build util for QMK")
     parser.add_argument("command", nargs=1, choices=["build", "push", "show"])
     parser.add_argument("keyboard", nargs=1)
+    parser.add_argument("--keep", action='store_true',
+                     help='Keep the files in the QMK repo', default=False)
     args = parser.parse_args()
 
     keyboard = args.keyboard[0].strip("/")
@@ -90,10 +93,13 @@ def main(argv):
         print("Invalid keyboard: {}".format(keyboard))
         return 1
 
+    keep = args.keep
+    if keep:
+        print("--keep detected, will not delete QMK files")
     try:
         command = args.command[0]
         if command == "build":
-            build(keyboard)
+            build(keyboard, keep)
         elif command == "push":
             push(keyboard)
         elif command == "show":

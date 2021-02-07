@@ -134,11 +134,11 @@ XXXXXXX  , XXXXXXX ,
 XXXXXXX,
 KC_SPACE,       KC_ENTER,       KC_U,
 
-WEBUSB_PAIR,    TO(0),      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    RESET,
+WEBUSB_PAIR,    TO(0),      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_LGUI,
 XXXXXXX,        XXXXXXX,    KC_Z,       KC_X,       KC_C,           KC_V,           XXXXXXX,
 XXXXXXX,        KC_Y,       KC_MS_BTN1, KC_H,       KC_R,           KC_MS_BTN2,
 XXXXXXX,        XXXXXXX,    KC_1,       KC_2,       KC_3,           KC_P,           XXXXXXX,
-KC_F1,          KC_F2,      XXXXXXX,    KC_J,       KC_F3,
+KC_F1,          KC_F2,      KC_F5,    KC_J,       KC_F3,
 
 XXXXXXX  , XXXXXXX ,
 XXXXXXX  ,
