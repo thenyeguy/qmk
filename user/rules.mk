@@ -6,6 +6,7 @@ SRC += issmirnov.c
 # Should shave 2000 bytes
 # Formerly known as LINK_TIME_OPTIMIZATION_ENABLE
 LTO_ENABLE = yes
+EXTRAFLAGS += -flto
 
 # Enable debugging only when needed.
 CONSOLE_ENABLE = yes # +400 bytes (hid_listen support)
@@ -25,3 +26,9 @@ BOOTMAGIC_ENABLE  = no
 COMMAND_ENABLE    = no # https://beta.docs.qmk.fm/features/feature_command
 UNICODE_ENABLE    = no  # Unicode
 SWAP_HANDS_ENABLE = no  # Allow swapping hands of keyboard
+LEADER_ENABLE = no
+MIDI_ENABLE = no
+DYNAMIC_MACRO_ENABLE = no
+
+# combo engine
+VPATH  +=  keyboards/gboards/
