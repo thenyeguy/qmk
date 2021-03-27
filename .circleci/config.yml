@@ -1,0 +1,38 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+jobs:
+  run:
+    docker:
+      - image: ubuntu
+    resource_class: small # https://circleci.com/docs/2.0/executor-types/#available-docker-resource-classes
+    steps:
+      - checkout
+      - run: apt update && apt install -y gcc-8 unzip wget python3 zip gcc-avr binutils-avr avr-libc dfu-programmer dfu-util gcc-arm-none-eabi binutils-arm-none-eabi git libnewlib-arm-none-eabi sudo make
+      - run: ln -s /usr/bin/gcc-8 /usr/local/bin/gcc
+      - run: avr-gcc --version; gcc -v
+      - run: mkdir -p /etc/udev/rules.d/ # inject directory so init.sh doesn't fail
+      - run: git submodule init && git submodule update # manually git init submodules for caches
+      - restore_cache:
+          keys:
+            - qmk_repo-{{ checksum ".git/modules/qmk_firmware/refs/heads/master" }}
+      - run: ./init.sh
+      - save_cache:
+          key: qmk_repo-{{ checksum ".git/modules/qmk_firmware/refs/heads/master" }}
+          paths:
+            - qmk_firmware
+      - run: ./qmk build ergodox_ez
+      - run: ./qmk show ergodox_ez
+      - run: ./qmk build levinson
+      - run: ./qmk show levinson
+      - store_artifacts:
+          path: qmk_firmware/ergodox_ez_issmirnov.hex
+          destination: ergodox_ez_issmirnov.hex
+      - store_artifacts:
+          path: qmk_firmware/keebio_levinson_rev2_issmirnov.hex
+          destination: keebio_levinson_rev2_issmirnov.hex
+workflows:
+  version: 2
+  run_wf:
+    jobs:
+      - run

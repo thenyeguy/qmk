@@ -9,7 +9,10 @@ git submodule update
 git submodule sync --recursive
 
 echo "Running QMK installer"
-qmk_firmware/util/qmk_install.sh
+cd qmk_firmware
+./util/qmk_install.sh
+make git-submodule
+cd ..
 
 echo "Verifying udev rules, patching if needed"
 # set up udev rules
