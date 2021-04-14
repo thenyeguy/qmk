@@ -11,6 +11,11 @@
 // tapping term set above 500
 #define PERMISSIVE_HOLD
 
+// Ignore Mod tap interrupt
+// If I: press A, press B, release A, release B this will output AB instead of MOD_A(B)
+#define IGNORE_MOD_TAP_INTERRUPT
+
+
 // tap anyway, even after TAPPING_TERM, if there was no other key
 // interruption between press and release
 #define RETRO_TAPPING
