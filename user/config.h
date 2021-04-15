@@ -5,7 +5,7 @@
 
 // how long before a tap becomes a hold
 #undef TAPPING_TERM
-#define TAPPING_TERM 100
+#define TAPPING_TERM 150
 
 // makes tap and hold keys work better for fast typers who don't want
 // tapping term set above 500
