@@ -47,17 +47,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        // Left encoder controls volume
-        tap_code(clockwise ? KC_VOLU : KC_VOLD);
+        tap_code(clockwise ? KC_RIGHT : KC_LEFT);
     } else if (index == 1) {
-        // Right encoder controls navigation
-        switch (biton32(layer_state)) {
-            case _LOWER:
-                tap_code(clockwise ? KC_RIGHT : KC_LEFT);
-                break;
-            default:
-                tap_code(clockwise ? KC_DOWN : KC_UP);
-                break;
-        }
+        tap_code(clockwise ? KC_DOWN : KC_UP);
     }
 }
