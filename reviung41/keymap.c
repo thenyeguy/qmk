@@ -8,6 +8,7 @@ enum layers {
 };
 
 #define LOCK LGUI(LCTL(KC_Q))
+#define SLEEP LCTL(LSFT(KC_POWER))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -29,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __RAISE_ROW1_LEFT__, __RAISE_ROW1_RIGHT__,
     __RAISE_ROW2_LEFT__, __RAISE_ROW2_RIGHT__,
     __RAISE_ROW3_LEFT__, __RAISE_ROW3_RIGHT__,
-    _______, _______, _______, _______, _______
+    _______, _______, _______, _______, SLEEP
 ),
 
 [_ADJUST] = EXPAND(LAYOUT_reviung41,
