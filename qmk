@@ -17,7 +17,7 @@ def abs_path(*paths):
     return os.path.join(dirname, *paths)
 
 
-class QmkBuilder(object):
+class QmkWrapper(object):
     def __init__(self, keyboard):
         config_root = abs_path(keyboard)
         with open(os.path.join(config_root, "config.json")) as f:
@@ -25,49 +25,48 @@ class QmkBuilder(object):
 
         self.qmk_root = abs_path("qmk_firmware")
 
-        self.local_config_dir = config_root
-        self.qmk_config_dir = os.path.join(
-            self.qmk_root, "keyboards", self.config["path"], "keymaps", "mnye")
+        keyboard_dir = self.config.get("path") or self.config.get("keyboard")
 
-        self.local_user_dir = abs_path("user")
-        self.qmk_user_dir = os.path.join(self.qmk_root, "users", "mnye")
+        self.mapped_dirs = []
+        self.mapped_dirs.append((config_root, os.path.join(
+            self.qmk_root, "keyboards", keyboard_dir, "keymaps", "mnye")))
+        self.mapped_dirs.append(
+            (abs_path("user"), os.path.join(self.qmk_root, "users", "mnye")))
 
     def _cleanup(self):
-        if os.path.exists(self.qmk_config_dir):
-            shutil.rmtree(self.qmk_config_dir)
-        if os.path.exists(self.qmk_user_dir):
-            shutil.rmtree(self.qmk_user_dir)
+        for _, dst in self.mapped_dirs:
+            if os.path.exists(dst):
+                shutil.rmtree(dst)
 
     def __enter__(self):
         self._cleanup()
-        shutil.copytree(self.local_config_dir, self.qmk_config_dir)
-        shutil.copytree(self.local_user_dir, self.qmk_user_dir)
+        for src, dst in self.mapped_dirs:
+            shutil.copytree(src, dst)
         return self
-
-    def execute(self, cmd):
-        subprocess.check_call(cmd, cwd=self.qmk_root)
-
-    def build(self):
-        cmd = ["make", "{}:mnye".format(self.config["target"])]
-        self.execute(cmd)
-
-    def push(self):
-        cmd = ["make", "{}:mnye:{}".format(
-            self.config["target"], self.config["flash_tool"])]
-        self.execute(cmd)
 
     def __exit__(self, *_):
         self._cleanup()
 
+    def call(self, cmd_name):
+        cmd = ["bin/qmk", cmd_name, "-kb",
+               self.config["keyboard"], "-km", "mnye"]
+        subprocess.check_call(cmd, cwd=self.qmk_root)
 
-def build(keyboard):
-    with QmkBuilder(keyboard) as builder:
-        builder.build()
+    def compile(self):
+        self.call("compile")
+
+    def flash(self):
+        self.call("flash")
 
 
-def push(keyboard):
-    with QmkBuilder(keyboard) as builder:
-        builder.push()
+def compile(keyboard):
+    with QmkWrapper(keyboard) as qmk:
+        qmk.compile()
+
+
+def flash(keyboard):
+    with QmkWrapper(keyboard) as qmk:
+        qmk.flash()
 
 
 def show(keyboard):
@@ -76,7 +75,8 @@ def show(keyboard):
 
 def main(argv):
     parser = argparse.ArgumentParser(description="Build util for QMK")
-    parser.add_argument("command", nargs=1, choices=["build", "push", "show"])
+    parser.add_argument("command", nargs=1, choices=[
+                        "build", "compile", "flash", "push", "show"])
     parser.add_argument("keyboard", nargs=1)
     args = parser.parse_args()
 
@@ -87,10 +87,10 @@ def main(argv):
 
     try:
         command = args.command[0]
-        if command == "build":
-            build(keyboard)
-        elif command == "push":
-            push(keyboard)
+        if command in ("build", "compile"):
+            compile(keyboard)
+        elif command in ("flash", "push"):
+            flash(keyboard)
         elif command == "show":
             show(keyboard)
     except KeyboardInterrupt:

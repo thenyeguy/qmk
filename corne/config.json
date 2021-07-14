@@ -1,6 +1,3 @@
 {
-    "name": "corne",
-    "path": "crkbd",
-    "target": "crkbd",
-    "flash_tool": "dfu"
+    "keyboard": "crkbd"
 }

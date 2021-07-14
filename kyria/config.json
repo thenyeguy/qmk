@@ -1,6 +1,3 @@
 {
-    "name": "kyria",
-    "path": "kyria",
-    "target": "kyria",
-    "flash_tool": "dfu"
+    "keyboard": "kyria"
 }

@@ -1,6 +1,4 @@
 {
-    "name": "planck",
-    "path": "planck",
-    "target": "planck/rev6",
-    "flash_tool": "dfu-util"
+    "keyboard": "planck/rev6",
+    "path": "planck"
 }
