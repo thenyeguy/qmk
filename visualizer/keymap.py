@@ -12,17 +12,10 @@ class KeyMap(object):
             rows = _load_rows(f)
         with open(os.path.join(keyboard_dir, "keymap.c")) as f:
             layers = _load_layers(f, rows)
-        with open(os.path.join(keyboard_dir, "template.txt")) as f:
-            template = _Template(f.read())
-        return cls(template, layers)
+        return cls(layers)
 
-    def __init__(self, template, layers):
-        self.template = template
+    def __init__(self, layers):
         self.layers = layers
-
-    def visualize(self):
-        for layer in self.layers:
-            print(self.template.render(layer))
 
 
 class _Rows(object):
@@ -45,21 +38,6 @@ class _Layer(object):
     def key_names(self):
         for code in self.codes:
             yield get_key_name(code)
-
-
-class _Template(object):
-
-    def __init__(self, template):
-        self.width = max(len(line) for line in template.split("\n"))
-        self.template = template
-
-    def render(self, layer):
-        rendered = self.template
-        for i, key in enumerate(layer.key_names()):
-            match = re.search(" *(?<!\d)_{}(?!\d) *".format(i), rendered).group()
-            label = "{:^{width}.{width}}".format(key, width=len(match))
-            rendered = rendered.replace(match, label)
-        return "{:^{}}\n".format(layer.name.title(), self.width) + rendered
 
 
 def _load_rows(row_lines):
