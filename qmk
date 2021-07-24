@@ -69,14 +69,14 @@ def flash(keyboard):
         qmk.flash()
 
 
-def show(keyboard):
-    visualizer.render_ascii(abs_path("user"), abs_path(keyboard))
+def show(keyboard, render):
+    render(abs_path("user"), abs_path(keyboard))
 
 
 def main(argv):
     parser = argparse.ArgumentParser(description="Build util for QMK")
     parser.add_argument("command", nargs=1, choices=[
-                        "build", "compile", "flash", "push", "show"])
+                        "build", "compile", "flash", "push", "show", "svg"])
     parser.add_argument("keyboard", nargs=1)
     args = parser.parse_args()
 
@@ -92,7 +92,9 @@ def main(argv):
         elif command in ("flash", "push"):
             flash(keyboard)
         elif command == "show":
-            show(keyboard)
+            show(keyboard, visualizer.render_ascii)
+        elif command == "svg":
+            show(keyboard, visualizer.render_svg)
     except KeyboardInterrupt:
         print()
         print("Aborting.")
