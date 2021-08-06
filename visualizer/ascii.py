@@ -16,10 +16,11 @@ class AsciiTemplate(object):
     def render(self, keymap):
         for layer in keymap.layers:
             rendered = self.template
-            for i, key in enumerate(layer.key_names()):
+            for i, key in enumerate(layer.key_codes()):
                 match = re.search(
                     r" *(?<!\d)_{}(?!\d) *".format(i), rendered).group()
-                label = "{:^{width}.{width}}".format(key, width=len(match))
+                label = "{:^{width}.{width}}".format(
+                    key.as_ascii(), width=len(match))
                 rendered = rendered.replace(match, label)
             print("{:^{}}".format(layer.name.title(), self.width))
             print(rendered)

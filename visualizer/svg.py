@@ -76,8 +76,8 @@ class SvgLayout(object):
 
         # Render key labels
         for layer in keymap.layers:
-            for key, name in zip(self.keys, layer.key_names()):
-                key.draw_label(svg, name, layer.name.lower())
+            for key, code in zip(self.keys, layer.key_codes()):
+                key.draw_label(svg, code.as_ascii(), layer.name.lower())
 
         # Write out rendered svg.
         with open(self.output_file, "wb") as f:

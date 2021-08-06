@@ -1,7 +1,7 @@
 import os
 import re
 
-from .key_names import get_key_name
+from .key_codes import KeyCode
 
 
 class KeyMap(object):
@@ -35,9 +35,9 @@ class _Layer(object):
         self.name = name
         self.codes = codes
 
-    def key_names(self):
+    def key_codes(self):
         for code in self.codes:
-            yield get_key_name(code)
+            yield KeyCode(code)
 
 
 def _load_rows(row_lines):
