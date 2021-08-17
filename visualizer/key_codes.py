@@ -55,6 +55,7 @@ _TAP_CODES = {
     "KC_ESC": "⎋",
     "KC_BSPC": "⌫",
     "KC_DEL": "⌦",
+    "KC_CAPS": "⇪",
 
     "KC_UP": "↑",
     "KC_DOWN": "↓",
@@ -75,7 +76,7 @@ _TAP_CODES = {
 _GUI_SYMBOL = "◇"
 _CTL_SYMBOL = "⌃"
 _ALT_SYMBOL = "⎇"
-_SFT_SYMBOL = "⇑"
+_SFT_SYMBOL = "⇧"
 
 _HOLD_CODES = {
     "KC_LGUI": _GUI_SYMBOL,
