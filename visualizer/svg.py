@@ -112,10 +112,14 @@ class _Key(object):
 
         self._draw_border(svg, class_)
         for layer, key_code in self.key_codes.items():
+            # Tap:
             if key_code.tap:
                 self._draw_label(svg, key_code.tap, layer)
-            if key_code.hold:
-                self._draw_label(svg, key_code.hold, "hold", class_)
+            # Hold:
+            if key_code.layer:
+                self._draw_label(svg, key_code.layer.lower(), "hold", class_)
+            elif key_code.hold:
+                self._draw_label(svg, key_code.hold, "hold")
 
     def _draw_border(self, svg, class_=None):
         rect = ElementTree.SubElement(svg, "rect", {
