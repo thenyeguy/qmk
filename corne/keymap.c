@@ -7,13 +7,17 @@ enum layers {
   _ADJUST
 };
 
+enum keycodes {
+    ADJUST = SAFE_RANGE,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = EXPAND(LAYOUT,
     __COLEMAK_ROW1_LEFT__, __COLEMAK_ROW1_RIGHT__,
     __COLEMAK_ROW2_LEFT__, __COLEMAK_ROW2_RIGHT__,
     __COLEMAK_ROW3_LEFT__, __COLEMAK_ROW3_RIGHT__,
-    KC_LALT, MO(_LOWER), LGUI_T(KC_SPC), KC_SPC, MO(_RAISE), KC_LCTL
+    ADJUST, MO(_LOWER), KC_SPC, KC_SPC, MO(_RAISE), KC_LCTL
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -41,4 +45,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
       return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+        layer_on(_RAISE);
+      } else {
+        layer_off(_LOWER);
+        layer_off(_RAISE);
+      }
+      update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      return false;
+  }
+  return true;
 }

@@ -21,19 +21,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   __COLEMAK_ROW1_LEFT__,                                _______,
   __COLEMAK_ROW2_LEFT__,
   __COLEMAK_ROW3_LEFT__,                                _______,
-  ADJUST,  KC_LGUI, KC_LCTL, KC_LALT, MO(_LOWER),
-                                               KC_DEL,  KC_MPLY,
+  KC_LGUI, KC_LCTL, KC_LALT, ADJUST, MO(_LOWER),
+                                               TERMINAL,LOCK_SCR,
                                                         KC_HOME,
-                               LCTL_T(KC_SPC), KC_LALT, KC_END,
+                                     KC_SPC,   KC_DEL,  KC_END,
 
   RESET,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
   _______, __COLEMAK_ROW1_RIGHT__,
            __COLEMAK_ROW2_RIGHT__,
   _______, __COLEMAK_ROW3_RIGHT__,
                   MO(_RAISE),KC_DOWN,KC_UP,   KC_LEFT, KC_RGHT,
-  LOCK_SCR,TERMINAL,
+  KC_MPLY, _______,
   KC_PGUP,
-  KC_PGDN, KC_ENT,  KC_SPC
+  KC_PGDN, KC_BSPC,  KC_SPC
 ),
 
 [_LOWER] = EXPAND(LAYOUT_ergodox,
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, __RAISE_ROW1_RIGHT__,
            __RAISE_ROW2_RIGHT__,
   _______, __RAISE_ROW3_RIGHT__,
-                    _______, KC_PGDN, KC_PGUP, KC_HOME, KC_END,
+                    _______, _______, _______, _______, _______,
   _______, _______,
   _______,
   _______, _______, _______

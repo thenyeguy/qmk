@@ -8,8 +8,10 @@ enum layers {
 };
 
 enum keycodes {
-    ENCODER = SAFE_RANGE,
+    ADJUST = SAFE_RANGE,
+    ENCODER,
 };
+
 
 #define LOCK LGUI(LCTL(KC_Q))
 #define SLEEP LCTL(LSFT(KC_POWER))
@@ -19,8 +21,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = EXPAND(LAYOUT,
     __COLEMAK_ROW1_LEFT__,                                           __COLEMAK_ROW1_RIGHT__,
     __COLEMAK_ROW2_LEFT__,                                           __COLEMAK_ROW2_RIGHT__,
-    __COLEMAK_ROW3_LEFT__,        XXXXXXX, KC_MPLY, LOCK,    SLEEP,  __COLEMAK_ROW3_RIGHT__,
-    ENCODER, KC_LALT, MO(_LOWER), KC_SPC,  KC_DEL,  KC_BSPC, KC_SPC, MO(_RAISE),   KC_RCTL, ENCODER
+    __COLEMAK_ROW3_LEFT__,       SLEEP,  LOCK,   KC_MPLY, XXXXXXX,   __COLEMAK_ROW3_RIGHT__,
+    ENCODER, ADJUST, MO(_LOWER), KC_SPC, KC_DEL, KC_BSPC, KC_SPC, MO(_RAISE), KC_RCTL, ENCODER
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -70,6 +72,16 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+        layer_on(_RAISE);
+      } else {
+        layer_off(_LOWER);
+        layer_off(_RAISE);
+      }
+      update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      return false;
     case ENCODER:
       ENCODER_HELD = record->event.pressed;
       return false;
