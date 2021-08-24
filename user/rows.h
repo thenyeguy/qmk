@@ -27,16 +27,16 @@
 #define __LOWER_ROW2_LEFT__  _______, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX
 #define __LOWER_ROW3_LEFT__  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
-#define __LOWER_ROW1_RIGHT__ KC_MINS, KC_7,    KC_8,    KC_9,    KC_DQT,  _______
+#define __LOWER_ROW1_RIGHT__ KC_SLSH, KC_7,    KC_8,    KC_9,    KC_DQT,  _______
 #define __LOWER_ROW2_RIGHT__ KC_EQL,  KC_1,    KC_2,    KC_3,    KC_0,    _______
-#define __LOWER_ROW3_RIGHT__ KC_SLSH, KC_4,    KC_5,    KC_6,    KC_DOT,  _______
+#define __LOWER_ROW3_RIGHT__ KC_MINS, KC_4,    KC_5,    KC_6,    KC_DOT,  _______
 
 
 // ------------
 // Raise layer:
 #define __RAISE_ROW1_LEFT__  _______, KC_GRV,  KC_LCBR, KC_RCBR, KC_BSLS, XXXXXXX
 #define __RAISE_ROW2_LEFT__  _______, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN, KC_SCLN
-#define __RAISE_ROW3_LEFT__  _______, KC_LBRC, KC_RBRC, KC_LT,   KC_GT,   XXXXXXX
+#define __RAISE_ROW3_LEFT__  _______, KC_LBRC, KC_RBRC, KC_LT,   KC_GT,   KC_EQL
 
 #define __RAISE_ROW1_RIGHT__ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______
 #define __RAISE_ROW2_RIGHT__ XXXXXXX, KC_RSFT, KC_RALT, KC_RCTL, KC_RGUI, _______
