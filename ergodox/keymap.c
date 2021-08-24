@@ -107,7 +107,7 @@ void led_set_user(uint8_t usb_led) {
   }
 }
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
   ergodox_board_led_off();
   ergodox_right_led_1_off();
   ergodox_right_led_2_off();
@@ -130,11 +130,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         break;
     }
 
-  return state;
-};
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
