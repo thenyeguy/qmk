@@ -3,16 +3,16 @@ import os
 from xml.etree import ElementTree
 
 _KEY_SIZE = 80
-_KEY_SIZE_RADIUS = 10
-_KEY_MARGIN = 4
-_KEY_PADDING = 10
+_KEY_SIZE_RADIUS = 11
+_KEY_MARGIN = 5
+_KEY_PADDING = 11
 
 _SVG_PADDING = 40
 _SVG_STYLE = """
 text {
     font-family: sans-serif;
     font-size: 12px;
-    stroke: none;
+    fill: rgb(50, 50, 50);
 }
 
 text.top { dominant-baseline: hanging; }
@@ -20,28 +20,14 @@ text.bottom { dominant-baseline: alphabetic; }
 text.left { text-anchor: start; }
 text.right { text-anchor: end; }
 
-text.colemak { fill: rgb(50, 50, 50); }
-text.hold { fill: rgb(180, 180, 180); }
 text.lower { fill: rgb(115, 162, 217); }
 text.raise { fill: rgb(217, 148, 69); }
-text.adjust { fill: rgb(180, 180, 180); }
+text.hold, text.adjust { fill: rgb(170, 170, 170); }
 
-rect {
-    fill: rgb(250, 250, 250);
-    stroke: rgb(180, 180, 180);
-    stroke-width: 0.5;
-}
-rect.lower {
-    fill: rgb(213, 229, 247);
-    stroke: rgb(115, 162, 217);
-}
-rect.raise {
-    fill: rgb(247, 231, 213);
-    stroke: rgb(217, 148, 69);
-}
-rect.adjust {
-    fill: rgb(230, 230, 230);
-}
+rect { fill: rgb(245, 245, 245); }
+rect.lower { fill: rgb(213, 229, 247); }
+rect.raise { fill: rgb(247, 231, 213); }
+rect.adjust { fill: rgb(225, 225, 225); }
 """
 
 
