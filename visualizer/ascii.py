@@ -26,5 +26,5 @@ class AsciiTemplate(object):
 
 
 def _render_key(key, width):
-    label = "╱".join(l for l in [key.tap, key.hold] if l)
+    label = "╱".join(l for l in [key.tap, key.encoder, key.hold] if l)
     return "{:^{width}.{width}}".format(label, width=width)

@@ -106,6 +106,11 @@ _LAYER_CODES = {
     "ADJUST": "⇅",
 }
 
+_ENCODER_CODES = {
+    "ENC_LEFT_RIGHT": "← →",
+    "ENC_UP_DOWN": "↑ ↓",
+}
+
 
 class KeyCode(object):
     def __init__(self, code):
@@ -117,6 +122,7 @@ class KeyCode(object):
         self.tap = None
         self.hold = None
         self.layer = None
+        self.encoder = None
 
         if mod in _MODIFIER_CODES:
             self.hold = _MODIFIER_CODES[mod]
@@ -126,6 +132,8 @@ class KeyCode(object):
             self.hold = _LAYER_CODES.get(self.layer, self.layer)
         elif code in _HOLD_CODES:
             self.hold = _HOLD_CODES[code]
+        elif code in _ENCODER_CODES:
+            self.encoder = _ENCODER_CODES[code]
         else:
             if code in _TAP_CODES:
                 self.tap = _TAP_CODES[code]

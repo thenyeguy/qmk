@@ -19,12 +19,17 @@ text.top { dominant-baseline: hanging; }
 text.bottom { dominant-baseline: alphabetic; }
 text.left { text-anchor: start; }
 text.right { text-anchor: end; }
+text.center {
+    dominant-baseline: central;
+    text-anchor: middle; 
+}
 
 text.lower { fill: rgb(115, 162, 217); }
 text.raise { fill: rgb(217, 148, 69); }
 text.hold, text.adjust { fill: rgb(170, 170, 170); }
 
-rect { fill: rgb(245, 245, 245); }
+rect, ellipse { fill: rgb(245, 245, 245); }
+
 rect.lower { fill: rgb(213, 229, 247); }
 rect.raise { fill: rgb(247, 231, 213); }
 rect.adjust { fill: rgb(225, 225, 225); }
@@ -95,6 +100,9 @@ class _Key(object):
         for key_code in self.key_codes.values():
             if key_code.layer:
                 class_ = key_code.layer.lower()
+            if key_code.encoder:
+                self._draw_encoder(svg, key_code)
+                return
 
         self._draw_border(svg, class_)
         for layer, key_code in self.key_codes.items():
@@ -145,3 +153,18 @@ class _Key(object):
             "class": " ".join(classes),
         })
         text.text = label
+
+    def _draw_encoder(self, svg, key_code):
+        cx = self.x + self.width / 2
+        cy = self.y + self.height / 2
+        ElementTree.SubElement(svg, "ellipse", {
+            "cx": str(cx),
+            "cy": str(cy),
+            "rx": str(self.width / 2),
+            "ry": str(self.height / 2),
+        })
+        ElementTree.SubElement(svg, "text", {
+            "x": str(cx),
+            "y": str(cy),
+            "class": "center",
+        }).text = key_code.encoder

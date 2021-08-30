@@ -9,7 +9,8 @@ enum layers {
 
 enum keycodes {
     ADJUST = SAFE_RANGE,
-    ENCODER,
+    ENC_LEFT_RIGHT,
+    ENC_UP_DOWN,
 };
 
 
@@ -19,10 +20,10 @@ enum keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = EXPAND(LAYOUT,
-    __COLEMAK_ROW1_LEFT__,                                           __COLEMAK_ROW1_RIGHT__,
-    __COLEMAK_ROW2_LEFT__,                                           __COLEMAK_ROW2_RIGHT__,
-    __COLEMAK_ROW3_LEFT__,       SLEEP,  LOCK,   KC_MPLY, XXXXXXX,   __COLEMAK_ROW3_RIGHT__,
-    ENCODER, ADJUST, MO(_LOWER), KC_SPC, KC_DEL, KC_BSPC, KC_SPC, MO(_RAISE), KC_RCTL, ENCODER
+    __COLEMAK_ROW1_LEFT__,                                                __COLEMAK_ROW1_RIGHT__,
+    __COLEMAK_ROW2_LEFT__,                                                __COLEMAK_ROW2_RIGHT__,
+    __COLEMAK_ROW3_LEFT__,              SLEEP,  LOCK,   KC_MPLY, XXXXXXX, __COLEMAK_ROW3_RIGHT__,
+    ENC_LEFT_RIGHT, ADJUST, MO(_LOWER), KC_SPC, KC_DEL, KC_BSPC, KC_SPC,  MO(_RAISE), KC_RCTL, ENC_UP_DOWN
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -82,7 +83,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       update_tri_layer(_LOWER, _RAISE, _ADJUST);
       return false;
-    case ENCODER:
+    case ENC_LEFT_RIGHT:
+    case ENC_UP_DOWN:
       ENCODER_HELD = record->event.pressed;
       return false;
   }
