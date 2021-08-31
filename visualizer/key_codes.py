@@ -131,7 +131,3 @@ class KeyCode(object):
                 self.tap = _TAP_CODES[code]
             else:
                 self.tap = code.replace("KC_", "").title().replace("_", "")
-
-    def as_ascii(self):
-        names = [self.tap, self.hold]
-        return "╱".join(name for name in names if name)

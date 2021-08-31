@@ -19,8 +19,12 @@ class AsciiTemplate(object):
             for i, key in enumerate(layer.key_codes()):
                 match = re.search(
                     r" *(?<!\d)_{}(?!\d) *".format(i), rendered).group()
-                label = "{:^{width}.{width}}".format(
-                    key.as_ascii(), width=len(match))
+                label = _render_key(key, len(match))
                 rendered = rendered.replace(match, label)
             print("{:^{}}".format(layer.name.title(), self.width))
             print(rendered)
+
+
+def _render_key(key, width):
+    label = "╱".join(l for l in [key.tap, key.hold] if l)
+    return "{:^{width}.{width}}".format(label, width=width)
