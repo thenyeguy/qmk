@@ -107,8 +107,8 @@ _LAYER_CODES = {
 }
 
 _ENCODER_CODES = {
-    "ENC_LEFT_RIGHT": "← →",
-    "ENC_UP_DOWN": "↑ ↓",
+    "ENC_NAV": "Nav",
+    "ENC_MEDIA": "Media",
 }
 
 

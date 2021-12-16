@@ -9,21 +9,20 @@ enum layers {
 
 enum keycodes {
     ADJUST = SAFE_RANGE,
-    ENC_LEFT_RIGHT,
-    ENC_UP_DOWN,
+    ENC_NAV,
+    ENC_MEDIA,
 };
 
 
-#define LOCK LGUI(LCTL(KC_Q))
-#define SLEEP LCTL(LSFT(KC_POWER))
+#define LOCK LGUI(KC_L)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = EXPAND(LAYOUT,
-    __COLEMAK_ROW1_LEFT__,                                                __COLEMAK_ROW1_RIGHT__,
-    __COLEMAK_ROW2_LEFT__,                                                __COLEMAK_ROW2_RIGHT__,
-    __COLEMAK_ROW3_LEFT__,              SLEEP,  LOCK,   KC_MPLY, XXXXXXX, __COLEMAK_ROW3_RIGHT__,
-    ENC_LEFT_RIGHT, ADJUST, MO(_LOWER), KC_SPC, KC_DEL, KC_BSPC, KC_SPC,  MO(_RAISE), KC_RCTL, ENC_UP_DOWN
+    __COLEMAK_ROW1_LEFT__,                                          __COLEMAK_ROW1_RIGHT__,
+    __COLEMAK_ROW2_LEFT__,                                          __COLEMAK_ROW2_RIGHT__,
+    __COLEMAK_ROW3_LEFT__,       KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,  __COLEMAK_ROW3_RIGHT__,
+    ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_BSPC, KC_DEL,  KC_SPC, MO(_RAISE), KC_RCTL, ENC_MEDIA
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -41,10 +40,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ADJUST] = EXPAND(LAYOUT,
-    __ADJUST_ROW1_LEFT__,                                          __ADJUST_ROW1_RIGHT__,
-    __ADJUST_ROW2_LEFT__,                                          __ADJUST_ROW2_RIGHT__,
-    __ADJUST_ROW3_LEFT__,      _______, _______, _______, _______, __ADJUST_ROW3_RIGHT__,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    __ADJUST_ROW1_LEFT__,                                              __ADJUST_ROW1_RIGHT__,
+    __ADJUST_ROW2_LEFT__,                                              __ADJUST_ROW2_RIGHT__,
+    __ADJUST_ROW3_LEFT__,          _______, _______, _______, _______, __ADJUST_ROW3_RIGHT__,
+    MAGIC_TOGGLE_CTL_GUI, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 };
@@ -53,21 +52,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-bool ENCODER_HELD = false;
-
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        if (ENCODER_HELD) {
-            tap_code(clockwise ? KC_END : KC_HOME);
-        } else {
-            tap_code(clockwise ? KC_RIGHT : KC_LEFT);
-        }
+        tap_code16(clockwise ? LGUI(KC_RIGHT) : LGUI(KC_LEFT));
     } else if (index == 1) {
-        if (ENCODER_HELD) {
-            tap_code(clockwise ? KC_PGDN : KC_PGUP);
-        } else {
-            tap_code(clockwise ? KC_DOWN : KC_UP);
-        }
+        tap_code(clockwise ? KC_VOLU : KC_VOLD);
     }
 }
 
@@ -83,9 +72,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       update_tri_layer(_LOWER, _RAISE, _ADJUST);
       return false;
-    case ENC_LEFT_RIGHT:
-    case ENC_UP_DOWN:
-      ENCODER_HELD = record->event.pressed;
+    case ENC_NAV:
+      if (record->event.pressed) {
+        tap_code16(LOCK);
+      }
+      break;
+    case ENC_MEDIA:
+      if (record->event.pressed) {
+        tap_code(KC_MPLY);
+      }
       return false;
   }
   return true;
