@@ -15,7 +15,8 @@ user = "issmirnov"
 # override for non-standard keyboard locations. For example, keebio
 # boards have one extra layer in the source tree.
 keyboard_loc_override = {
-    "levinson": "keebio/levinson"
+    "levinson": "keebio/levinson",
+    "boardsource_3x4": "boardsource/3x4"
 }
 
 def abs_path(*paths):

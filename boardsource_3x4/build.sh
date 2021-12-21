@@ -1,2 +1,2 @@
 #!/bin/bash
-make keebio/levinson/rev2:issmirnov
+make boardsource/3x4:issmirnov
