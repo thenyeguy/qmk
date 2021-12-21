@@ -13,6 +13,7 @@
 
 - When in doubt, flash both sides of the keyboard. For some reason that helps with LEDs and reponsiveness.
 
+
 ```
 cd qmk_keebs
 ./qmk build levinson --keep
@@ -25,3 +26,4 @@ make keebio/levinson/rev2:issmirnov:dfu-split-right
 ## Commands
 
 - Inside the `qmk_firmware` repo: `qmk info -m -kb keebio/levinson/rev2 -km issmirnov` to print a matrix map.
+- `cd qmk_firmware && make keebio/levinson/rev2:issmirnov:dfu-split-right`
