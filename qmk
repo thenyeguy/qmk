@@ -4,7 +4,6 @@
 import argparse
 import json
 import os
-import shutil
 import subprocess
 import sys
 import time
@@ -36,12 +35,12 @@ class QmkWrapper(object):
     def _cleanup(self):
         for _, dst in self.mapped_dirs:
             if os.path.exists(dst):
-                shutil.rmtree(dst)
+                os.remove(dst)
 
     def __enter__(self):
         self._cleanup()
         for src, dst in self.mapped_dirs:
-            shutil.copytree(src, dst)
+            os.symlink(src, dst)
         return self
 
     def __exit__(self, *_):
