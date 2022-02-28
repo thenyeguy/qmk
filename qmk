@@ -27,10 +27,13 @@ class QmkWrapper(object):
         keyboard_dir = self.config.get("path") or self.config.get("keyboard")
 
         self.mapped_dirs = []
-        self.mapped_dirs.append((config_root, os.path.join(
-            self.qmk_root, "keyboards", keyboard_dir, "keymaps", "mnye")))
+        keymap_dir = os.path.join(
+            self.qmk_root, "keyboards", keyboard_dir, "keymaps", "mnye"
+        )
+        self.mapped_dirs.append((config_root, keymap_dir))
         self.mapped_dirs.append(
-            (abs_path("user"), os.path.join(self.qmk_root, "users", "mnye")))
+            (abs_path("user"), os.path.join(self.qmk_root, "users", "mnye"))
+        )
 
     def _cleanup(self):
         for _, dst in self.mapped_dirs:
@@ -47,8 +50,7 @@ class QmkWrapper(object):
         self._cleanup()
 
     def call(self, cmd_name):
-        cmd = ["bin/qmk", cmd_name, "-kb",
-               self.config["keyboard"], "-km", "mnye"]
+        cmd = ["bin/qmk", cmd_name, "-kb", self.config["keyboard"], "-km", "mnye"]
         subprocess.check_call(cmd, cwd=self.qmk_root)
 
     def compile(self):
@@ -74,8 +76,9 @@ def show(keyboard, render):
 
 def main(argv):
     parser = argparse.ArgumentParser(description="Build util for QMK")
-    parser.add_argument("command", nargs=1, choices=[
-                        "build", "compile", "flash", "push", "show", "svg"])
+    parser.add_argument(
+        "command", nargs=1, choices=["build", "compile", "flash", "push", "show", "svg"]
+    )
     parser.add_argument("keyboard", nargs=1)
     args = parser.parse_args()
 

@@ -3,7 +3,6 @@ import re
 
 
 class AsciiTemplate(object):
-
     @classmethod
     def load(cls, keyboard_dir):
         with open(os.path.join(keyboard_dir, "template.txt")) as f:
@@ -17,8 +16,7 @@ class AsciiTemplate(object):
         for layer in keymap.layers:
             rendered = self.template
             for i, key in enumerate(layer.key_codes()):
-                match = re.search(
-                    r" *(?<!\d)_{}(?!\d) *".format(i), rendered).group()
+                match = re.search(r" *(?<!\d)_{}(?!\d) *".format(i), rendered).group()
                 label = _render_key(key, len(match))
                 rendered = rendered.replace(match, label)
             print("{:^{}}".format(layer.name.title(), self.width))

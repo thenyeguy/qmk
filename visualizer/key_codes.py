@@ -4,7 +4,6 @@ import re
 _TAP_CODES = {
     "_______": "",
     "XXXXXXX": "",
-
     "KC_1": "1 !",
     "KC_2": "2 @",
     "KC_3": "3 #",
@@ -15,7 +14,6 @@ _TAP_CODES = {
     "KC_8": "8 *",
     "KC_9": "9 (",
     "KC_0": "0 )",
-
     "KC_COMM": ", <",
     "KC_DOT": ". >",
     "KC_SLSH": "/ ?",
@@ -39,7 +37,6 @@ _TAP_CODES = {
     "KC_EQL": "= +",
     "KC_QUOT": "' \"",
     "KC_DQT": '"',
-
     "KC_LPRN": "(",
     "KC_RPRN": ")",
     "KC_LBRC": "[",
@@ -48,7 +45,6 @@ _TAP_CODES = {
     "KC_RCBR": "}",
     "KC_LT": "<",
     "KC_GT": ">",
-
     "KC_SPC": "␣",
     "KC_ENT": "↵",
     "KC_TAB": "↹",
@@ -56,12 +52,10 @@ _TAP_CODES = {
     "KC_BSPC": "⌫",
     "KC_DEL": "⌦",
     "KC_CAPS": "⇪",
-
     "KC_UP": "↑",
     "KC_DOWN": "↓",
     "KC_LEFT": "←",
     "KC_RGHT": "→",
-
     "KC_PGDN": "PgDn",
     "KC_PGUP": "PgUp",
     "KC_MPLY": "Play",
@@ -69,7 +63,6 @@ _TAP_CODES = {
     "KC_MNXT": "Next",
     "KC_VOLD": "Vol-",
     "KC_VOLU": "Vol+",
-
     "MAGIC_TOGGLE_CTL_GUI": "𝝙OS",
 }
 

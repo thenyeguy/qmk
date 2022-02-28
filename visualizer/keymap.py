@@ -5,7 +5,6 @@ from .key_codes import KeyCode
 
 
 class KeyMap(object):
-
     @classmethod
     def load(cls, user_dir, keyboard_dir):
         with open(os.path.join(user_dir, "rows.h")) as f:
@@ -19,7 +18,6 @@ class KeyMap(object):
 
 
 class _Rows(object):
-
     def __init__(self, rows):
         self.rows = rows
 
@@ -30,7 +28,6 @@ class _Rows(object):
 
 
 class _Layer(object):
-
     def __init__(self, name, codes):
         self.name = name
         self.codes = codes
@@ -67,8 +64,7 @@ def _load_layers(keymap_lines, rows):
                 layer_name = None
                 codes = None
             else:
-                codes += filter(None,
-                                (code.strip() for code in line.split(",")))
+                codes += filter(None, (code.strip() for code in line.split(",")))
         elif start:
             layer_name = start.group(1)
             codes = []

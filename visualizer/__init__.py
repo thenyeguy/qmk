@@ -10,10 +10,12 @@ def render_ascii(user_dir, keyboard_dir):
     keymap = KeyMap.load(user_dir, keyboard_dir)
     AsciiTemplate.load(keyboard_dir).render(keymap)
 
+
 def render_svg(user_dir, keyboard_dir):
     keymap = KeyMap.load(user_dir, keyboard_dir)
     output_file = SvgLayout.load(keyboard_dir).render(keymap)
     _open_file(output_file)
+
 
 def _open_file(f):
     if sys.platform == "darwin":

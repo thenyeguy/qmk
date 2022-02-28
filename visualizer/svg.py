@@ -37,7 +37,6 @@ rect.adjust { fill: rgb(225, 225, 225); }
 
 
 class SvgLayout(object):
-
     @classmethod
     def load(cls, keyboard_dir):
         output_file = os.path.join(keyboard_dir, "keymap.svg")
@@ -60,16 +59,22 @@ class SvgLayout(object):
         # Compute viewbox
         top = -_SVG_PADDING
         left = -_SVG_PADDING
-        width = max(key.x + key.width + _KEY_MARGIN
-                    for key in self.keys) + 2 * _SVG_PADDING
-        height = max(key.y + key.height + _KEY_MARGIN
-                     for key in self.keys) + 2 * _SVG_PADDING
+        width = (
+            max(key.x + key.width + _KEY_MARGIN for key in self.keys) + 2 * _SVG_PADDING
+        )
+        height = (
+            max(key.y + key.height + _KEY_MARGIN for key in self.keys)
+            + 2 * _SVG_PADDING
+        )
 
         # Create svg file
-        svg = ElementTree.Element("svg", {
-            "xmlns": "http://www.w3.org/2000/svg",
-            "viewBox": f"{top} {left} {width} {height}"
-        })
+        svg = ElementTree.Element(
+            "svg",
+            {
+                "xmlns": "http://www.w3.org/2000/svg",
+                "viewBox": f"{top} {left} {width} {height}",
+            },
+        )
         style = ElementTree.SubElement(svg, "style")
         style.text = _SVG_STYLE
         for key in self.keys:
@@ -84,7 +89,6 @@ class SvgLayout(object):
 
 
 class _Key(object):
-
     def __init__(self, x, y, **kwargs):
         self.x = x * _KEY_SIZE + _KEY_MARGIN
         self.y = y * _KEY_SIZE + _KEY_MARGIN
@@ -116,13 +120,17 @@ class _Key(object):
                 self._draw_label(svg, key_code.hold, "hold")
 
     def _draw_border(self, svg, class_=None):
-        rect = ElementTree.SubElement(svg, "rect", {
-            "x": str(self.x),
-            "y": str(self.y),
-            "width": str(self.width),
-            "height": str(self.height),
-            "rx": str(_KEY_SIZE_RADIUS),
-        })
+        rect = ElementTree.SubElement(
+            svg,
+            "rect",
+            {
+                "x": str(self.x),
+                "y": str(self.y),
+                "width": str(self.width),
+                "height": str(self.height),
+                "rx": str(_KEY_SIZE_RADIUS),
+            },
+        )
         if class_:
             rect.set("class", class_)
 
@@ -147,24 +155,36 @@ class _Key(object):
         else:
             raise Exception(f"Unknown layer: {layer}")
 
-        text = ElementTree.SubElement(svg, "text", {
-            "x": str(self.x + dx),
-            "y": str(self.y + dy),
-            "class": " ".join(classes),
-        })
+        text = ElementTree.SubElement(
+            svg,
+            "text",
+            {
+                "x": str(self.x + dx),
+                "y": str(self.y + dy),
+                "class": " ".join(classes),
+            },
+        )
         text.text = label
 
     def _draw_encoder(self, svg, key_code):
         cx = self.x + self.width / 2
         cy = self.y + self.height / 2
-        ElementTree.SubElement(svg, "ellipse", {
-            "cx": str(cx),
-            "cy": str(cy),
-            "rx": str(self.width / 2),
-            "ry": str(self.height / 2),
-        })
-        ElementTree.SubElement(svg, "text", {
-            "x": str(cx),
-            "y": str(cy),
-            "class": "center",
-        }).text = key_code.encoder
+        ElementTree.SubElement(
+            svg,
+            "ellipse",
+            {
+                "cx": str(cx),
+                "cy": str(cy),
+                "rx": str(self.width / 2),
+                "ry": str(self.height / 2),
+            },
+        )
+        ElementTree.SubElement(
+            svg,
+            "text",
+            {
+                "x": str(cx),
+                "y": str(cy),
+                "class": "center",
+            },
+        ).text = key_code.encoder
