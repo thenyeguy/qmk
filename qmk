@@ -50,7 +50,7 @@ class QmkWrapper(object):
         self._cleanup()
 
     def call(self, cmd_name):
-        cmd = ["bin/qmk", cmd_name, "-kb", self.config["keyboard"], "-km", "mnye"]
+        cmd = ["qmk", cmd_name, "-kb", self.config["keyboard"], "-km", "mnye"]
         subprocess.check_call(cmd, cwd=self.qmk_root)
 
     def compile(self):
