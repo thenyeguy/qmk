@@ -97,9 +97,12 @@ def main(argv):
             show(keyboard, visualizer.render_ascii)
         elif command == "svg":
             show(keyboard, visualizer.render_svg)
+    except subprocess.CalledProcessError:
+        return 1
     except KeyboardInterrupt:
         print()
         print("Aborting.")
+        return 1
 
 
 if __name__ == "__main__":
