@@ -10,11 +10,11 @@
 // Note, it's also really neat the way the scoping works. Since we perform the expansion in the keymap.c file
 // so we can use our enums for custom keycodes
 #define _________________QWERTY_L1_________________        KC_Q , KC_W , KC_E   , KC_R     , KC_T
-#define _________________QWERTY_L2_________________        LALT_T(KC_A) , LGUI_T(KC_S) , LCTL_T(KC_D), LSFT_T(KC_F)     , KC_G
+#define _________________QWERTY_L2_________________        LGUI_T(KC_A) , LALT_T(KC_S) , LCTL_T(KC_D), LSFT_T(KC_F)     , KC_G
 #define _________________QWERTY_L3_________________        KC_Z , KC_X , KC_C   , KC_V     , KC_B
 
 #define _________________QWERTY_R1_________________        KC_Y , KC_U , KC_I   , KC_O     , KC_P
-#define _________________QWERTY_R2_________________        KC_H , RSFT_T(KC_J) , RCTL_T(KC_K)   , RGUI_T(KC_L)     , TAP_TOG_LAYER
+#define _________________QWERTY_R2_________________        KC_H , RSFT_T(KC_J) , RCTL_T(KC_K)   , RALT_T(KC_L)     , TAP_TOG_LAYER
 #define _________________QWERTY_R3_________________        KC_N , KC_M , KC_DOT , KC_COMM , TG(_NUMP)
 
 #define ___________________BLANK___________________        _______ , _______ , _______ , _______ , _______
@@ -46,10 +46,10 @@
 
 
 
-#define _________________NAVI_L1___________________        XXXXXXX , LGUI(LSFT(KC_Z)),KC_UP   , LGUI(LSFT(KC_X)) , XXXXXXX
-#define _________________NAVI_L2___________________        XXXXXXX , KC_LEFT , KC_DOWN , KC_RGHT , XXXXXXX
-#define _________________NAVI_L3___________________        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
+#define _________________NAVI_L1___________________        XXXXXXX , LGUI(LSFT(KC_Z)),  KC_UP   , LGUI(LSFT(KC_X)) ,XXXXXXX
+#define _________________NAVI_L2___________________        XXXXXXX , KC_LEFT ,          KC_DOWN , KC_RGHT ,         XXXXXXX
+#define _________________NAVI_L3___________________        XXXXXXX , XXXXXXX ,          KC_C ,  KC_V ,         XXXXXXX
 
-#define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX , LSFT(LCTL(KC_A)) , LSFT(LCTL(KC_O)) , XXXXXXX
-#define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL , LSFT(KC_F10) , XXXXXXX , XXXXXXX
-#define _________________NAVI_R3___________________        KC_LALT , LCTL(KC_LALT) , XXXXXXX , XXXXXXX , XXXXXXX
+#define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX ,      LSFT(LCTL(KC_A)) ,  LSFT(LCTL(KC_O)) ,  XXXXXXX
+#define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL ,      LALT(KC_LSHIFT) ,   XXXXXXX ,           XXXXXXX
+#define _________________NAVI_R3___________________        KC_LALT , LCTL(KC_LALT) , XXXXXXX ,          XXXXXXX ,           XXXXXXX
