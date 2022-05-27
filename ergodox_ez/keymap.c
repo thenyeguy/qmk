@@ -102,11 +102,11 @@ KC_ESCAPE, KC_1    , KC_2 , KC_3 , KC_4 , KC_5 , KC_6 ,
 XXXXXXX, _________________NAVI_L1___________________ , XXXXXXX ,
 XXXXXXX, _________________NAVI_L2___________________ ,
 XXXXXXX, _________________NAVI_L3___________________ , XXXXXXX ,
-XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, WKSP_LEFT,
+XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPACE,
 
 XXXXXXX  , XXXXXXX ,
 XXXXXXX  ,
-WKSP_RIGHT , XXXXXXX , XXXXXXX ,
+KC_SPACE , XXXXXXX , XXXXXXX ,
 
 
 _______, _______, _______, _______, _______, _______, _______,

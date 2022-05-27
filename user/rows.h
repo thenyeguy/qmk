@@ -48,7 +48,7 @@
 
 #define _________________NAVI_L1___________________        XXXXXXX , LGUI(LSFT(KC_Z)),  KC_UP   , LGUI(LSFT(KC_X)) ,XXXXXXX
 #define _________________NAVI_L2___________________        XXXXXXX , KC_LEFT ,          KC_DOWN , KC_RGHT ,         XXXXXXX
-#define _________________NAVI_L3___________________        XXXXXXX , XXXXXXX ,          KC_C ,  KC_V ,         XXXXXXX
+#define _________________NAVI_L3___________________        XXXXXXX , XXXXXXX ,          KC_C ,  KC_V ,         KC_SPACE
 
 #define _________________NAVI_R1___________________        XXXXXXX , XXXXXXX ,      LSFT(LCTL(KC_A)) ,  LSFT(LCTL(KC_O)) ,  XXXXXXX
 #define _________________NAVI_R2___________________        XXXXXXX , KC_LCTL ,      LALT(KC_LSHIFT) ,   XXXXXXX ,           XXXXXXX
