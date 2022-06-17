@@ -21,8 +21,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = EXPAND(LAYOUT,
     __COLEMAK_ROW1_LEFT__,                                          __COLEMAK_ROW1_RIGHT__,
     __COLEMAK_ROW2_LEFT__,                                          __COLEMAK_ROW2_RIGHT__,
-    __COLEMAK_ROW3_LEFT__,       KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,  __COLEMAK_ROW3_RIGHT__,
-    ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_BSPC, KC_DEL,  KC_SPC, MO(_RAISE), KC_RCTL, ENC_MEDIA
+    __COLEMAK_ROW3_LEFT__,       KC_BSPC, KC_RGHT, KC_UP,   KC_ENT, __COLEMAK_ROW3_RIGHT__,
+    ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_LEFT, KC_DOWN, KC_SPC, MO(_RAISE), KC_RCTL, ENC_MEDIA
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -76,7 +76,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         tap_code16(LOCK);
       }
-      break;
+      return false;
     case ENC_MEDIA:
       if (record->event.pressed) {
         tap_code(KC_MPLY);
