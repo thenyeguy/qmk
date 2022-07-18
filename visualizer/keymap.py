@@ -11,10 +11,13 @@ class KeyMap(object):
             rows = _load_rows(f)
         with open(os.path.join(keyboard_dir, "keymap.c")) as f:
             layers = _load_layers(f, rows)
-        return cls(layers)
+        with open(os.path.join(user_dir, "combos.c")) as f:
+            combos = _load_combos(f)
+        return cls(layers, combos)
 
-    def __init__(self, layers):
+    def __init__(self, layers, combos):
         self.layers = layers
+        self.combos = combos
 
 
 class _Rows(object):
@@ -35,6 +38,12 @@ class _Layer(object):
     def key_codes(self):
         for code in self.codes:
             yield KeyCode(code)
+
+
+class _Combo(object):
+    def __init__(self, triggers, code):
+        self.triggers = [KeyCode(t) for t in triggers]
+        self.code = KeyCode(code)
 
 
 def _load_rows(row_lines):
@@ -69,3 +78,17 @@ def _load_layers(keymap_lines, rows):
             layer_name = start.group(1)
             codes = []
     return layers
+
+
+def _load_combos(combo_lines):
+    trigger_re = re.compile(r"(\w+)\[\] = {(\w+), (\w+), COMBO_END}")
+    combo_re = re.compile(r"COMBO\((\w+), (\w+)\)")
+
+    triggers = dict()
+    combos = []
+    for line in combo_lines:
+        if trigger := trigger_re.search(line):
+            triggers[trigger.group(1)] = (trigger.group(2), trigger.group(3))
+        elif combo := combo_re.search(line):
+            combos.append(_Combo(triggers[combo.group(1)], combo.group(2)))
+    return combos

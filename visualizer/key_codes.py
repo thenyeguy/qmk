@@ -113,6 +113,7 @@ class KeyCode(object):
             code = match.group(2)
             mod = match.group(1)
 
+        self.raw = code
         self.tap = None
         self.hold = None
         self.layer = None
