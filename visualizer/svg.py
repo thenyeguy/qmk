@@ -3,9 +3,11 @@ import os
 from xml.etree import ElementTree
 
 _KEY_SIZE = 80
-_KEY_SIZE_RADIUS = 11
+_KEY_SIZE_RADIUS = 14
 _KEY_MARGIN = 5
-_KEY_PADDING = 11
+_KEY_PADDING = 14
+
+_COMBO_RADIUS = 14
 
 _SVG_PADDING = 40
 _SVG_STYLE = """
@@ -33,6 +35,12 @@ rect, ellipse { fill: rgb(245, 245, 245); }
 rect.lower { fill: rgb(213, 229, 247); }
 rect.raise { fill: rgb(247, 231, 213); }
 rect.adjust { fill: rgb(225, 225, 225); }
+
+circle.combo {
+    stroke: rgb(200, 200, 200);
+    fill: rgb(225, 225, 225);
+}
+text.combo { font-size: 10px; }
 """
 
 
@@ -77,8 +85,17 @@ class SvgLayout(object):
         )
         style = ElementTree.SubElement(svg, "style")
         style.text = _SVG_STYLE
+
+        # Render keys.
         for key in self.keys:
             key.render(svg)
+
+        # Render combos.
+        for combo in keymap.combos:
+            i1 = keymap.get_keycode_index(combo.triggers[0].raw)
+            i2 = keymap.get_keycode_index(combo.triggers[1].raw)
+            assert i1 + 1 == i2  # only support adjacent keys
+            _Combo(self.keys[i1], self.keys[i2], combo.code).render(svg)
 
         # Write out rendered svg.
         with open(self.output_file, "wb") as f:
@@ -188,3 +205,33 @@ class _Key(object):
                 "class": "center",
             },
         ).text = key_code.encoder
+
+
+class _Combo(object):
+    def __init__(self, k1, k2, keycode):
+        self.k1 = k1
+        self.k2 = k2
+        self.keycode = keycode
+
+    def render(self, svg):
+        cx = (self.k1.x + self.k2.x) / 2 + _KEY_SIZE / 2 - _KEY_MARGIN
+        cy = (self.k1.y + self.k2.y) / 2 + _KEY_SIZE / 2 - _KEY_MARGIN
+        ElementTree.SubElement(
+            svg,
+            "circle",
+            {
+                "cx": str(cx),
+                "cy": str(cy),
+                "r": str(_COMBO_RADIUS),
+                "class": "combo",
+            },
+        )
+        ElementTree.SubElement(
+            svg,
+            "text",
+            {
+                "x": str(cx),
+                "y": str(cy),
+                "class": "center combo",
+            },
+        ).text = self.keycode.tap

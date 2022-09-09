@@ -19,6 +19,13 @@ class KeyMap(object):
         self.layers = layers
         self.combos = combos
 
+    def get_keycode_index(self, keycode):
+        for layer in self.layers:
+            for i, k in enumerate(layer.codes):
+                if keycode == k:
+                    return i
+        raise ValueError("keycode {} not found".format(keycode))
+
 
 class _Rows(object):
     def __init__(self, rows):
