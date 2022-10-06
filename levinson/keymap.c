@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 KC_ESC  , _________________QWERTY_L1_________________, _________________QWERTY_R1_________________ , APPS      ,
 KC_TAB  , _________________QWERTY_L2_________________, _________________QWERTY_R2_________________ , MO(_NAVI) ,
 OSMSFT  , _________________QWERTY_L3_________________, _________________QWERTY_R3_________________ , KC_QUOTE  ,
-KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , LCTL(KC_S) , LCTL(LSFT(KC_R)) , KC_PSCR , LGUI(KC_L) 
+KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , LCTL(KC_S) , LCTL(LSFT(KC_R)) , KC_PSCR , LGUI(KC_L)
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
@@ -25,7 +25,7 @@ KC_LCTL , MODSFT , KC_LALT , KC_LGUI , KC_BSPACE , KC_SPC , KC_ENTER , KC_TAB , 
 _______ , _________________SYMB_L1___________________, _________________SYMB_R1___________________ , LCTL(LSFT(LGUI(KC_D))),
 _______ , _________________SYMB_L2___________________, _________________SYMB_R2___________________ , MO(_NAVI) ,
 _______ , _________________SYMB_L3___________________, _________________SYMB_R3___________________ , KC_QUOTE  ,
-_______ , ___________________BLANK___________________, _______ , _______ , KC_ESC   , KC_COLN   , KC_PERC      , LOCK
+_______ , _______, _______, KC_F1, KC_F2, KC_DEL,      _______ , _______ , KC_ESC   , KC_COLN   , KC_PERC      , LOCK
 ), // Note: visualizer expects this closing parens to be right at the start of the line.
 
 // Run `./qmk show levinson` from parent dir to see this layer.
