@@ -25,7 +25,7 @@
 /*   COMBO(df_combo, KC_COLON), */
 /*   COMBO(sd_combo, KC_SLASH), */
 /*   COMBO(space_combo, KC_SPC), */
-/*   COMBO(bspace_combo, KC_BSPACE), */
+/*   COMBO(bspace_combo, KC_BACKSPACE), */
 /*   [XC_COPY] = COMBO_ACTION(copy_combo), */
 /*   [XV_PASTE] = COMBO_ACTION(paste_combo), */
 /* }; */

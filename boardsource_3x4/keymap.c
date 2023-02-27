@@ -26,7 +26,7 @@ Raise(arrows) , linux mode , mac mode    , quit zoom meeting
   RAISE            , CG_NORM          , CG_SWAP          , LGUI(KC_W)
 ),
 [_RAISE] = LAYOUT(
-    RESET   , KC_DELETE , KC_UP   , KC_ENTER ,
+    QK_REBOOT   , KC_DELETE , KC_UP   , KC_ENTER ,
     _______ , KC_LEFT   , KC_DOWN , KC_RIGHT ,
     _______ , _______   , _______ , _______
   )

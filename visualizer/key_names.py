@@ -37,8 +37,8 @@ _KEY_NAMES = {
 
     "KC_LABK": '<',
     "KC_RABK": '>',
-    "KC_LBRACKET": '[',
-    "KC_RBRACKET": ']',
+    "KC_LEFT_BRACKET": '[',
+    "KC_RIGHT_BRACKET": ']',
     "KC_SLASH": '/',
     "KC_QUES": '?',
     "KC_BSLASH": '\\',
@@ -53,7 +53,7 @@ _KEY_NAMES = {
     "KC_LALT": "⎇",
     "KC_LGUI": "⌘",
     "KC_SCOLON": ";",
-    "KC_BSPACE": "⌫",
+    "KC_BACKSPACE": "⌫",
     "KC_SPACE": "⎵",
 
     "LOCK": "🔒",
