@@ -38,7 +38,7 @@ _______ , ___________________BLANK___________________ , _______ , _______ , ____
 
 // Run `./qmk show levinson` from parent dir to see this layer.
 [_OVERWATCH] = LAYOUT_ortho_4x12_wrapper(
-______________OVERWATCH_L1_________________ , TO(0)           , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX        , EEP_RST ,
+______________OVERWATCH_L1_________________ , TO(0)           , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX        , QK_CLEAR_EEPROM ,
 ______________OVERWATCH_L2_________________ , RGB_MODE_FORWARD, RGB_MODE_REVERSE , XXXXXXX          , XXXXXXX        , XXXXXXX        , RGB_TOG ,
 ______________OVERWATCH_L3_________________ , RGB_MODE_PLAIN  , RGB_MODE_BREATHE , RGB_MODE_RAINBOW , RGB_MODE_SWIRL , RGB_MODE_SNAKE , XXXXXXX ,
 ______________OVERWATCH_L4_________________ , KC_SPACE         , XXXXXXX          , XXXXXXX          , XXXXXXX        , XXXXXXX        , XXXXXXX, RGB_MODE_GRADIENT
@@ -89,7 +89,7 @@ void matrix_scan_user(void) {
 
 // only runs when when the layer is changed, good for updating LED's and clearing sticky state
 // RGB modes: https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight.h
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
   #ifdef RGBLIGHT_ENABLE
     layer_state_set_rgb(state);
   #endif
