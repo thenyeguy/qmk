@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __COLEMAK_ROW1_LEFT__,                                          __COLEMAK_ROW1_RIGHT__,
     __COLEMAK_ROW2_LEFT__,                                          __COLEMAK_ROW2_RIGHT__,
     __COLEMAK_ROW3_LEFT__,       KC_BSPC, KC_RGHT, KC_UP,   KC_ENT, __COLEMAK_ROW3_RIGHT__,
-    ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_LEFT, KC_DOWN, KC_SPC, MO(_RAISE), KC_RCTL, ENC_MEDIA
+    ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_LEFT, KC_DOWN, KC_SPC, MO(_RAISE), ADJUST, ENC_MEDIA
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
