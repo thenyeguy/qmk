@@ -12,7 +12,7 @@ enum keycodes {
 };
 
 #define LOCK LGUI(LCTL(KC_Q))
-#define SLEEP LCTL(LSFT(KC_POWER))
+#define SLEEP LCTL(LSFT(KC_PWR))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 

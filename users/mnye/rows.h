@@ -45,7 +45,7 @@
 
 // -------------
 // Adjust layer:
-#define __ADJUST_ROW1_LEFT__  RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+#define __ADJUST_ROW1_LEFT__  QK_BOOT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
 #define __ADJUST_ROW2_LEFT__  _______, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, KC_VOLU
 #define __ADJUST_ROW3_LEFT__  _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY, KC_VOLD
 

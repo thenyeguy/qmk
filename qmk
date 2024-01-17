@@ -2,13 +2,23 @@
 
 
 import argparse
-import json
 import os
 import subprocess
 import sys
-import time
 
 import visualizer
+
+
+_COMMANDS = {
+    "build": "compile",
+    "push": "flash",
+}
+
+_KEYBOARDS = {
+    "corne": "crkbd/rev1",
+    "cornelius": "foostan/cornelius",
+    "kyria": "splitkb/kyria/rev3",
+}
 
 
 def abs_path(*paths):
@@ -16,87 +26,30 @@ def abs_path(*paths):
     return os.path.join(dirname, *paths)
 
 
-class QmkWrapper(object):
-    def __init__(self, keyboard):
-        config_root = abs_path(keyboard)
-        with open(os.path.join(config_root, "config.json")) as f:
-            self.config = json.load(f)
-
-        self.qmk_root = abs_path("qmk_firmware")
-
-        keyboard_dir = self.config.get("path") or self.config.get("keyboard")
-
-        self.mapped_dirs = []
-        keymap_dir = os.path.join(
-            self.qmk_root, "keyboards", keyboard_dir, "keymaps", "mnye"
-        )
-        self.mapped_dirs.append((config_root, keymap_dir))
-        self.mapped_dirs.append(
-            (abs_path("user"), os.path.join(self.qmk_root, "users", "mnye"))
-        )
-
-    def _cleanup(self):
-        for _, dst in self.mapped_dirs:
-            if os.path.exists(dst):
-                os.remove(dst)
-
-    def __enter__(self):
-        self._cleanup()
-        for src, dst in self.mapped_dirs:
-            os.symlink(src, dst)
-        return self
-
-    def __exit__(self, *_):
-        self._cleanup()
-
-    def call(self, cmd_name):
-        cmd = ["qmk", cmd_name, "-kb", self.config["keyboard"], "-km", "mnye"]
-        subprocess.check_call(cmd, cwd=self.qmk_root)
-
-    def compile(self):
-        self.call("compile")
-
-    def flash(self):
-        self.call("flash")
-
-
-def compile(keyboard):
-    with QmkWrapper(keyboard) as qmk:
-        qmk.compile()
-
-
-def flash(keyboard):
-    with QmkWrapper(keyboard) as qmk:
-        qmk.flash()
+def qmk(cmd, keyboard):
+    subprocess.check_call(["qmk", cmd, "-kb", keyboard])
 
 
 def show(keyboard, render):
-    render(abs_path("user"), abs_path(keyboard))
+    render(abs_path("users/mnye"), abs_path("keyboards", keyboard, "keymaps/mnye"))
 
 
-def main(argv):
+def main():
     parser = argparse.ArgumentParser(description="Build util for QMK")
-    parser.add_argument(
-        "command", nargs=1, choices=["build", "compile", "flash", "push", "show", "svg"]
-    )
-    parser.add_argument("keyboard", nargs=1)
+    parser.add_argument("command")
+    parser.add_argument("keyboard")
     args = parser.parse_args()
 
-    keyboard = args.keyboard[0].strip("/")
-    if not os.path.isdir(abs_path(keyboard)):
-        print("Invalid keyboard: {}".format(keyboard))
-        return 1
+    command = _COMMANDS.get(args.command, args.command)
+    keyboard = _KEYBOARDS.get(args.keyboard, args.keyboard)
 
     try:
-        command = args.command[0]
-        if command in ("build", "compile"):
-            compile(keyboard)
-        elif command in ("flash", "push"):
-            flash(keyboard)
-        elif command == "show":
+        if command == "show":
             show(keyboard, visualizer.render_ascii)
         elif command == "svg":
             show(keyboard, visualizer.render_svg)
+        else:
+            qmk(command, keyboard)
     except subprocess.CalledProcessError:
         return 1
     except KeyboardInterrupt:
@@ -106,4 +59,4 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    sys.exit(main())

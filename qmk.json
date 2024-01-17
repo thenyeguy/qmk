@@ -1,0 +1,8 @@
+{
+    "userspace_version": "1.0",
+    "build_targets": [
+        ["crkbd/rev1", "mnye"],
+        ["foostan/cornelius", "mnye"],
+        ["splitkb/kyria/rev3", "mnye"]
+    ]
+}

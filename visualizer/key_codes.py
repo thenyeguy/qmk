@@ -64,6 +64,7 @@ _TAP_CODES = {
     "KC_VOLD": "Vol-",
     "KC_VOLU": "Vol+",
     "MAGIC_TOGGLE_CTL_GUI": "𝝙OS",
+    "QK_BOOT": "Flash",
 }
 
 _GUI_SYMBOL = "◇"

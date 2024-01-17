@@ -1,0 +1,3 @@
+INTROSPECTION_KEYMAP_C += combos.c
+
+COMBO_ENABLE = yes

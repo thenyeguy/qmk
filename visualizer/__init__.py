@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 
@@ -14,6 +15,7 @@ def render_ascii(user_dir, keyboard_dir):
 def render_svg(user_dir, keyboard_dir):
     keymap = KeyMap.load(user_dir, keyboard_dir)
     output_file = SvgLayout.load(keyboard_dir).render(keymap)
+    print("Wrote svg:", os.path.relpath(output_file))
     _open_file(output_file)
 
 
