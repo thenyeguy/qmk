@@ -67,9 +67,9 @@ _TAP_CODES = {
     "QK_BOOT": "Flash",
 }
 
-_GUI_SYMBOL = "◇"
+_GUI_SYMBOL = "⌘"
 _CTL_SYMBOL = "⌃"
-_ALT_SYMBOL = "⎇"
+_ALT_SYMBOL = "⌥"
 _SFT_SYMBOL = "⇧"
 
 _HOLD_CODES = {

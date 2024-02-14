@@ -115,7 +115,7 @@ class _Key(object):
                 self._draw_label(svg, key_code.tap, layer)
             # Hold:
             if key_code.layer:
-                self._draw_label(svg, key_code.layer.lower(), "hold", class_)
+                self._draw_label(svg, key_code.hold, "hold", class_)
             elif key_code.hold:
                 self._draw_label(svg, key_code.hold, "hold")
 

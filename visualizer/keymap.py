@@ -22,7 +22,7 @@ class _Rows(object):
         self.rows = rows
 
     def expand(self, line):
-        for (name, keys) in self.rows.items():
+        for name, keys in self.rows.items():
             line = line.replace(name, keys)
         return line
 
