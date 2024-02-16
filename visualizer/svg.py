@@ -32,6 +32,8 @@ text.hold, text.adjust { fill: rgb(170, 170, 170); }
 
 rect, ellipse { fill: rgb(245, 245, 245); }
 
+rect.home { stroke: rgb(225, 225, 225); stroke-width: 1.5px; }
+
 rect.lower { fill: rgb(213, 229, 247); }
 rect.raise { fill: rgb(247, 231, 213); }
 rect.adjust { fill: rgb(225, 225, 225); }
@@ -111,6 +113,7 @@ class _Key(object):
         self.y = y * _KEY_SIZE + _KEY_MARGIN
         self.width = kwargs.get("w", 1) * _KEY_SIZE - 2 * _KEY_MARGIN
         self.height = kwargs.get("h", 1) * _KEY_SIZE - 2 * _KEY_MARGIN
+        self.home = kwargs.get("home", False)
         self.key_codes = {}
 
     def add_key_code(self, layer, key_code):
@@ -137,7 +140,12 @@ class _Key(object):
                 self._draw_label(svg, key_code.hold, "hold")
 
     def _draw_border(self, svg, class_=None):
-        rect = ElementTree.SubElement(
+        classes = []
+        if class_:
+            classes.append(class_)
+        if self.home:
+            classes.append("home")
+        ElementTree.SubElement(
             svg,
             "rect",
             {
@@ -146,10 +154,9 @@ class _Key(object):
                 "width": str(self.width),
                 "height": str(self.height),
                 "rx": str(_KEY_SIZE_RADIUS),
+                "class": " ".join(classes),
             },
         )
-        if class_:
-            rect.set("class", class_)
 
     def _draw_label(self, svg, label, layer, class_=None):
         classes = [class_ or layer]
