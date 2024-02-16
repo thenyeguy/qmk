@@ -3,40 +3,41 @@ import os
 from xml.etree import ElementTree
 
 _KEY_SIZE = 80
-_KEY_SIZE_RADIUS = 14
-_KEY_MARGIN = 5
-_KEY_PADDING = 14
+_KEY_SIZE_RADIUS = 10
+_KEY_MARGIN = 4
+_KEY_PADDING = 10
 
-_COMBO_RADIUS = 14
+_COMBO_RADIUS = 12
 
 _SVG_PADDING = 40
 _SVG_STYLE = """
 text {
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     fill: rgb(50, 50, 50);
+
+    dominant-baseline: central;
+    text-anchor: middle;
 }
 
 text.top { dominant-baseline: hanging; }
 text.bottom { dominant-baseline: alphabetic; }
 text.left { text-anchor: start; }
 text.right { text-anchor: end; }
-text.center {
-    dominant-baseline: central;
-    text-anchor: middle; 
-}
 
+text.colemak { font-size: 13px; font-weight: 700; }
 text.lower { fill: rgb(115, 162, 217); }
 text.raise { fill: rgb(217, 148, 69); }
-text.hold, text.adjust { fill: rgb(170, 170, 170); }
+text.adjust { fill: rgb(124, 171, 125); }
+text.hold { fill: rgb(150, 150, 150); }
 
 rect, ellipse { fill: rgb(245, 245, 245); }
-
 rect.home { stroke: rgb(225, 225, 225); stroke-width: 1.5px; }
 
 rect.lower { fill: rgb(213, 229, 247); }
 rect.raise { fill: rgb(247, 231, 213); }
-rect.adjust { fill: rgb(225, 225, 225); }
+rect.adjust { fill: rgb(224, 240, 224); }
+rect.hold { fill: rgb(225, 225, 225); }
 
 circle.combo {
     stroke: rgb(200, 200, 200);
@@ -120,31 +121,24 @@ class _Key(object):
         self.key_codes[layer] = key_code
 
     def render(self, svg):
-        class_ = None
         for key_code in self.key_codes.values():
-            if key_code.layer:
-                class_ = key_code.layer.lower()
             if key_code.encoder:
                 self._draw_encoder(svg, key_code)
                 return
 
-        self._draw_border(svg, class_)
+        self._draw_border(svg)
         for layer, key_code in self.key_codes.items():
             # Tap:
             if key_code.tap:
                 self._draw_label(svg, key_code.tap, layer)
             # Hold:
             if key_code.layer:
-                self._draw_label(svg, key_code.hold, "hold", class_)
+                self._draw_hold(svg, key_code.hold, key_code.layer.lower())
             elif key_code.hold:
-                self._draw_label(svg, key_code.hold, "hold")
+                self._draw_hold(svg, key_code.hold, "hold")
 
-    def _draw_border(self, svg, class_=None):
-        classes = []
-        if class_:
-            classes.append(class_)
-        if self.home:
-            classes.append("home")
+    def _draw_border(self, svg):
+        classes = "home" if self.home else ""
         ElementTree.SubElement(
             svg,
             "rect",
@@ -154,32 +148,50 @@ class _Key(object):
                 "width": str(self.width),
                 "height": str(self.height),
                 "rx": str(_KEY_SIZE_RADIUS),
-                "class": " ".join(classes),
+                "class": classes,
             },
         )
+
+    def _draw_hold(self, svg, label, layer="hold"):
+        ElementTree.SubElement(
+            svg,
+            "rect",
+            {
+                "x": str(self.x),
+                "y": str(self.y + self.height - 2 * _KEY_SIZE_RADIUS),
+                "width": str(self.width),
+                "height": str(2 * _KEY_SIZE_RADIUS),
+                "rx": str(_KEY_SIZE_RADIUS),
+                "class": layer,
+            },
+        )
+        ElementTree.SubElement(
+            svg,
+            "text",
+            {
+                "x": str(self.x + self.width / 2),
+                "y": str(self.y + self.height - _KEY_SIZE_RADIUS),
+                "class": layer,
+            },
+        ).text = label
 
     def _draw_label(self, svg, label, layer, class_=None):
         classes = [class_ or layer]
         if layer == "colemak":
-            dx = _KEY_PADDING
-            dy = _KEY_PADDING
-            classes.extend(["top", "left"])
-        elif layer == "hold":
-            dx = _KEY_PADDING
-            dy = self.height - _KEY_PADDING
-            classes.extend(["bottom", "left"])
+            dx = self.width / 2
+            dy = self.height / 2
         elif layer in ("lower", "raise"):
             dx = self.width - _KEY_PADDING
             dy = _KEY_PADDING
             classes.extend(["top", "right"])
         elif layer == "adjust":
-            dx = self.width - _KEY_PADDING
-            dy = self.height - _KEY_PADDING
-            classes.extend(["bottom", "right"])
+            dx = _KEY_PADDING
+            dy = _KEY_PADDING
+            classes.extend(["top", "left"])
         else:
             raise Exception(f"Unknown layer: {layer}")
 
-        text = ElementTree.SubElement(
+        ElementTree.SubElement(
             svg,
             "text",
             {
@@ -187,8 +199,7 @@ class _Key(object):
                 "y": str(self.y + dy),
                 "class": " ".join(classes),
             },
-        )
-        text.text = label
+        ).text = label
 
     def _draw_encoder(self, svg, key_code):
         cx = self.x + self.width / 2
@@ -239,6 +250,6 @@ class _Combo(object):
             {
                 "x": str(cx),
                 "y": str(cy),
-                "class": "center combo",
+                "class": "combo",
             },
         ).text = self.keycode.tap
