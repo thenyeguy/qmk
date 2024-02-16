@@ -21,6 +21,12 @@ class AsciiTemplate(object):
                 rendered = rendered.replace(match, label)
             print("{:^{}}".format(layer.name.title(), self.width))
             print(rendered)
+        print("{:^{}}".format("Combos", self.width))
+        combos = [
+            "+".join(c.tap for c in combo.triggers) + " -> " + combo.code.tap
+            for combo in keymap.combos
+        ]
+        print("{:^{}}".format("    ".join(combos), self.width))
 
 
 def _render_key(key, width):
