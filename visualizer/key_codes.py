@@ -52,6 +52,7 @@ _TAP_CODES = {
     "KC_BSPC": "⌫",
     "KC_DEL": "⌦",
     "KC_CAPS": "⇪",
+    "CW_TOGG": "⇪",
     "KC_UP": "↑",
     "KC_DOWN": "↓",
     "KC_LEFT": "←",
