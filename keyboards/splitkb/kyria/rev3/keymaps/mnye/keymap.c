@@ -14,7 +14,7 @@ enum keycodes {
 };
 
 
-#define LOCK LGUI(KC_L)
+#define LOCK LGUI(LCTL(KC_Q))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
