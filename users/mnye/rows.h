@@ -12,13 +12,13 @@
 
 // --------------------
 // Colemak (DHm) layer:
-#define __COLEMAK_ROW1_LEFT__  KC_TAB,  KC_Q,         KC_W,         KC_F,         KC_P,         KC_B
-#define __COLEMAK_ROW2_LEFT__  KC_ESC,  LGUI_T(KC_A), LCTL_T(KC_R), LALT_T(KC_S), LSFT_T(KC_T), KC_G
-#define __COLEMAK_ROW3_LEFT__  KC_LSFT, KC_Z,         KC_X,         KC_C,         KC_D,         KC_V
+#define __BASE_ROW1_LEFT__  KC_TAB,  KC_Q,         KC_W,         KC_F,         KC_P,         KC_B
+#define __BASE_ROW2_LEFT__  KC_ESC,  LGUI_T(KC_A), LCTL_T(KC_R), LALT_T(KC_S), LSFT_T(KC_T), KC_G
+#define __BASE_ROW3_LEFT__  KC_LSFT, KC_Z,         KC_X,         KC_C,         KC_D,         KC_V
 
-#define __COLEMAK_ROW1_RIGHT__ KC_J, KC_L,         KC_U,         KC_Y,         KC_QUOT,      KC_BSPC
-#define __COLEMAK_ROW2_RIGHT__ KC_M, RSFT_T(KC_N), RALT_T(KC_E), RCTL_T(KC_I), RGUI_T(KC_O), KC_ENT
-#define __COLEMAK_ROW3_RIGHT__ KC_K, KC_H,         KC_COMM,      KC_DOT,       KC_SLSH,      KC_RSFT
+#define __BASE_ROW1_RIGHT__ KC_J, KC_L,         KC_U,         KC_Y,         KC_QUOT,      KC_BSPC
+#define __BASE_ROW2_RIGHT__ KC_M, RSFT_T(KC_N), RALT_T(KC_E), RCTL_T(KC_I), RGUI_T(KC_O), KC_ENT
+#define __BASE_ROW3_RIGHT__ KC_K, KC_H,         KC_COMM,      KC_DOT,       KC_SLSH,      KC_RSFT
 
 
 // ------------

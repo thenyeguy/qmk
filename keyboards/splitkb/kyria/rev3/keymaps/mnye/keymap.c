@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-  _COLEMAK,
+  _BASE,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -18,10 +18,10 @@ enum keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[_COLEMAK] = EXPAND(LAYOUT,
-    __COLEMAK_ROW1_LEFT__,                                          __COLEMAK_ROW1_RIGHT__,
-    __COLEMAK_ROW2_LEFT__,                                          __COLEMAK_ROW2_RIGHT__,
-    __COLEMAK_ROW3_LEFT__,       KC_BSPC, KC_RGHT, KC_UP,   KC_ENT, __COLEMAK_ROW3_RIGHT__,
+[_BASE] = EXPAND(LAYOUT,
+    __BASE_ROW1_LEFT__,                                             __BASE_ROW1_RIGHT__,
+    __BASE_ROW2_LEFT__,                                             __BASE_ROW2_RIGHT__,
+    __BASE_ROW3_LEFT__,          KC_BSPC, KC_RGHT, KC_UP,   KC_ENT, __BASE_ROW3_RIGHT__,
     ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_LEFT, KC_DOWN, KC_SPC, MO(_RAISE), ADJUST, ENC_MEDIA
 ),
 

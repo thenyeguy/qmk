@@ -25,7 +25,7 @@ text.bottom { dominant-baseline: alphabetic; }
 text.left { text-anchor: start; }
 text.right { text-anchor: end; }
 
-text.colemak { font-size: 13px; font-weight: 700; }
+text.base { font-size: 13px; font-weight: 700; }
 text.lower { fill: rgb(115, 162, 217); }
 text.raise { fill: rgb(217, 148, 69); }
 text.adjust { fill: rgb(124, 171, 125); }
@@ -177,7 +177,7 @@ class _Key(object):
 
     def _draw_label(self, svg, label, layer, class_=None):
         classes = [class_ or layer]
-        if layer == "colemak":
+        if layer == "base":
             dx = self.width / 2
             dy = self.height / 2
         elif layer in ("lower", "raise"):
