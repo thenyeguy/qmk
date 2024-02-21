@@ -56,7 +56,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return true;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ENC_NAV:
       if (record->event.pressed) {
