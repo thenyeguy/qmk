@@ -13,7 +13,7 @@ _SVG_PADDING = 40
 _SVG_STYLE = """
 text {
     font-family: sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     fill: rgb(50, 50, 50);
 
     dominant-baseline: central;
@@ -25,7 +25,7 @@ text.bottom { dominant-baseline: alphabetic; }
 text.left { text-anchor: start; }
 text.right { text-anchor: end; }
 
-text.base { font-size: 13px; font-weight: 700; }
+text.base { font-size: 14px; font-weight: 700; }
 text.lower { fill: rgb(115, 162, 217); }
 text.raise { fill: rgb(217, 148, 69); }
 text.adjust { fill: rgb(124, 171, 125); }
