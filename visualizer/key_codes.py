@@ -101,6 +101,11 @@ _LAYER_CODES = {
     "ADJUST": "⇅",
 }
 
+_TRILAYERS = {
+    "TL_LOWR": "LOWER",
+    "TL_UPPR": "RAISE",
+}
+
 _ENCODER_CODES = {
     "ENC_NAV": "Nav",
     "ENC_MEDIA": "Media",
@@ -122,6 +127,9 @@ class KeyCode(object):
 
         if mod in _MODIFIER_CODES:
             self.hold = _MODIFIER_CODES[mod]
+
+        if code in _TRILAYERS:
+            code = _TRILAYERS[code]
 
         if mod == "MO" or code in _LAYER_CODES:
             self.layer = code.removeprefix("_")

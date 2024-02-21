@@ -8,8 +8,7 @@ enum layers {
 };
 
 enum keycodes {
-    ADJUST = SAFE_RANGE,
-    ENC_NAV,
+    ENC_NAV = SAFE_RANGE,
     ENC_MEDIA,
 };
 
@@ -19,10 +18,10 @@ enum keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BASE] = EXPAND(LAYOUT,
-    __BASE_ROW1_LEFT__,                                             __BASE_ROW1_RIGHT__,
-    __BASE_ROW2_LEFT__,                                             __BASE_ROW2_RIGHT__,
-    __BASE_ROW3_LEFT__,          KC_BSPC, KC_RGHT, KC_UP,   KC_ENT, __BASE_ROW3_RIGHT__,
-    ENC_NAV, ADJUST, MO(_LOWER), KC_SPC,  KC_LEFT, KC_DOWN, KC_SPC, MO(_RAISE), ADJUST, ENC_MEDIA
+    __BASE_ROW1_LEFT__,                                               __BASE_ROW1_RIGHT__,
+    __BASE_ROW2_LEFT__,                                               __BASE_ROW2_RIGHT__,
+    __BASE_ROW3_LEFT__,            KC_BSPC, KC_RGHT, KC_UP,   KC_ENT, __BASE_ROW3_RIGHT__,
+    ENC_NAV, MO(_ADJUST), TL_LOWR, KC_SPC,  KC_LEFT, KC_DOWN, KC_SPC, TL_UPPR, MO(_ADJUST), ENC_MEDIA
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -48,10 +47,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         tap_code16(clockwise ? LGUI(KC_RIGHT) : LGUI(KC_LEFT));
@@ -65,16 +60,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        layer_on(_RAISE);
-      } else {
-        layer_off(_LOWER);
-        layer_off(_RAISE);
-      }
-      update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      return false;
     case ENC_NAV:
       if (record->event.pressed) {
         tap_code16(LOCK);

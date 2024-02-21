@@ -7,10 +7,6 @@ enum layers {
   _ADJUST
 };
 
-enum keycodes {
-    ADJUST = SAFE_RANGE,
-};
-
 #define LOCK LGUI(LCTL(KC_Q))
 #define SLEEP LCTL(LSFT(KC_PWR))
 
@@ -20,8 +16,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __BASE_ROW1_LEFT__, __BASE_ROW1_RIGHT__,
     __BASE_ROW2_LEFT__, __BASE_ROW2_RIGHT__,
     __BASE_ROW3_LEFT__, __BASE_ROW3_RIGHT__,
-    KC_LEFT, KC_RGHT,    LOCK,   ADJUST,  MO(_LOWER), KC_SPC,
-    KC_SPC,  MO(_RAISE), ADJUST, KC_MPLY, KC_DOWN,    KC_UP
+    KC_LEFT, KC_RGHT, LOCK,        MO(_ADJUST), TL_LOWR, KC_SPC,
+    KC_SPC,  TL_UPPR, MO(_ADJUST), KC_MPLY,     KC_DOWN, KC_UP
 ),
 
 [_LOWER] = EXPAND(LAYOUT,
@@ -49,23 +45,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 };
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        layer_on(_RAISE);
-      } else {
-        layer_off(_LOWER);
-        layer_off(_RAISE);
-      }
-      update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      return false;
-  }
-  return true;
-}
