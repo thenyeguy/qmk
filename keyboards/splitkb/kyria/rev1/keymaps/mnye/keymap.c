@@ -42,14 +42,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __ADJUST_ROW1_LEFT__,                                              __ADJUST_ROW1_RIGHT__,
     __ADJUST_ROW2_LEFT__,                                              __ADJUST_ROW2_RIGHT__,
     __ADJUST_ROW3_LEFT__,          _______, _______, _______, _______, __ADJUST_ROW3_RIGHT__,
-    MAGIC_TOGGLE_CTL_GUI, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 };
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        tap_code16(clockwise ? LGUI(KC_RIGHT) : LGUI(KC_LEFT));
+        tap_code16(clockwise ? LCTL(KC_RIGHT) : LCTL(KC_LEFT));
         return false;
     } else if (index == 1) {
         tap_code(clockwise ? KC_VOLU : KC_VOLD);
