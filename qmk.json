@@ -3,6 +3,6 @@
     "build_targets": [
         ["crkbd/rev1", "mnye"],
         ["foostan/cornelius", "mnye"],
-        ["splitkb/kyria/rev3", "mnye"]
+        ["splitkb/kyria/rev1", "mnye"]
     ]
 }
