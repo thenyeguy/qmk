@@ -58,9 +58,10 @@ def _load_rows(row_lines):
 
     rows = dict()
     for line in row_lines:
-        match = row_re.match(line)
-        if match:
-            rows[match.group(1)] = match.group(2)
+        if match := row_re.match(line):
+            # Don't expand custom keycode macros.
+            if not match.group(1).startswith("KC_"):
+                rows[match.group(1)] = match.group(2)
     return _Rows(rows)
 
 

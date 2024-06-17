@@ -66,8 +66,9 @@ _TAP_CODES = {
     "KC_MNXT": "⏭",
     "KC_VOLD": "Vol-",
     "KC_VOLU": "Vol+",
-    "MAGIC_TOGGLE_CTL_GUI": "𝝙OS",
-    "QK_BOOT": "Flash",
+    "CG_TOGG": "𝝙OS",
+    "KC_LOCK": "⏾",
+    "QK_BOOT": "⏻",
 }
 
 _GUI_SYMBOL = "⌘"

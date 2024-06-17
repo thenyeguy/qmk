@@ -4,10 +4,9 @@
 #define EXPAND(layout, ...) layout(__VA_ARGS__)
 
 
-// -------------
-// Generic rows:
-#define __BLANK_HALF__ _______, _______, _______, _______, _______, _______
-#define __XXXXX_HALF__ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+// ----------------
+// Shared keycodes.
+#define KC_LOCK LGUI(LCTL(KC_Q))
 
 
 // --------------------

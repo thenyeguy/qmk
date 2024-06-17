@@ -13,8 +13,6 @@ enum keycodes {
 };
 
 
-#define LOCK LGUI(LCTL(KC_Q))
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BASE] = EXPAND(LAYOUT,
@@ -39,10 +37,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ADJUST] = EXPAND(LAYOUT,
-    QK_BOOT, __ADJUST_ROW1_LEFT__,                                       __ADJUST_ROW1_RIGHT__, KC_DEL,
+    _______, __ADJUST_ROW1_LEFT__,                                       __ADJUST_ROW1_RIGHT__, KC_DEL,
     _______, __ADJUST_ROW2_LEFT__,                                       __ADJUST_ROW2_RIGHT__, _______,
     _______, __ADJUST_ROW3_LEFT__,   _______, _______, _______, _______, __ADJUST_ROW3_RIGHT__, _______,
-          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+          _______, QK_BOOT, _______, _______, _______, _______, _______, _______, CG_TOGG, _______
 ),
 
 };
@@ -62,7 +60,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ENC_NAV:
       if (record->event.pressed) {
-        tap_code16(LOCK);
+        tap_code16(KC_LOCK);
       }
       return false;
     case ENC_MEDIA:
