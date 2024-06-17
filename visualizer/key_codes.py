@@ -117,16 +117,17 @@ _ENCODER_CODES = {
 
 class KeyCode(object):
     def __init__(self, code):
-        mod = None
-        if match := re.match(r"(\w+)\((\w+)\)", code):
-            code = match.group(2)
-            mod = match.group(1)
-
         self.raw = code
         self.tap = None
         self.hold = None
         self.layer = None
         self.encoder = None
+
+        mod = None
+        if match := re.match(r"(\w+)\((\w+)\)", code):
+            code = match.group(2)
+            mod = match.group(1)
+
 
         if mod in _MODIFIER_CODES:
             self.hold = _MODIFIER_CODES[mod]

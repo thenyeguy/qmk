@@ -89,7 +89,7 @@ def _load_layers(keymap_lines, rows):
 
 
 def _load_combos(combo_lines):
-    trigger_re = re.compile(r"(\w+)\[\] = {(\w+), (\w+), COMBO_END}")
+    trigger_re = re.compile(r"(\w+)\[\] = {(.+), (.+), COMBO_END}")
     combo_re = re.compile(r"COMBO\((\w+), (\w+)\)")
 
     triggers = dict()
