@@ -115,6 +115,7 @@ class _Key(object):
         self.width = kwargs.get("w", 1) * _KEY_SIZE - 2 * _KEY_MARGIN
         self.height = kwargs.get("h", 1) * _KEY_SIZE - 2 * _KEY_MARGIN
         self.home = kwargs.get("home", False)
+        self.encoder = kwargs.get("encoder", False)
         self.key_codes = {}
 
     def add_key_code(self, layer, key_code):
@@ -122,7 +123,7 @@ class _Key(object):
 
     def render(self, svg):
         for key_code in self.key_codes.values():
-            if key_code.encoder:
+            if self.encoder:
                 self._draw_encoder(svg, key_code)
                 return
 
@@ -222,7 +223,7 @@ class _Key(object):
                 "y": str(cy),
                 "class": "center",
             },
-        ).text = key_code.encoder
+        ).text = key_code.tap
 
 
 class _Combo(object):

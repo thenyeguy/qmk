@@ -109,8 +109,8 @@ _TRILAYERS = {
 }
 
 _ENCODER_CODES = {
-    "ENC_NAV": "Nav",
-    "ENC_MEDIA": "Media",
+    "ENC_NAV": "↤ ⏾ ↦",
+    "ENC_MEDIA": "⇣ ⏯ ⇡",
 }
 
 
@@ -139,7 +139,7 @@ class KeyCode(object):
         elif code in _HOLD_CODES:
             self.hold = _HOLD_CODES[code]
         elif code in _ENCODER_CODES:
-            self.encoder = _ENCODER_CODES[code]
+            self.tap = _ENCODER_CODES[code]
         else:
             if code in _TAP_CODES:
                 self.tap = _TAP_CODES[code]
