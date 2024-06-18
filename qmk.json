@@ -2,6 +2,7 @@
     "userspace_version": "1.0",
     "build_targets": [
         ["crkbd/rev1", "mnye"],
+        ["ferris/sweep", "mnye"],
         ["foostan/cornelius", "mnye"],
         ["splitkb/kyria/rev1", "mnye"]
     ]

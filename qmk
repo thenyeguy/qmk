@@ -17,6 +17,7 @@ _COMMANDS = {
 _KEYBOARDS = {
     "corne": "crkbd/rev1",
     "cornelius": "foostan/cornelius",
+    "ferris": "ferris/sweep",
     "kyria": "splitkb/kyria/rev1",
 }
 
