@@ -85,6 +85,7 @@ _HOLD_CODES = {
     "KC_RALT": _ALT_SYMBOL,
     "KC_LSFT": _SFT_SYMBOL,
     "KC_RSFT": _SFT_SYMBOL,
+    "MOD_LSFT": _SFT_SYMBOL,
 }
 
 _MODIFIER_CODES = {
@@ -138,6 +139,8 @@ class KeyCode(object):
         if mod == "MO" or code in _LAYER_CODES:
             self.layer = code.removeprefix("_")
             self.hold = _LAYER_CODES.get(self.layer, self.layer)
+        elif mod == "OSM":
+            self.tap = _HOLD_CODES[code]
         elif code in _HOLD_CODES:
             self.hold = _HOLD_CODES[code]
         elif code in _ENCODER_CODES:
