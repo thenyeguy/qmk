@@ -124,6 +124,7 @@ _TRILAYERS = {
 _MACROS = {
     "LCTL(KC_LEFT)": "↤",
     "LCTL(KC_RGHT)": "↦",
+    "LSFT(KC_TAB)": "⇤",
 }
 
 _ENCODER_CODES = {
