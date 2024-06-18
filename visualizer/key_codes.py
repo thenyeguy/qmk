@@ -89,6 +89,17 @@ _HOLD_CODES = {
 }
 
 _MODIFIER_CODES = {
+    "LGUI": _GUI_SYMBOL,
+    "RGUI": _GUI_SYMBOL,
+    "LCTL": _CTL_SYMBOL,
+    "RCTL": _CTL_SYMBOL,
+    "LALT": _ALT_SYMBOL,
+    "RALT": _ALT_SYMBOL,
+    "LSFT": _SFT_SYMBOL,
+    "RSFT": _SFT_SYMBOL,
+}
+
+_MOD_TAP_CODES = {
     "LGUI_T": _GUI_SYMBOL,
     "RGUI_T": _GUI_SYMBOL,
     "LCTL_T": _CTL_SYMBOL,
@@ -110,6 +121,11 @@ _TRILAYERS = {
     "TL_UPPR": "RAISE",
 }
 
+_MACROS = {
+    "LCTL(KC_LEFT)": "↤",
+    "LCTL(KC_RGHT)": "↦",
+}
+
 _ENCODER_CODES = {
     "ENC_NAV": "↤ ⏾ ↦",
     "ENC_MEDIA": "⇣ ⏯ ⇡",
@@ -129,9 +145,8 @@ class KeyCode(object):
             code = match.group(2)
             mod = match.group(1)
 
-
-        if mod in _MODIFIER_CODES:
-            self.hold = _MODIFIER_CODES[mod]
+        if mod in _MOD_TAP_CODES:
+            self.hold = _MOD_TAP_CODES[mod]
 
         if code in _TRILAYERS:
             code = _TRILAYERS[code]
@@ -143,6 +158,8 @@ class KeyCode(object):
             self.tap = _HOLD_CODES[code]
         elif code in _HOLD_CODES:
             self.hold = _HOLD_CODES[code]
+        elif self.raw in _MACROS:
+            self.tap = _MACROS[self.raw]
         elif code in _ENCODER_CODES:
             self.tap = _ENCODER_CODES[code]
         else:
@@ -150,3 +167,6 @@ class KeyCode(object):
                 self.tap = _TAP_CODES[code]
             else:
                 self.tap = code.replace("KC_", "").title().replace("_", "")
+
+            if mod in _MODIFIER_CODES:
+                self.tap = _MODIFIER_CODES[mod] + self.tap
