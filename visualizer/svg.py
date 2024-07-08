@@ -50,18 +50,16 @@ text.combo { font-size: 10px; }
 class SvgLayout(object):
     @classmethod
     def load(cls, keyboard_dir):
-        output_file = os.path.join(keyboard_dir, "keymap.svg")
         with open(os.path.join(keyboard_dir, "svg_layout.json")) as f:
             keys = []
             for key in json.load(f):
                 keys.append(_Key(**key))
-            return cls(keys, output_file)
+            return cls(keys)
 
-    def __init__(self, keys, output_file):
+    def __init__(self, keys):
         self.keys = keys
-        self.output_file = output_file
 
-    def render(self, keymap):
+    def render(self, keymap, output_file):
         # Attach keymap to keys.
         for layer in keymap.layers:
             for key, code in zip(self.keys, layer.key_codes()):
@@ -101,11 +99,10 @@ class SvgLayout(object):
             _Combo(self.keys[i1], self.keys[i2], combo.code).render(svg)
 
         # Write out rendered svg.
-        with open(self.output_file, "wb") as f:
+        with open(output_file, "wb") as f:
             tree = ElementTree.ElementTree(svg)
             ElementTree.indent(tree)
             tree.write(f)
-        return self.output_file
 
 
 class _Key(object):

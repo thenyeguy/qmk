@@ -22,17 +22,14 @@ _KEYBOARDS = {
 }
 
 
-def abs_path(*paths):
-    dirname = os.path.abspath(os.path.dirname(__file__))
-    return os.path.join(dirname, *paths)
+def qmk(cmd, targets):
+    for target in targets:
+        subprocess.check_call(["qmk", cmd, "-kb", target])
 
 
-def qmk(cmd, keyboard):
-    subprocess.check_call(["qmk", cmd, "-kb", keyboard])
-
-
-def show(keyboard, render):
-    render(abs_path("users/mnye"), abs_path("keyboards", keyboard, "keymaps/mnye"))
+def show(render, targets):
+    for target in targets:
+        render(target)
 
 
 def main():
@@ -42,15 +39,19 @@ def main():
     args = parser.parse_args()
 
     command = _COMMANDS.get(args.command, args.command)
-    keyboard = _KEYBOARDS.get(args.keyboard, args.keyboard)
+
+    if args.keyboard == "all":
+        targets = _KEYBOARDS.values()
+    else:
+        targets = [_KEYBOARDS.get(args.keyboard, args.keyboard)]
 
     try:
         if command == "show":
-            show(keyboard, visualizer.render_ascii)
+            show(visualizer.render_ascii, targets)
         elif command == "svg":
-            show(keyboard, visualizer.render_svg)
+            show(visualizer.render_svg, targets)
         else:
-            qmk(command, keyboard)
+            qmk(command, targets)
     except subprocess.CalledProcessError:
         return 1
     except KeyboardInterrupt:
