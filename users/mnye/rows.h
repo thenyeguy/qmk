@@ -26,9 +26,9 @@
 #define __LOWER_ROW2_LEFT__  KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX
 #define __LOWER_ROW3_LEFT__  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
-#define __LOWER_ROW1_RIGHT__ XXXXXXX, KC_7,    KC_8,    KC_9,    KC_DOT
+#define __LOWER_ROW1_RIGHT__ KC_SLSH, KC_7,    KC_8,    KC_9,    XXXXXXX
 #define __LOWER_ROW2_RIGHT__ KC_EQL,  KC_1,    KC_2,    KC_3,    KC_0
-#define __LOWER_ROW3_RIGHT__ KC_MINS, KC_4,    KC_5,    KC_6,    KC_SLSH
+#define __LOWER_ROW3_RIGHT__ KC_MINS, KC_4,    KC_5,    KC_6,    KC_DOT
 
 
 // ------------
