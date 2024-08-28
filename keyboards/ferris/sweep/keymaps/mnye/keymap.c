@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __ADJUST_ROW1_LEFT__, __ADJUST_ROW1_RIGHT__,
     __ADJUST_ROW2_LEFT__, __ADJUST_ROW2_RIGHT__,
     __ADJUST_ROW3_LEFT__, __ADJUST_ROW3_RIGHT__,
-    _______, QK_BOOT, CG_TOGG, _______
+    _______, QK_BOOT, _______, _______
 ),
 
 };
